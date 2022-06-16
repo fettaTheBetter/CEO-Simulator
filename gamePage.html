@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Office Mayhem</title>
+    <link rel="stylesheet" type = "text/css" href="gamePage.css">
+    
+</head>
+
+<body>
+    <div id=wholeGame class = "wholeGame" >
+        <div id=mainHud class ="mainHud">
+            <div class = "leftDisplay">
+                <div class = "leftleftDisplay">
+                    <div id="HumanResourcesCanvas" class = "smallHud" onclick = "clickDepartment('Human Resources')">
+                        <p class = "smallHudTitle">Human Resources</p>
+                            <div class = "hudTextHolder">
+                                <p>Productivity:</p>
+                                <p class = hudData></p>
+                                </div>
+                            <div class = "hudTextHolder">
+                                  <p>Expenses: </p>
+                                  <p class = hudData></p>
+                            </div>
+                    </div>
+                    <div id="SalesCanvas" class = "smallHud" onclick = "clickDepartment('Sales')">
+                        <p class = "smallHudTitle">Sales</p>
+                            <div class = "hudTextHolder">
+                                <p>Productivity:</p>
+                                <p class = hudData></p>
+                            </div>
+                            <div class = "hudTextHolder">
+                                  <p>Expenses: </p>
+                                  <p class = hudData> </p>
+                            </div>
+                        </div>
+                    <div id="ITCanvas" class = "smallHud" onclick = "clickDepartment('IT')">
+                        <p class = "smallHudTitle">IT</p>
+                            <div class = "hudTextHolder">
+                                <p>Productivity:</p>
+                                <p class = hudData></p>
+                            </div>
+                            <div class = "hudTextHolder">
+                                <p>Expenses: </p>
+                                <p class = hudData></p>
+                         </div>
+                    </div>
+                    <div id="MarketingCanvas" class = "smallHud"onclick = "clickDepartment('Marketing')">
+                        <p class = "smallHudTitle">Marketing</p>
+                            <div class = "hudTextHolder">
+                                <p>Productivity:</p>
+                                <p class = hudData></p>
+                            </div>
+                            <div class = "hudTextHolder">
+                                <p>Expenses: </p>
+                                <p class = hudData></p>
+                         </div>
+                    </div>
+                </div>
+                <div class = "leftleftDisplay">
+                    <div id=moneyTracker class = "smallHud">
+                        <p class = "smallHudTitle">Money</p>
+                            <div class = "hudTextHolder">
+                                <p>Income:</p>
+                                <p class = hudData></p>
+                            </div>
+                            <div class = "hudTextHolder">
+                                <p>Current Wealth:</p>
+                                <p class = hudData></p>
+                         </div>
+                    </div>
+                    <div id="fightData" class = "smallHud" style = "visibility: hidden;">fightValue</div>
+                    <div class = "smallHud">NOTHING RIGHT NOW</div>
+                    <div id="MMHud" class = "smallHud" style = "visibility: hidden;">Middle Management</div>
+                </div>
+            </div>
+            <div class = "rightDisplay">
+                <div id="upperRight" class = "upperRight">
+                <div id ="departmentDisplay" class = "departmentDisplay">
+                    <div id="departmentTitle">Here is the title of the department</div>
+                    <div id ="departmentBody" class = "departmentBody">Here is the body of department</div>
+                </div>
+                <div id = "employeeDisplay">Here are the employees in the department</div>
+                
+                <button onClick = "NextWeek()">Go To Next Week</button>
+                </div>
+                <div id="lowerRight">
+                    <div>Memo will go somewhere</div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <button onClick = "StartGame()">Start Game</button>
+</body>
+<script src = "./Events.js"></script>
+<script src="./Objects/TrainingTracker.js"></script>
+<script src="./Objects/Employee.js"></script>
+<script src="./Departments/baseDepartment.js"></script>
+<script src="./Departments/HumanResources.js"></script>
+<script src="./Departments/IT.js"></script>
+<script src="./Departments/Marketing.js"></script>
+<script src="./Departments/MiddleManagement.js"></script>
+<script src="./Departments/Sales.js"></script>
+<script src="./Objects/MoneyTracker.js"></script>
+<script src="./Company.js"></script>
+<script src="./gameObject.js"></script>
+<script src = "./gameController.js"></script>
+<script src = "./Random Generation/RandomArraysHolder.js"></script>
+<script src = "./Random Generation/CreateEmployee.js"></script>
+</html>
