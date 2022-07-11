@@ -3,6 +3,12 @@ body{
     display: flex;
     justify-content: center;
 }
+button:hover{
+    cursor: pointer;
+}
+.cursorPointer:hover{
+    cursor: pointer;
+}
 .departmentBody {
     display: flex;
     flex-direction: row;
@@ -10,10 +16,39 @@ body{
     height: 80%;
     width: 100%;
     justify-content: space-evenly;
+    font-size: 200%;
 }
 .departmentDisplay{
     display: flex;
     flex-direction: column;
+}
+.departmentTitle {
+    font-size: 300%;
+    color: yellow;
+    text-shadow: 0 0 3px black;
+}
+.empAttributes{
+    display: flex;
+    flex-direction: column;
+}
+.employeeInfo{
+    display: none;
+    flex-direction: row;
+}
+.empPicture:hover{
+    cursor: pointer;
+}
+.flexColumn{
+    display: flex;
+    flex-direction: column;
+}
+.flexRow{
+    display: flex;
+    flex-direction: row;
+}
+.hireButton{
+    text-orientation: upright;
+    writing-mode: vertical-rl;
 }
 .hudData{
     font-weight: normal;
@@ -47,7 +82,7 @@ body{
     flex-direction: row;
 }
 .rightDisplay{
-    background-color: yellow;
+    background-color: rgb(30, 47, 133);
     height: 100%;
     width: 50%;
     display: flex;
@@ -64,6 +99,9 @@ body{
     border: 5px solid black;
     flex-direction: column;
 }
+.smallHud:hover{
+    cursor: pointer;
+}
 .smallHudTitle{
     border-style: none solid solid none;
     background-color: grey;
@@ -71,11 +109,24 @@ body{
     margin-top: 0px;
     padding-top: 5px;
 }
+.switchDepartmentsMenu{
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    bottom: 50%;
+    left: 50%;
+    display: none;
+    z-index: 4;
+}
 .upperRight {
     width: 100%;
     height: 50%;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+    padding: 20px;
 }
 .wholeGame{
     width: 190vh;
@@ -84,6 +135,49 @@ body{
     display: flex;
     align-self: center;
 }
+
+
+
+
+
+
+
+/*extra copied things */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    /*left: 0;
+    top: 0;*/
+    width: 50%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
 
 

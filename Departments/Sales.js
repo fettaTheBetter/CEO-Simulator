@@ -4,7 +4,7 @@
 class Sales extends Department {
     constructor(){
         super();
-        this.income = 45;
+        this.income = 0;
         this.name = "Sales";
     }  
 

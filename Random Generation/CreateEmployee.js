@@ -14,10 +14,12 @@ function createEmployee(){
         let minExpense = 6;
 
         let employee = new Employee();
-        //should get us a random name in employees
-        employee.name = empNames[Math.floor(Math.random()*(empNames.length-1))];
-        employee.productivity = Math.floor(Math.random()*(maxProductivity-minProductivity+1) + minProductivity);
+        //should get us a random name/productivity/expense in employees
+        employee.name = empNames[Math.floor(Math.random()*(empNames.length))];
+        employee.baseProductivity = Math.floor(Math.random()*(maxProductivity-minProductivity+1) + minProductivity);
         employee.expense = Math.floor(Math.random()*(maxExpense-minExpense+1) + minExpense);
+        employee.specialization = empSpecialization[Math.floor(Math.random()*(empSpecialization.length))];
+        employee.productivity = employee.baseProductivity;
         //will generate more later
         return employee;
 }

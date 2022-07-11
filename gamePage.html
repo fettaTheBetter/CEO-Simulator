@@ -12,80 +12,278 @@
         <div id=mainHud class ="mainHud">
             <div class = "leftDisplay">
                 <div class = "leftleftDisplay">
-                    <div id="HumanResourcesCanvas" class = "smallHud" onclick = "clickDepartment('Human Resources')">
-                        <p class = "smallHudTitle">Human Resources</p>
-                            <div class = "hudTextHolder">
-                                <p>Productivity:</p>
-                                <p class = hudData></p>
-                                </div>
-                            <div class = "hudTextHolder">
-                                  <p>Expenses: </p>
-                                  <p class = hudData></p>
-                            </div>
+                    <div id = "fullMemo">
+                        <div id = "memoTitle">memoTitle</div>
+                        <div id = "memoBody">Here is the memo body</div>
                     </div>
-                    <div id="SalesCanvas" class = "smallHud" onclick = "clickDepartment('Sales')">
-                        <p class = "smallHudTitle">Sales</p>
-                            <div class = "hudTextHolder">
-                                <p>Productivity:</p>
-                                <p class = hudData></p>
+                    <div id = "fullHire">
+                        <div id="allNewHires" class = "flexColumn">
+                            <div id="employee1">
+                                <div  class = "employeeInfo">
+                                    <div>
+                                        <img src ="https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png">
+                                        <div>empName</div>
+                                    </div>
+                                    <div id="empAttributes">
+                                        
+                                        <p><u>Attributes</u></p>
+                                        <div class ="flexRow">
+                                            <div>Productivity: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Expense: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>WeeksOfTrainingLeft: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Specialization: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Fight Value: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Training Aptitude: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Productivity Increase: </div><div></div>
+                                        </div>
+                                        
+                                        <div class ="flexRow">
+                                            <div>Personality: </div><div></div>
+                                        </div>
+                                    </div>
+                                    <button class="hireButton " onclick="hireEmployee(0)">HIRE</button>  
+                                </div>
                             </div>
-                            <div class = "hudTextHolder">
-                                  <p>Expenses: </p>
-                                  <p class = hudData> </p>
+                            <div id = "employee2">
+                                <div class = "employeeInfo">
+                                    <div>
+                                        <img src ="https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png">
+                                        <div>empName</div>
+                                    </div>
+                                    <div id="empAttributes">
+                                        
+                                        <p><u>Attributes</u></p>
+                                        <div class ="flexRow">
+                                            <div>Productivity: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Expense: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>WeeksOfTrainingLeft: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Specialization: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Fight Value: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Training Aptitude: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Productivity Increase: </div><div></div>
+                                        </div>
+                                        
+                                        <div class ="flexRow">
+                                            <div>Personality: </div><div></div>
+                                        </div>
+                                    </div>
+                                    <button class="hireButton " onclick="hireEmployee(1)">HIRE</button>  
+                                </div>
+                            </div>
+                            <div id="employee3">
+                                <div  class = "employeeInfo">
+                                    <div>
+                                        <img src ="https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png">
+                                        <div>empName</div>
+                                    </div>
+                                    <div id="empAttributes">
+                                        
+                                        <p><u>Attributes</u></p>
+                                        <div class ="flexRow">
+                                            <div>Productivity: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Expense: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>WeeksOfTrainingLeft: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Specialization: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Fight Value: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Training Aptitude: </div><div></div>
+                                        </div>
+                                        <div class ="flexRow">
+                                            <div>Productivity Increase: </div><div></div>
+                                        </div>
+                                        
+                                        <div class ="flexRow">
+                                            <div>Personality: </div><div></div>
+                                        </div>
+                                    </div>
+                                    <button class="hireButton " onclick="hireEmployee(2)">HIRE</button>  
+                                </div>
                             </div>
                         </div>
-                    <div id="ITCanvas" class = "smallHud" onclick = "clickDepartment('IT')">
-                        <p class = "smallHudTitle">IT</p>
-                            <div class = "hudTextHolder">
-                                <p>Productivity:</p>
-                                <p class = hudData></p>
-                            </div>
-                            <div class = "hudTextHolder">
-                                <p>Expenses: </p>
-                                <p class = hudData></p>
-                         </div>
-                    </div>
-                    <div id="MarketingCanvas" class = "smallHud"onclick = "clickDepartment('Marketing')">
-                        <p class = "smallHudTitle">Marketing</p>
-                            <div class = "hudTextHolder">
-                                <p>Productivity:</p>
-                                <p class = hudData></p>
-                            </div>
-                            <div class = "hudTextHolder">
-                                <p>Expenses: </p>
-                                <p class = hudData></p>
-                         </div>
                     </div>
                 </div>
                 <div class = "leftleftDisplay">
                     <div id=moneyTracker class = "smallHud">
                         <p class = "smallHudTitle">Money</p>
                             <div class = "hudTextHolder">
-                                <p>Income:</p>
-                                <p class = hudData></p>
+                                <div>Income:</div>
+                                <div class = hudData></div>
                             </div>
                             <div class = "hudTextHolder">
-                                <p>Current Wealth:</p>
-                                <p class = hudData></p>
+                                <div>Expenses:</div>
+                                <div class = hudData></div>
+                            </div>
+                            <div class = "hudTextHolder">
+                                <div>Gross Income:</div>
+                                <div class = hudData></div>
+                            </div>
+                            <div class = "hudTextHolder">
+                                <div>Current Wealth:</div>
+                                <div class = hudData></div>
+                            </div>
+                    </div>
+                    <div id="HumanResourcesCanvas" class = "smallHud" onclick = "clickDepartment('Human Resources')">
+                        <p class = "smallHudTitle">Human Resources</p>
+                            <div class = "hudTextHolder">
+                                <div>Productivity:</div>
+                                <div class = hudData></div>
+                            </div>
+                            <div class = "hudTextHolder">
+                                  <div>Expenses: </div>
+                                  <div class = hudData></div>
+                            </div>
+                    </div>
+                    <div id="SalesCanvas" class = "smallHud" onclick = "clickDepartment('Sales')">
+                        <p class = "smallHudTitle">Sales</p>
+                            <div class = "hudTextHolder">
+                                <div>Productivity:</div>
+                                <div class = hudData></div>
+                            </div>
+                            <div class = "hudTextHolder">
+                                  <div>Expenses: </div>
+                                  <div class = hudData> </div>
+                            </div>
+                        </div>
+                    <div id="ITCanvas" class = "smallHud" onclick = "clickDepartment('IT')">
+                        <p class = "smallHudTitle">IT</p>
+                            <div class = "hudTextHolder">
+                                <div>Productivity:</div>
+                                <div class = hudData></div>
+                            </div>
+                            <div class = "hudTextHolder">
+                                <div>Expenses: </div>
+                                <div class = hudData></div>
+                            </div>
+                    </div>
+                    <div id="MarketingCanvas" class = "smallHud"onclick = "clickDepartment('Marketing')">
+                        <p class = "smallHudTitle">Marketing</p>
+                            <div class = "hudTextHolder">
+                                <div>Productivity:</div>
+                                <div class = hudData></div>
+                            </div>
+                            <div class = "hudTextHolder">
+                                <div>Expenses: </div>
+                                <div class = hudData></div>
                          </div>
                     </div>
-                    <div id="fightData" class = "smallHud" style = "visibility: hidden;">fightValue</div>
-                    <div class = "smallHud">NOTHING RIGHT NOW</div>
-                    <div id="MMHud" class = "smallHud" style = "visibility: hidden;">Middle Management</div>
+                    <div id="fightCanvas" class = "smallHud">
+                        <p class = "smallHudTitle">Fight Value</p>
+                                <div class = "hudTextHolder">
+                                    <div># of People:</div>
+                                    <div class = hudData></div>
+                                </div>
+                                <div class = "hudTextHolder">
+                                    <div>Total Fight Value: </div>
+                                    <div class = hudData></div>
+                            </div>
+                    </div>
+                    <div id="MiddleManagementCanvas" class = "smallHud">
+                        <p class = "smallHudTitle">Middle Management</p>
+                                <div class = "hudTextHolder">
+                                    <div>Productivity:</div>
+                                    <div class = hudData></div>
+                                </div>
+                                <div class = "hudTextHolder">
+                                    <div>Expenses: </div>
+                                    <div class = hudData></div>
+                            </div>
+                    </div>
                 </div>
             </div>
             <div class = "rightDisplay">
                 <div id="upperRight" class = "upperRight">
-                <div id ="departmentDisplay" class = "departmentDisplay">
-                    <div id="departmentTitle">Here is the title of the department</div>
-                    <div id ="departmentBody" class = "departmentBody">Here is the body of department</div>
-                </div>
-                <div id = "employeeDisplay">Here are the employees in the department</div>
+                    <div id ="departmentDisplay" class = "departmentDisplay">
+                        <div id="departmentTitle" class = "departmentTitle">Here is the title of the department</div>
+                        <div id ="departmentBody" class = "departmentBody">Here is the body of department</div>
+                    </div>
                 
-                <button onClick = "NextWeek()">Go To Next Week</button>
+                
                 </div>
                 <div id="lowerRight">
-                    <div>Memo will go somewhere</div>
+                    
+                    <div>
+                        <div id="switchDepartmentsMenu" class = "modal">
+                            <span id="closeModalButton" class="close">&times;</span>
+                            <div class = "modal-content">Where would you like to transfer this employee to?</div>
+                            <div class ="buttonHolder">
+                                <button onclick="switchEmployee('Human Resources')">Human Resources</button>
+                                <button onclick="switchEmployee('Sales')">Sales</button>
+                                <button onclick="switchEmployee('IT')">IT</button>
+                                <button onclick="switchEmployee('Marketing')">Marketing</button>
+                            </div>
+                        </div>
+                        <div id="employeeInfo" class = "employeeInfo">
+                            <div>
+                                <img src ="https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png">
+                                <div>empName</div>
+                            </div>
+                            <div id="empAttributes">
+                                
+                                <p><u>Attributes</u></p>
+                                <div class ="flexRow">
+                                    <div>Productivity: </div><div></div>
+                                </div>
+                                <div class ="flexRow">
+                                    <div>Expense: </div><div></div>
+                                </div>
+                                <div class ="flexRow">
+                                    <div>WeeksOfTrainingLeft: </div><div></div>
+                                </div>
+                                <div class ="flexRow">
+                                    <div>Specialization: </div><div></div>
+                                </div>
+                                <div class ="flexRow">
+                                    <div>Fight Value: </div><div></div>
+                                </div>
+                                <div class ="flexRow">
+                                    <div>Training Aptitude: </div><div></div>
+                                </div>
+                                <div class ="flexRow">
+                                    <div>Productivity Increase: </div><div></div>
+                                </div>
+                                
+                                <div class ="flexRow">
+                                    <div>Personality: </div><div></div>
+                                </div>
+                            </div>
+                            <button onclick="switchDepartmentsMenu()">Switch Departments</button>  
+                        </div>
+                    
+                    </div>
+                    <button class = "nextWeekButton" onClick = "NextWeek()">Go To Next Week</button>
                 </div>
 
             </div>
@@ -95,6 +293,7 @@
 
     </div>
     <button onClick = "StartGame()">Start Game</button>
+    
 </body>
 <script src = "./Events.js"></script>
 <script src="./Objects/TrainingTracker.js"></script>
@@ -111,4 +310,5 @@
 <script src = "./gameController.js"></script>
 <script src = "./Random Generation/RandomArraysHolder.js"></script>
 <script src = "./Random Generation/CreateEmployee.js"></script>
+<script src ="./Random Generation/CreateTrainingTracker.js"></script>
 </html>
