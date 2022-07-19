@@ -1,10 +1,40 @@
+/* color Schemes I want
+#8E887B
+#A9A69C
+#CABEB1
+#BDA892
+#6F695D
+#A59380
+*/
+
 body{
-    background-color: indianred;
+    background-color: #6F695D;
     display: flex;
     justify-content: center;
 }
+.blackLine{
+    border-top: 5px solid #000;
+    width: 80%;
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
 button:hover{
     cursor: pointer;
+}
+.noDisplay{
+    display: none;
+}
+.buttonInEmpInfo{
+    height: 20%;
+    align-self: center;
+    font-size: 150%;
+}
+.buttonNextWeek{
+    width: 95%;
+    font-size: 400%;
+    height: 30%;
+    background-color: #888;
+    border-radius: 5px;
 }
 .cursorPointer:hover{
     cursor: pointer;
@@ -30,13 +60,31 @@ button:hover{
 .empAttributes{
     display: flex;
     flex-direction: column;
+    row-gap: 8px;
+    flex-wrap: wrap;
 }
 .employeeInfo{
     display: none;
     flex-direction: row;
+    font-size: 100%;
+    column-gap: 5px;
+}
+.empPicture{
+    font-size: 50%;
 }
 .empPicture:hover{
     cursor: pointer;
+}
+.firstRoom{
+    width: 100hh;
+    height: 100vh;
+    background-color: #000;
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
 }
 .flexColumn{
     display: flex;
@@ -45,6 +93,21 @@ button:hover{
 .flexRow{
     display: flex;
     flex-direction: row;
+}
+.fullAttributes{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 200px;
+    column-gap: 10px;
+}
+#fullHire{
+    overflow: auto;
+}
+#fullMemo{
+    padding-left: 10px;
+    padding-right: 10px;
+    border-style: double;
 }
 .hireButton{
     text-orientation: upright;
@@ -58,14 +121,20 @@ button:hover{
     flex-direction: row;
     font-weight: bold;
 }
+.imageHolder{
+    text-align: center;
+    font-weight: bold;
+}
 .leftDisplay{
-    background-color: rgb(133, 23, 23);
+    background-color: #A9A69C;
     height: 100%;
     width: 50%;
     display: flex;
     flex-direction: row;
     align-items: center;
     align-content: space-around;
+    margin-right: 10px;
+    background-color: grey;
 }
 .leftleftDisplay{
     height: 100%;
@@ -74,6 +143,11 @@ button:hover{
     width: 100%;
     justify-content: flex-start;
 }
+.lowerRight{
+    border: 5px solid black;
+    height: 50%;
+    background-color: #CABEB1;
+}
 .mainHud{
     width: 95%;
     height: 95%;
@@ -81,13 +155,23 @@ button:hover{
     display: flex;
     flex-direction: row;
 }
+.memoBody{
+    font-family: "Times New Roman", Times, serif;
+}
+.memoOptionButtons{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+.optionButtonsHolder{
+    display: flex;
+    justify-content: space-evenly;
+}
 .rightDisplay{
-    background-color: rgb(30, 47, 133);
+    background-color: #A59380;
     height: 100%;
     width: 50%;
     display: flex;
     flex-direction: column;
-
 }
 .smallHud{
     width: 100%;
@@ -103,11 +187,19 @@ button:hover{
     cursor: pointer;
 }
 .smallHudTitle{
-    border-style: none solid solid none;
+    border-style: none none solid none;
     background-color: grey;
     padding: none;
     margin-top: 0px;
     padding-top: 5px;
+}
+.startGameButton{
+    height: 20%;
+    width: 10%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
 }
 .switchDepartmentsMenu{
     position: fixed;
@@ -119,7 +211,6 @@ button:hover{
     z-index: 4;
 }
 .upperRight {
-    width: 100%;
     height: 50%;
     display: flex;
     flex-direction: column;
@@ -127,13 +218,16 @@ button:hover{
     overflow-y: auto;
     text-align: center;
     padding: 20px;
+    border: 5px solid black;
 }
 .wholeGame{
     width: 190vh;
     height: 95vh;
-    background-color: black;
+    background-color: #615f5f;
     display: flex;
     align-self: center;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -150,8 +244,6 @@ button:hover{
     z-index: 1; /* Sit on top */
     /*left: 0;
     top: 0;*/
-    width: 50%; /* Full width */
-    height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */

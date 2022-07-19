@@ -7,11 +7,11 @@
 //random personality
 //random trainingtracker
 //random fightvalue
-function createEmployee(){
-        let maxProductivity = 85;
-        let minProductivity = 50;
-        let maxExpense = 10;
-        let minExpense = 6;
+function createEmployee(hiringTracker){
+        let maxProductivity = hiringTracker.maxProductivity;
+        let minProductivity = hiringTracker.minProductivity;
+        let maxExpense = hiringTracker.maxExpense;
+        let minExpense = hiringTracker.minExpense;
 
         let employee = new Employee();
         //should get us a random name/productivity/expense in employees

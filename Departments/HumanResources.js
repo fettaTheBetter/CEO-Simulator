@@ -18,49 +18,74 @@ class HumanResources extends Department {
         return breakpointsNum;
     }
     showEmployee(canvas,employee){
-        canvas.parentElement.children[0].children[1].innerText = employee.name;// + " (" + employee.idNum + ")";
+        //need to clear the employee info
+        removeEmployeeInfo();
+        canvas.parentElement.parentElement.children[0].children[1].innerText = employee.name;// + " (" + employee.idNum + ")";
         let tempbreakpoints = this.checkBreakpoints();
         //will add one to tempBreakpoints, I forgot why I have to do this but I do it to show the weeks to Complete
         if(tempbreakpoints != -1){
             tempbreakpoints++;
+            tempbreakpoints++;
         }
-        for(let i=0;i<canvas.children.length-1;i++){
-            if(i<=tempbreakpoints){
-                canvas.children[1+i].style.display = "flex";
-                this.fillEmployeeInfo(canvas,i,employee);
-            }
-            else{
-                canvas.children[1+i].style.display = "none";
-            }
+        for(let i=0;i<tempbreakpoints;i++){
+            let tempHTML = document.createElement('div');
+            tempHTML.classList = "flexRow";
+            let finishedHTML = this.fillEmployeeInfo(tempHTML,i,employee);
+            canvas.appendChild(finishedHTML);
+                  
+        }
+        if(tempbreakpoints !=-1){
+             let errorHTML = document.createElement('p');
+             errorHTML.innerHTML = "HR couldn't more information";
+             errorHTML.style = "color: red;"
+             canvas.appendChild(errorHTML);
         }
     }
     fillEmployeeInfo(canvas,num,employee){
+        //this is the name of the info we are showing e.g. productivity, expenses...
+        let infoName;
+        //this is the actualy stat e.g. 95%, 10...
+        let infoStat;
+        //these are both the html element of them
+        infoName = document.createElement('div');
+        infoStat = document.createElement('div');
         switch (num){
             case 0:
-                canvas.children[1+num].children[1].innerText = employee.productivity.toFixed(0) +"%";
+                infoName.innerHTML = "<b>Productivity: &nbsp;</b>";
+                infoStat.innerText = employee.productivity.toFixed(0) +"%";
                 break;
             case 1:
-                canvas.children[1+num].children[1].innerText = employee.expense;
+                infoName.innerHTML = "<b>Expense: &nbsp;</b>";
+                infoStat.innerText = employee.expense;
                 break;
             case 2:
-                canvas.children[1+num].children[1].innerText = employee.trainingTracker.weeksToComplete-employee.trainingTracker.weeksCompleted;
+                infoName.innerHTML = "<b>WeeksOfTrainingLeft: &nbsp;</b>";
+                infoStat.innerText = employee.trainingTracker.weeksToComplete-employee.trainingTracker.weeksCompleted;
                 break;
             case 3:
-                canvas.children[1+num].children[1].innerText = employee.specialization;
+                infoName.innerHTML = "<b>Specialization: &nbsp;</b>";
+                infoStat.innerText = employee.specialization;
                 break;
             case 4:
-                canvas.children[1+num].children[1].innerText = employee.fightValue;
+                infoName.innerHTML = "<b>FightValue: &nbsp;</b>";
+                infoStat.innerText = employee.fightValue;
                 break;
             case 5:
-                canvas.children[1+num].children[1].innerText = employee.trainingTracker.productivityImpact;
+                infoName.innerHTML = "<b>Training Aptitude: &nbsp;</b>";
+                infoStat.innerText = employee.trainingTracker.baseProductivityImpact;
                 break;
             case 6:
-                canvas.children[1+num].children[1].innerText = employee.productivityIncrease;
+                infoName.innerHTML = "<b>Productivity Increase:  &nbsp;</b>";
+                infoStat.innerText = employee.productivityIncrease;
                 break;
             case 7: 
-                canvas.children[1+num].children[1].innerText = employee.personality;
+            infoName.innerHTML = "<b>Personality: &nbsp;</b>";
+                infoStat.innerText = employee.personality;
                 break;
 
         }
+        canvas.appendChild(infoName);
+        canvas.appendChild(infoStat);
+        return canvas;
     }
 }

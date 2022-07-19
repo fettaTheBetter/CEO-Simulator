@@ -2,7 +2,7 @@ class Department {
     constructor() {
       //these are the base values
       this.productivity = 50;
-      this.expenses = 150;
+      this.expenses;
       //breakpoints to reach the next extra level? I'll explain this better!
       this.breakpoints;
       //middlemanagers needed
@@ -11,9 +11,11 @@ class Department {
       this.employees = [];
       this.name;
       this.expenses = 0;
-
+      this.extraProductivity =0;
       //will be used to scale departments by people
       this.increaseByEmp;
+      //will be an array of productivity objects, these will get a reduce length at the end of each week
+      this.productivityIncreases = [];
     }
     addEmployee(employee){
       let tempDepartment = this.name;
@@ -39,6 +41,9 @@ class Department {
         sum = sum + this.employees[j].productivity;
       }
       let returnedNum = Math.floor(sum / this.employees.length);
+      for(let t=0;t<this.productivityIncreases.length;t++){
+        returnedNum = this.productivityIncreases[t].productivity + returnedNum;
+      }
       if(this.employees.length == 0){
         returnedNum =0;
       }
@@ -54,10 +59,16 @@ class Department {
       let tempDiv;
       for(let i=0;i<this.employees.length;i++){
         tempDiv = this.employees[i].htmlEmployee;
-        tempDiv.children[1].innerText = this.employees[i].name + " (" +this.employees[i].idNum + ")";
+        tempDiv.children[1].innerHTML = "<b>Productivity: </b>" + this.employees[i].productivity.toFixed(0) + '%';
+        tempDiv.children[2].innerHTML = "<b>Expense: </b>" + this.employees[i].expense;
+        tempDiv.children[3].innerHTML = "<b>WeeksOfTraining: </b>" + (this.employees[i].trainingTracker.weeksToComplete-this.employees[i].trainingTracker.weeksCompleted);
+        tempDiv.children[4].innerText = this.employees[i].name + " (" +this.employees[i].idNum + ")";
         //will need to add on onclick function
         canvas.appendChild(tempDiv);
       }
+    }
+    fireEmployee(employee){
+      this.removeEmployee(employee);
     }
     //will find an employee and return it by it's idNum
     getEmployee(idNum){
@@ -97,4 +108,20 @@ class Department {
       otherDep.addEmployee(employee);
       this.removeEmployee(employee);
     }
+    increaseProductivity(value){
+      this.productivityIncreases.push(new ProductivityTracker(value,8));
+    };
+    //will check the weekly productivity objects
+    checkWeeklyProd(){
+      for(let n=0;n<this.productivityIncreases.length;n++){
+        this.productivityIncreases[n].reduceLength(1);
+        if(this.productivityIncreases[n].weeksLeft <=0){
+          this.productivityIncreases = removeFromArray(this.productivityIncreases[n],this.productivityIncreases);
+          //this ensures we check the object that was swapped
+          n--;
+        }
+      }
+    }
+
+
   }

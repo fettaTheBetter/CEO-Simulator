@@ -8,7 +8,7 @@ class Employee {
       this.specialization;
       this.specializationNum = 1.05;
       //cann also be decrease
-      this.productivityIncrease;
+      this.productivityIncrease = 1;
       //may interact negatively with other employees
       this.personality;
 
@@ -25,7 +25,6 @@ class Employee {
       //
       //
       //will create a base employee, will be used for testing
-      this.productivityIncrease = 5;
       this.personality = 'Bland';
       this.fightValue = 3;
 
@@ -39,8 +38,14 @@ class Employee {
         let tempEmp = document.createElement('div');
         let tempImg = document.createElement('img');
         let tempName = document.createElement('div');
+        let tempProd = document.createElement('div');
+        let tempExpense = document.createElement('div');
+        let tempTraining = document.createElement('div');
         tempImg.src = 'https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png';
         tempEmp.appendChild(tempImg);
+        tempEmp.appendChild(tempProd);
+        tempEmp.appendChild(tempExpense);
+        tempEmp.appendChild(tempTraining);
         tempEmp.appendChild(tempName);
         tempEmp.classList.add('empPicture');
         return tempEmp;

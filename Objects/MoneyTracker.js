@@ -3,7 +3,7 @@
 
 class MoneyTracker {
     constructor() {
-      this.currentMoney = 1000;
+      this.currentMoney = 0;
       this.income = 0;
       this.maxIncome = 0;
       this.grossIncome = 0;

@@ -11,13 +11,14 @@ function StartGame(){
     realGame.canvas = document.getElementById('fullGame');
     realGame.createCompany();
     clickDepartment("Human Resources");
+    document.getElementById('firstRoom').style.display = "none";
 }
 
 function NextWeek(){
     //what do I want for next week
     //grab event
-    //realGame.events.eventsArray[0].executeEvent();
     realGame.nextWeek();
+    document.getElementById('nextWeekButton').style.display = 'none';
     clickDepartment("Human Resources");
     updateDisplays();
 }
@@ -44,7 +45,7 @@ function clickEmployee(empNum,depName){
     let empDisplay = document.getElementById('employeeInfo');
     empDisplay.style.display = "flex";
     //this is the div containing the attributes empDisplay.children[1]
-    realGame.company.getDepartment('Human Resources').showEmployee(empDisplay.children[1], employee);
+    realGame.company.getDepartment('Human Resources').showEmployee(empDisplay.children[1].children[1], employee);
     realGame.company.curSelectEmp = employee;
 
 }
@@ -81,6 +82,14 @@ function switchEmployee(departmentToName){
     }
     updateDisplays();
 }
+function fireEmployee(){
+    let employee = realGame.company.curSelectEmp;
+    realGame.company.fireEmployee(employee);
+    updateDisplays();
+    clickDepartment(employee.currentDepartment);
+}
+
+
 function hireEmployee(empIndex){
     document.getElementById('allNewHires').children[empIndex].children[0].style.display = "none";
     updateDisplays();
@@ -88,4 +97,57 @@ function hireEmployee(empIndex){
 }
 function updateDisplays(){
     realGame.updateDisplays();
+}
+function removeEmployeeInfo(){
+    while(document.getElementById('empAttributes').children[1].children.length > 0){
+        document.getElementById('empAttributes').children[1].removeChild(document.getElementById('empAttributes').children[1].lastChild);
+    }
+}
+//will return html for 1 employee for hiring,
+//the num is for making the document id
+
+function createEmpHiringObject(num){
+        let htmlEmployee =
+                                "<div  class = 'employeeInfo'>" +
+                                    "<div class = 'imageHolder flexColumn'>" +
+                                        "<img src ='https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png'>" +
+                                        "<div><b></b></div>" +
+                                    "</div>" + 
+                                    "<div>" +
+                                        "<div class = 'empAttributes'>" +
+                
+                                            "<div>" +
+                                                "<div style = 'font-size: 200%; align-content: center;'>Attributes</div>" +
+                                            "</div>" +
+                                            "<div>" +   
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<button class='hireButton '>HIRE</button>" +  
+                                "</div>" 
+                            ;
+        let temp = document.createElement('div');
+        temp.id = "employee" + num;
+        temp.appendChild(document.createElement('div'));
+        temp.innerHTML = htmlEmployee;
+        temp.children[0].children[2].onclick = function() {hireEmployee(num-1);};
+        return temp;
+}
+
+
+///////////////////
+//utility functions
+///////////////////
+
+//will return an array with the object swapped with the end and removed
+function removeFromArray(obj,array){
+        for(let i=0;i<array.length;i++){
+            if(obj == array[i]){
+                let a = obj;
+                array[i] = array[array.length-1];
+                array[array.length-1] = a;
+                array.pop();
+                return array;
+            }
+        }
 }

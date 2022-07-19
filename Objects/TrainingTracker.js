@@ -1,6 +1,5 @@
 class TrainingTracker{
     constructor(){
-        this.weeksToComplete;
         //when it is created you should have 0 weeks completed
         this.weeksCompleted = 0;
         //how much your productivity is impacted by your training
