@@ -25,9 +25,10 @@ class Memo {
         console.log("Option3 is chosen");
         this.undisplayMemo();
     }
+    //this will return true, if preMemo returns false that means it won't do the memo
     preMemo(){
         console.log("Some pre-memo action");
-        return false;
+        return true;
     }
     undisplayMemo(){
         realGame.updateDisplays();

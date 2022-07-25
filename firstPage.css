@@ -1,0 +1,25 @@
+.firstRoom{
+    width: 100vw;
+    height: 100vh;
+    background-color: grey;
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.startGameButton{
+    height: 20%;
+    width: 10%;
+
+}
+.title{
+    font-size: 400%;
+    font-family: 'Courier New', Courier, monospace;
+}

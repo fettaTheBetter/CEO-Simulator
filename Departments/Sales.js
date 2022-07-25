@@ -4,12 +4,16 @@
 class Sales extends Department {
     constructor(){
         super();
-        this.income = 0;
         this.name = "Sales";
+        this.maxIncome = 100;
+        this.baseMaxIncome = 100;
+        this.increaseByEmp = 25;
     }  
 
-    getWeeklyValue(){
-        //will just return a money value
-        return this.income
+    setMaxIncome(){
+        this.maxIncome = this.baseMaxIncome+(this.employees.length*this.increaseByEmp);
+    }
+    getMaxIncome(){
+        return this.maxIncome;
     }
 }

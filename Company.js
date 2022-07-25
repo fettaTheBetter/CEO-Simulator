@@ -12,8 +12,14 @@ class Company {
       this.hiringTracker = new HiringTracker();
       //keeps track of how many times you ignore the board
       this.ignoreTracker =0;
+      //will keep track of how many ignored Memos they have chained through
+      this.ignoredMemoTracker = 0;
       //will be the employee currently implicated in a scandal
       this.scandalEmp;
+      this.fightCanvas =document.getElementById('fightCanvas');
+    }
+    addFight(){
+        this.fightCanvas.style.display = "flex";
     }
     //will add MM the first time you get 5 people in one department
     addMM(){
@@ -32,34 +38,11 @@ class Company {
         //this is the display on left
         this.bigDisplay = document.getElementById('rightDisplay');
     }
-    //will check if we need to do the action for the first middle manager
-    checkForFirstMM(){
-        //if we have a middle management already
-        if(this.getDepartment('Middle Management')){
-            return false;
-        }
-        //if we do not have middle management yet
-        else {
-            //check if we need it 
-            for(let i=0;i<this.departmentsArray.length;i++){
-                if(this.departmentsArray[i].employees.length >= 5){
-                    return true;
-                }
-            }  
-        }
-        return false;
-    }
-    //will check if the department needs another middle Management
-    checkForMM(depId){
-        //figure this out
-        if(this.departmentsArray[depId].MMneeded < Math.floor((this.departmentsArray[depId].employees.length))){
 
-        }
-    }
     fillDepartments(){
         for(let i=0;i<this.departmentsArray.length;i++){
             this.departmentsArray[i].canvas.children[1].children[1].innerText = this.departmentsArray[i].productivity;
-            this.departmentsArray[i].canvas.children[1].children[1].innerText = this.departmentsArray[i].expenses
+            this.departmentsArray[i].canvas.children[1].children[1].innerText = this.departmentsArray[i].expenses;
         }
     }
     fireEmployee(employee){
@@ -88,8 +71,6 @@ class Company {
         }
         //will add an extra employees to the sales department
         this.hireEmployee('Sales',createEmployee(this.hiringTracker));
-        this.hireEmployee('Sales',createEmployee(this.hiringTracker));
-        this.hireEmployee('Sales',createEmployee(this.hiringTracker));
 
     }
     hireEmployee(departmentName,employee){
@@ -98,27 +79,8 @@ class Company {
         this.currentEmpNum++;
         department.addEmployee(employee);
     }
-    setMoney(){
-        this.setExpenses();
-        //will have to check sales
-        //currently sales will be hardcoded, will hopefully change later
-        let tempIncome = this.moneyTracker.maxIncome*this.departmentsArray[3].calculateProductivity()*0.01;
-        //tempIncome = Math.round(tempIncome * 100) / 100;
-        this.moneyTracker.income = tempIncome;
-        this.moneyTracker.grossIncome = tempIncome - this.moneyTracker.expenses;
-        this.moneyTracker.grossIncomeValue.innerText = "$"+ this.moneyTracker.grossIncome.toFixed(2);
-        this.moneyTracker.expensesValue.innerText = "$" + this.moneyTracker.expenses.toFixed(2);
-        this.moneyTracker.incomeValue.innerText = "$" + this.moneyTracker.income.toFixed(2);
-        this.moneyTracker.currentMoneyValue.innerText = "$" + this.moneyTracker.currentMoney.toFixed(2);
-    }
-    setProductivity(){
-        //what will be my algorithm?
-        //currently just set it with a base value or employee productivity
-        for(let i = 0;i<this.departmentsArray.length;i++){
-            this.departmentsArray[i].productivity = this.departmentsArray[i].calculateProductivity() ;
-            this.departmentsArray[i].canvas.children[1].children[1].innerText = this.departmentsArray[i].productivity + "%";
-        }
-    }
+
+
     //will return a bool of whether this departments productivity is greater than a number
     checkProductivity(depName,num){
         let dep = this.getDepartment(depName);
@@ -128,32 +90,12 @@ class Company {
         }
         return false;
     }
-    setExpenses(){
-        let sumOfExpenses = 0;
-        for(let i = 0;i<this.departmentsArray.length;i++){
-            this.departmentsArray[i].expenses = this.departmentsArray[i].calculateExpenses();
-            this.departmentsArray[i].canvas.children[2].children[1].innerText = "$" + this.departmentsArray[i].expenses;
-            sumOfExpenses = sumOfExpenses + this.departmentsArray[i].expenses;
-        }
-        this.moneyTracker.expenses = sumOfExpenses;
-    }
-    //used in conjunction with HR to see how nice we can hire people
-    setHiringTracker(){
-        let prod = this.getDepartment("Human Resources").calculateProductivity();
-        this.hiringTracker.changeHiringTracker(prod);
-    }
-    setMaxIncome(){
-        //marketing is hardcoded into this
-        let dep = this.getDepartment('Marketing');
-        dep.setMaxIncome();
-        this.moneyTracker.maxIncome = dep.getMaxIncome();
-    }
+
+
+
+
     //will give each hud the num of employees
-    setNumEmployee(){
-        for(let i = 0;i<this.departmentsArray.length;i++){
-            this.departmentsArray[i].canvas.children[3].children[1].innerText = this.departmentsArray[i].employees.length;
-        }
-    }
+
     increaseDepartmentProductivity(depName,value){
         let dep = this.getDepartment(depName);
         dep.increaseProductivity(value);
@@ -171,25 +113,137 @@ class Company {
                 if(!(this.departmentsArray[i].employees[j].trainingTracker.isCompleted)){
                     this.departmentsArray[i].employees[j].reduceTraining();
                 }
-                this.departmentsArray[i].employees[j].expense =this.departmentsArray[i].employees[j].expense +0.5;
+                //this.departmentsArray[i].employees[j].expense =this.departmentsArray[i].employees[j].expense +0.5;
                 this.departmentsArray[i].employees[j].baseProductivity = this.departmentsArray[i].employees[j].baseProductivity + this.departmentsArray[i].employees[j].productivityIncrease;
+                this.departmentsArray[i].employees[j].weeksEmployed = this.departmentsArray[i].employees[j].weeksEmployed +1;
                 //need to update productivity
 
+                //checkForRaises
+                this.departmentsArray[i].employees[j].raiseTracker.reduceWeek();
+                this.departmentsArray[i].employees[j].checkForRaise();
             }
         }
     }
+
+
+    ////////////////////
+    /// SET FUNCTIONS //
+    ////////////////////    
+    setExpenses(){
+        let sumOfExpenses = 0;
+        for(let i = 0;i<this.departmentsArray.length;i++){
+            this.departmentsArray[i].expenses = this.departmentsArray[i].calculateExpenses();
+            this.departmentsArray[i].canvas.children[2].children[1].innerText = "$" + this.departmentsArray[i].expenses;
+            sumOfExpenses = sumOfExpenses + this.departmentsArray[i].expenses;
+        }
+        this.moneyTracker.expenses = sumOfExpenses;
+    }
+    setFightValue(){
+        let fightValue =0;
+        let numOfEmp = 0;
+        //will iterate through departments and employees in departments to add up everything
+        for(let i=0;i<this.departmentsArray.length;i++){
+            for(let j=0;j<this.departmentsArray[i].employees.length;j++){
+                fightValue = fightValue+this.departmentsArray[i].employees[j].fightValue;
+                numOfEmp++;
+            }
+        }
+        fightValue = this.fightValueCalculations(fightValue);
+        this.fightCanvas.children[2].children[1].innerText = fightValue;
+        this.fightCanvas.children[1].children[1].innerText = numOfEmp;
+    }    
+    setHiringTracker(){
+        let prod = this.getDepartment("Human Resources").calculateProductivity();
+        this.hiringTracker.changeHiringTracker(prod);
+    }    
+    setMaxIncome(){
+        //marketing is hardcoded into this
+        let dep = this.getDepartment('Sales');
+        dep.setMaxIncome();
+        this.moneyTracker.maxIncome = dep.getMaxIncome();
+    }    
+    setMoney(){
+        this.setExpenses();
+        //will have to check sales
+        //currently sales will be hardcoded, will hopefully change later
+        let tempIncome = this.moneyTracker.maxIncome*this.getDepartment('Sales').calculateProductivity()*0.01;
+        //tempIncome = Math.round(tempIncome * 100) / 100;
+        this.moneyTracker.income = tempIncome;
+        this.moneyTracker.grossIncome = tempIncome - this.moneyTracker.expenses;
+        this.moneyTracker.grossIncomeValue.innerText = "$"+ this.moneyTracker.grossIncome.toFixed(2);
+        this.moneyTracker.expensesValue.innerText = "$" + this.moneyTracker.expenses.toFixed(2);
+        this.moneyTracker.incomeValue.innerText = "$" + this.moneyTracker.income.toFixed(2);
+        this.moneyTracker.currentMoneyValue.innerText = "$" + this.moneyTracker.currentMoney.toFixed(2);
+    }
+    //will give each hud the num of employees
+    setNumEmployee(){
+        for(let i = 0;i<this.departmentsArray.length;i++){
+            this.departmentsArray[i].canvas.children[3].children[1].innerText = this.departmentsArray[i].employees.length;
+        }
+    }    
+    setProductivity(){
+        //what will be my algorithm?
+        //currently just set it with a base value or employee productivity
+        for(let i = 0;i<this.departmentsArray.length;i++){
+            this.departmentsArray[i].productivity = this.departmentsArray[i].calculateProductivity() ;
+            this.departmentsArray[i].canvas.children[1].children[1].innerText = this.departmentsArray[i].productivity.toFixed(2) + "%";
+        }
+    }
+
+    //////////////////////
+    /// CHECK FUNCTIONS //
+    //////////////////////    
+    //will check if we need to do the action for the first middle manager
+    checkForFirstMM(){
+        //if we have a middle management already
+        if(this.getDepartment('Middle Management')){
+            return false;
+        }
+        //if we do not have middle management yet
+        else {
+            //check if we need it 
+            for(let i=0;i<this.departmentsArray.length;i++){
+                if(this.departmentsArray[i].employees.length >= 5){
+                    return true;
+                }
+            }  
+        }
+        return false;
+    }    
+    //will check if the department needs another middle Management
+    checkForMM(depId){
+        //figure this out
+        if(this.departmentsArray[depId].MMneeded < Math.floor((this.departmentsArray[depId].employees.length))){
+
+        }
+    }
+    checkWeeklyMM(){
+        for(let i=0;i<this.departmentsArray.length;i++){
+            if(this.departmentsArray[i].MMneeded > this.getDepartment("Middle Management").numOfMMForDep(this.departmentsArray[i].name)){
+                this.departmentsArray[i].hasEnoughMM = false;
+            }
+            else{
+                this.departmentsArray[i].hasEnoughMM = true;
+            }
+        }
+    }  
+
     checkWeeklyProd(){
         for(let i=0;i<this.departmentsArray.length;i++){
             this.departmentsArray[i].checkWeeklyProd();        
         }
-      }
+    }
+
+    ////////////////////////
+    /// UTILITY FUNCTIONS //
+    ////////////////////////
 
 
-
-    ///
-    /// UTILITY FUNCTIONS
-    ///
-
+    //will calculate the fightValues
+    fightValueCalculations(fightValue){
+        //will edit this later
+        return fightValue;
+    }
 
     //this will get department by name
     getDepartment(name){

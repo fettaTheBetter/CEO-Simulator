@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Office Mayhem</title>
     <link rel="stylesheet" type = "text/css" href="gamePage.css">
+    <link rel="stylesheet" type = "text/css" href="firstPage.css">
     
 </head>
 
@@ -85,7 +86,7 @@
                                 <div class = hudData></div>
                           </div>
                     </div>
-                    <div id="MarketingCanvas" class = "smallHud"onclick = "clickDepartment('Marketing')">
+                    <div id="MarketingCanvas" class = "smallHud" onclick = "clickDepartment('Marketing')">
                         <p class = "smallHudTitle">Marketing</p>
                             <div class = "hudTextHolder">
                                 <div>Productivity:&nbsp;</div>
@@ -111,7 +112,7 @@
                                     <div class = hudData></div>
                             </div>
                     </div>
-                    <div id="MiddleManagementCanvas" class = "smallHud" style = "display: none;">
+                    <div id="MiddleManagementCanvas" class = "smallHud" style = "display: none;" onclick = "clickDepartment('Middle Management')">
                         <p class = "smallHudTitle">Middle Management</p>
                                 <div class = "hudTextHolder">
                                     <div>Productivity:&nbsp;</div>
@@ -174,9 +175,35 @@
 
 
         </div>
-
+        <div class ="flexColumn">
+            <button class="infoMenu" onclick="toggleMenu()">Toggle Help Menu</button>
+            <div id="hiddenMenu" style = "display: none;">
+                <p>Some events require a certain amount of productivity to work.</p>
+                <div class = "helpMenuTitles">Human Resources</div>
+                <div class ='blackLine'></div>
+                <p><b>Productivity:</b> Effects the quality of people you hire</p>
+                <p><b># Of People:</b> Effects how well you know your employees</p>
+                <div class = "helpMenuTitles">Sales</div>
+                <div class ='blackLine'></div>
+                <p><b>Productivity:</b> Effects the amount of money you can get</p>
+                <p><b># Of People:</b> Effects the maximun amount of money you can get</p>
+                <div class = "helpMenuTitles">IT</div>
+                <div class ='blackLine'></div>
+                <p><b>Productivity:</b> ?????</p>
+                <p><b># Of People:</b> Effects how quickly you can train people</p>
+                <div class = "helpMenuTitles">Marketing</div>
+                <div class ='blackLine'></div>
+                <p><b>Productivity:</b> ?????</p>
+                <p><b># Of People:</b> Effects the number you can hire</p>
+                <div class = "helpMenuTitles">Middle Management</div>
+                <div class ='blackLine'></div>
+                <p><b>Productivity:</b> Effects your fight value</p>
+                <p><b># Of People:</b> Effects specific departments efficiency</p>
+            </div>
+        </div>
     </div>
     <div id="firstRoom" class ="firstRoom">
+        <div class = "title">CEO Simulator</div>
         <button onClick = "StartGame()" class="startGameButton">Start Game</button>
     </div>
     
@@ -184,6 +211,7 @@
 <script src = "./Events.js"></script>
 <script src="./Objects/TrainingTracker.js"></script>
 <script src="./Objects/HiringTracker.js"></script>
+<script src="./Objects/RaiseTracker.js"></script>
 <script src="./Objects/Employee.js"></script>
 <script src ="./Objects/ProductivityTracker.js"></script>
 <script src="./Departments/baseDepartment.js"></script>

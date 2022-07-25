@@ -22,4 +22,31 @@ let timedMemos =[new Memo( "<div>" +
                                 realGame.company.gainMoney(1500);
                                 this.special1stMemo();
                             }),
+                new Memo( "<div>" +
+                            "<div>" + memoIntroHTML + memoLine +
+                            "<div class = 'memoBody'><p>&emsp;Hey, just wanted to remind you we signed up the company for GCBA (Generic Company Battle Arena). " +
+                            "We hope you've been training because the first match is in four weeks and we don't want to look stupid. Thanks!" + memoSignatureLine + 
+                            "</div></div>"+
+                            "<div class ='optionButtonsHolder'>" +
+                            "<button class = 'memoOptionButtons'>Could Run That By Again?</button>" +
+                            "<button class = 'memoOptionButtons'>Sounds Good</button>" +
+                            "<button class = 'memoOptionButtons'>Ignore It</button></div>"+
+                            "</div>",
+                            function (){
+                                realGame.memoArray.push(chainMemos[3])
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                realGame.company.ignoreTracker = realGame.company.ignoreTracker +1;
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                console.log("Prememo for fight club");
+                                realGame.company.addFight();
+                                realGame.updateDisplays();
+                                return true;
+                            }),
                         ];

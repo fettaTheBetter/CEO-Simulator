@@ -23,3 +23,5 @@ let memoSignatureLineMarketing = "<p>Regards,</p> <p>&emsp;Your Friendly Marketi
 let memoIntroHTMLSales = "<div><p><b>To:</b> Our Beloved CEO</p><p><b>From:</b> Sales</p></div>";
 let memoSignatureLineSales = "<p>Regards,</p> <p>&emsp;Your Friendly Sales Department</p>";
 
+let empPictureHTML ="<div class = 'imageHolder'><img style = 'height: 200px' src ='https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png'><div><b></b></div></div>";
+

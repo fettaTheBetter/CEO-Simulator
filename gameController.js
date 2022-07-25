@@ -25,13 +25,8 @@ function NextWeek(){
 
 //the function that happens when you click 
 function clickDepartment(name){
-    let department;
+    let department =realGame.company.getDepartment(name);
     //find the department object
-    for(let i=0;i<realGame.company.departmentsArray.length;i++){
-        if(realGame.company.departmentsArray[i].name == name){
-            department = realGame.company.departmentsArray[i];
-        }
-    }
     realGame.departmentDisplay.children[0].innerText = department.name;
     //will display the name and employees on the canvas being sent in
     department.display(realGame.departmentDisplay.children[1]);
@@ -92,8 +87,9 @@ function fireEmployee(){
 
 function hireEmployee(empIndex){
     document.getElementById('allNewHires').children[empIndex].children[0].style.display = "none";
-    updateDisplays();
+    
     realGame.company.hireEmployee("Sales",employeesToHire[empIndex]);
+    updateDisplays();
 }
 function updateDisplays(){
     realGame.updateDisplays();
@@ -132,6 +128,47 @@ function createEmpHiringObject(num){
         temp.innerHTML = htmlEmployee;
         temp.children[0].children[2].onclick = function() {hireEmployee(num-1);};
         return temp;
+}
+function toggleMenu(){
+    let menu = document.getElementById('hiddenMenu');
+    if(menu.style.display != "none"){
+        menu.style.display = "none";
+    }
+    else{
+        menu.style.display = "block";
+    }
+}
+
+function createMemoEmp(){
+    let htmlEmployee =
+                                "<div  class = 'employeeInfo'>" +
+                                    "<div class = 'imageHolder flexColumn'>" +
+                                        "<img src ='https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png'>" +
+                                        "<div><b></b></div>" +
+                                    "</div>" + 
+                                    "<div>" +
+                                        "<div class = 'empAttributes'>" +
+                
+                                            "<div>" +
+                                                "<div style = 'font-size: 200%; align-content: center;'>Attributes</div>" +
+                                            "</div>" +
+                                            "<div>" +   
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>" +  
+                                "</div>" 
+                            ;
+        let temp = document.createElement('div');
+        temp.appendChild(document.createElement('div'));
+        temp.innerHTML = htmlEmployee;
+        return temp;
+}
+function pickRandomEmployee(){
+    //will need two random numbers, one for dep, and one for employee
+    let randDepNum = Math.floor(Math.random()*(realGame.company.departmentsArray.length));
+    console.log("Here is the randDepNum");
+    let randEmpNum = Math.floor(Math.random()*(realGame.company.departmentsArray[randDepNum].employees.length));
+    return realGame.company.departmentsArray[randDepNum].employees[randEmpNum];
 }
 
 

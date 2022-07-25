@@ -6,7 +6,7 @@ class Department {
       //breakpoints to reach the next extra level? I'll explain this better!
       this.breakpoints;
       //middlemanagers needed
-      this.MMneeded = 0;
+      this.hasEnoughMM = true;
       //contains all employees in department
       this.employees = [];
       this.name;
@@ -26,6 +26,14 @@ class Department {
       this.employees.push(employee);
       //need to check if they have more MM than needed
 
+    }
+    calculateExpenses(){
+      let sum = 0;
+      //this will take the average productivity of the employees?
+      for(let j=0;j<this.employees.length;j++){
+        sum = sum + this.employees[j].expense;
+      }
+      return sum;
     }
     calculateProductivity(){
       let sum = 0;
@@ -47,7 +55,23 @@ class Department {
       if(this.employees.length == 0){
         returnedNum =0;
       }
+      //if you don't have enough middle managers
+      if(!(this.hasEnoughMM)){
+        returnedNum = returnedNum*0.5;
+      }
+      //will input the equation for productivity here
+      returnedNum = this.calculateProductivityFormula(returnedNum);
       return returnedNum;
+    }
+    checkWeeklyProd(){
+      for(let n=0;n<this.productivityIncreases.length;n++){
+        this.productivityIncreases[n].reduceLength(1);
+        if(this.productivityIncreases[n].weeksLeft <=0){
+          this.productivityIncreases = removeFromArray(this.productivityIncreases[n],this.productivityIncreases);
+          //this ensures we check the object that was swapped
+          n--;
+        }
+      }
     }
     //the canvas we will use to display this department
     display(canvas){
@@ -59,6 +83,7 @@ class Department {
       let tempDiv;
       for(let i=0;i<this.employees.length;i++){
         tempDiv = this.employees[i].htmlEmployee;
+        
         tempDiv.children[1].innerHTML = "<b>Productivity: </b>" + this.employees[i].productivity.toFixed(0) + '%';
         tempDiv.children[2].innerHTML = "<b>Expense: </b>" + this.employees[i].expense;
         tempDiv.children[3].innerHTML = "<b>WeeksOfTraining: </b>" + (this.employees[i].trainingTracker.weeksToComplete-this.employees[i].trainingTracker.weeksCompleted);
@@ -79,13 +104,13 @@ class Department {
       }
       return null;
     }
-    calculateExpenses(){
-      let sum = 0;
-      //this will take the average productivity of the employees?
-      for(let j=0;j<this.employees.length;j++){
-        sum = sum + this.employees[j].expense;
-      }
-      return sum;
+    increaseProductivity(value){
+      this.productivityIncreases.push(new ProductivityTracker(value,8));
+    };
+    moveEmployee(employee,otherDep){
+      employee.hasSwitchDept = true;
+      otherDep.addEmployee(employee);
+      this.removeEmployee(employee);
     }
     //will remove an employee from a department
     removeEmployee(employee){
@@ -103,24 +128,30 @@ class Department {
       }
     }
     //will move an employee to a different department
-    moveEmployee(employee,otherDep){
-      employee.hasSwitchDept = true;
-      otherDep.addEmployee(employee);
-      this.removeEmployee(employee);
-    }
-    increaseProductivity(value){
-      this.productivityIncreases.push(new ProductivityTracker(value,8));
-    };
+
+
     //will check the weekly productivity objects
-    checkWeeklyProd(){
-      for(let n=0;n<this.productivityIncreases.length;n++){
-        this.productivityIncreases[n].reduceLength(1);
-        if(this.productivityIncreases[n].weeksLeft <=0){
-          this.productivityIncreases = removeFromArray(this.productivityIncreases[n],this.productivityIncreases);
-          //this ensures we check the object that was swapped
-          n--;
-        }
+
+
+
+
+    ///////////////////
+    //Utility Methods//
+    ///////////////////
+    calculateProductivityFormula(productivity){
+      //have commented out this for now, don't want to use the same formula twice currently
+      /*let prod ;
+      if(productivity > 80){
+        prod = 10*Math.sqrt(productivity);
       }
+      else if(productivity <=80 && productivity >40){
+        prod = (1/8)*Math.pow(productivity,3/2);
+      }
+      else{
+        prod = (1/8)*Math.pow(productivity,3/2)/40;
+      }
+        return prod*100;*/
+        return productivity;
     }
 
 

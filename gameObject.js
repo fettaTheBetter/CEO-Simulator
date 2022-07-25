@@ -30,6 +30,7 @@ class Game {
       this.company.setMoney();
       this.company.setProductivity();
       this.company.setNumEmployee();
+      this.company.setFightValue();
   }
   //What happens to the company when we got to the next week
   nextWeek(){
@@ -42,15 +43,24 @@ class Game {
     this.company.setMoney();
     //will interact with employees on the weekly basis
     this.company.getDepartment('IT').completeTrainingReduction(this.company);
+    ///these are where the checkers for the timed week events go
+    if(this.currentWeek == 6){
+      this.memoArray.push(timedMemos[1]);
+    }
+
+
     //will throw the next week memos into the current week memos
     while(this.nextWeekMemos.length != 0){
       this.memoArray.push(this.nextWeekMemos.pop());
     }
     if(this.company.checkForFirstMM()){
-      this.company.addMM();
       //index 6 contains the special Middle management memo
       this.memoArray.push(specialMemos[1]);
+      document.getElementById('switchDepartmentsMenu').children[2].appendChild(document.createElement('button'));
+      document.getElementById('switchDepartmentsMenu').children[2].children[4].onclick = function(){switchEmployee('Marketing');};
+      document.getElementById('switchDepartmentsMenu').children[2].children[4].innerText = "Middle Management";
     }
+    this.checkForIgnoredMemos();
     this.company.nextWeekEmp();
     this.company.checkWeeklyProd();
 
@@ -63,30 +73,57 @@ class Game {
     this.changeMemo(this.memoArray.pop());
     
   }
-  changeMemo(memo){
-    if(memo.preMemo != undefined){
-      memo.preMemo();
+  checkForIgnoredMemos(){
+    if(this.company.ignoreTracker > 10 && this.company.ignoredMemoTracker < 1){
+      this.memoArray.push(specialMemos[0]);
+      this.company.ignoredMemoTracker++;
     }
-      this.implementMemo(memo)
-      
-      //need to hide newHires 
+    //2nd part of ignore 
+    else if(this.company.ignoreTracker > 20 && this.company.ignoredMemoTracker < 2){
+      this.memoArray.push(specialMemos[2]);
+      this.company.ignoredMemoTracker++;
+    }
+    //3rd and final ignore request
+    else if(this.company.ignoreTracker > 30 && this.company.ignoredMemoTracker < 3){
+      this.memoArray.push(specialMemos[3]);
+      this.company.ignoredMemoTracker++;
+    }
+  }
+  changeMemo(memo){
+    //has been implemented
+    let hasBeenImp = false;
+    let temp = document.getElementById('fullMemo');
+    //need to clear the html
+    while(temp.children.length != 0){
+      temp.removeChild(temp.lastChild);
+    }
+    document.getElementById('fullMemo').appendChild(document.createElement('div'));
+      if(memo.preMemo()){
+      this.implementMemo(memo);
+        hasBeenImp =  true;
+      }
 
-      document.getElementById('fullMemo').style.display = 'block';
-      document.getElementById('fullHire').style.display = 'none';
+      //sometimes a memo will not be able to be implemented, use this then
+      if(!(hasBeenImp)){
+        this.finishMemo();
+      }
+      //need to hide newHires 
   }
   //will make the inner html changes to the memo
   implementMemo(memo){
-    document.getElementById('fullMemo').innerHTML = memo.memoHTML;
-    document.getElementById('fullMemo').children[0].children[1].children[0].onclick = function(){memo.option1()};
-    document.getElementById('fullMemo').children[0].children[1].children[1].onclick = function(){memo.option2()};
-    document.getElementById('fullMemo').children[0].children[1].children[2].onclick = function(){memo.option3()};
+    document.getElementById('fullMemo').style.display = 'flex';
+    document.getElementById('fullHire').style.display = 'none';
+    document.getElementById('fullMemo').children[0].innerHTML = memo.memoHTML;
+    document.getElementById('fullMemo').children[0].children[0].children[1].children[0].onclick = function(){memo.option1()};
+    document.getElementById('fullMemo').children[0].children[0].children[1].children[1].onclick = function(){memo.option2()};
+    document.getElementById('fullMemo').children[0].children[0].children[1].children[2].onclick = function(){memo.option3()};
   }
   finishMemo(){
     //adding new hires after memo
     if(this.memoArray.length == 0) {
-    document.getElementById('nextWeekButton').style.display = 'block';
-    this.addNewHires();
-    realGame.company.setProductivity();
+      document.getElementById('nextWeekButton').style.display = 'block';
+      this.addNewHires();
+      realGame.company.setProductivity();
     }
     else{
       this.changeMemo(this.memoArray.pop());

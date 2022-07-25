@@ -34,7 +34,7 @@ class HumanResources extends Department {
             canvas.appendChild(finishedHTML);
                   
         }
-        if(tempbreakpoints !=-1){
+        if(tempbreakpoints <= 8){
              let errorHTML = document.createElement('p');
              errorHTML.innerHTML = "HR couldn't more information";
              errorHTML.style = "color: red;"
@@ -59,6 +59,10 @@ class HumanResources extends Department {
                 infoStat.innerText = employee.expense;
                 break;
             case 2:
+                let tempWeeksComplete =0;
+                if(employee.trainingTracker.weeksToComplete-employee.trainingTracker.weeksCompleted >0){
+                    tempWeeksComplete = employee.trainingTracker.weeksToComplete-employee.trainingTracker.weeksCompleted;
+                }
                 infoName.innerHTML = "<b>WeeksOfTrainingLeft: &nbsp;</b>";
                 infoStat.innerText = employee.trainingTracker.weeksToComplete-employee.trainingTracker.weeksCompleted;
                 break;
