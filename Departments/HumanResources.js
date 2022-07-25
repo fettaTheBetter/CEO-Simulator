@@ -64,7 +64,7 @@ class HumanResources extends Department {
                     tempWeeksComplete = employee.trainingTracker.weeksToComplete-employee.trainingTracker.weeksCompleted;
                 }
                 infoName.innerHTML = "<b>WeeksOfTrainingLeft: &nbsp;</b>";
-                infoStat.innerText = employee.trainingTracker.weeksToComplete-employee.trainingTracker.weeksCompleted;
+                infoStat.innerText = tempWeeksComplete;
                 break;
             case 3:
                 infoName.innerHTML = "<b>Specialization: &nbsp;</b>";

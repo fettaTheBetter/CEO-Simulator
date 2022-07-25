@@ -63,6 +63,7 @@ class Department {
       returnedNum = this.calculateProductivityFormula(returnedNum);
       return returnedNum;
     }
+    //will check the weekly productivity objects
     checkWeeklyProd(){
       for(let n=0;n<this.productivityIncreases.length;n++){
         this.productivityIncreases[n].reduceLength(1);
@@ -107,6 +108,7 @@ class Department {
     increaseProductivity(value){
       this.productivityIncreases.push(new ProductivityTracker(value,8));
     };
+    //will move an employee to a different department
     moveEmployee(employee,otherDep){
       employee.hasSwitchDept = true;
       otherDep.addEmployee(employee);
@@ -127,10 +129,26 @@ class Department {
         }
       }
     }
-    //will move an employee to a different department
+    sortByExpense(){
+      //need to sort the employees by expense
+      //not sure what sort I want
+      let tempArray = this.employees;
+        for(let i=0;i<this.employees.length;i++){
+          tempArray = this.utilSortExpense(tempArray,i);
+        }
+      this.employees = tempArray;
+    }
+    sortByProd(){
+      let tempArray = this.employees;
+      for(let i=0;i<this.employees.length;i++){
+        tempArray = this.utilSortProd(tempArray,i);
+      }
+      this.employees = tempArray;
+    }
+    
 
 
-    //will check the weekly productivity objects
+    
 
 
 
@@ -138,6 +156,34 @@ class Department {
     ///////////////////
     //Utility Methods//
     ///////////////////
+    utilSortExpense(array,num){
+      let maxExpense =0;
+      let maxIndex =0;
+      for(let j=num;j<array.length;j++){
+        if(maxExpense < array[j].expense){
+          maxIndex = j;
+          maxExpense = array[j].expense;
+        }
+      }
+      array = swap(maxIndex,num,array);
+      return array;
+
+    }
+    utilSortProd(array,num){
+      let maxProd =0;
+      let maxIndex =0;
+      for(let j=num;j<array.length;j++){
+        if(maxProd < array[j].productivity){
+          maxIndex = j;
+          maxProd = array[j].productivity;
+        }
+      }
+      array = swap(maxIndex,num,array);
+      return array;
+    }
+
+
+
     calculateProductivityFormula(productivity){
       //have commented out this for now, don't want to use the same formula twice currently
       /*let prod ;

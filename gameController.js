@@ -4,6 +4,7 @@
 //will it control the game?
 let realGame;
 let employeesToHire = [null,null,null];
+let currentDepShown ="";
 function StartGame(){
     //will create a newGame object?
     //make global game object
@@ -29,8 +30,9 @@ function clickDepartment(name){
     //find the department object
     realGame.departmentDisplay.children[0].innerText = department.name;
     //will display the name and employees on the canvas being sent in
-    department.display(realGame.departmentDisplay.children[1]);
+    department.display(realGame.departmentDisplay.children[2]);
     document.getElementById('employeeInfo').style.display = "none";
+    currentDepShown = name;
 }
 function clickEmployee(empNum,depName){
     //find the department object
@@ -171,6 +173,20 @@ function pickRandomEmployee(){
     return realGame.company.departmentsArray[randDepNum].employees[randEmpNum];
 }
 
+function sortByProd(){
+    let dep = realGame.company.getDepartment(currentDepShown);
+    dep.sortByProd();
+    clickDepartment(currentDepShown);
+
+}
+
+function sortByExpense(){
+    let dep = realGame.company.getDepartment(currentDepShown);
+    dep.sortByExpense();
+    clickDepartment(currentDepShown);
+
+}
+
 
 ///////////////////
 //utility functions
@@ -187,4 +203,12 @@ function removeFromArray(obj,array){
                 return array;
             }
         }
+}
+
+
+function swap(index1,index2,array){
+    let a = array[index1];
+    array[index1] = array[index2];
+    array[index2] = a;
+    return array;
 }
