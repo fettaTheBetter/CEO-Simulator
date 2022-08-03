@@ -11,6 +11,7 @@ class Game {
       this.employeeDisplay = document.getElementById('employeeDisplay');
       this.memoArray =[];
       this.nextWeekMemos =[];
+      this.enemyRoundsFought = 0;
     }
 
 
@@ -28,6 +29,7 @@ class Game {
   updateDisplays(){
       this.company.setMaxIncome();
       this.company.setMoney();
+      this.company.checkWeeklyMM();
       this.company.setProductivity();
       this.company.setNumEmployee();
       this.company.setFightValue();
@@ -43,8 +45,9 @@ class Game {
     this.company.setMoney();
     //will interact with employees on the weekly basis
     this.company.getDepartment('IT').completeTrainingReduction(this.company);
+    
     ///these are where the checkers for the timed week events go
-    if(this.currentWeek == 6){
+    if(this.currentWeek == 4){
       this.memoArray.push(timedMemos[1]);
     }
 
@@ -57,10 +60,11 @@ class Game {
       //index 6 contains the special Middle management memo
       this.memoArray.push(specialMemos[1]);
       document.getElementById('switchDepartmentsMenu').children[2].appendChild(document.createElement('button'));
-      document.getElementById('switchDepartmentsMenu').children[2].children[4].onclick = function(){switchEmployee('Marketing');};
+      document.getElementById('switchDepartmentsMenu').children[2].children[4].onclick = function(){switchEmployee('Middle Management');};
       document.getElementById('switchDepartmentsMenu').children[2].children[4].innerText = "Middle Management";
     }
     this.checkForIgnoredMemos();
+    this.company.checkWeeklyMM();
     this.company.nextWeekEmp();
     this.company.checkWeeklyProd();
 
@@ -69,6 +73,15 @@ class Game {
       employeesToHire.pop();
     }
     this.memoArray.push(createMemo());
+    if(this.currentWeek > 6 ){
+      this.memoArray.push(new DynamicMemo());
+    }
+    if(this.currentWeek % 5 == 0){
+      let battle = new Battle(realGame.company,new EnemyCompany(this.currentWeek,enemyDifficulty[this.enemyRoundsFought]));
+      let isWon = battle.startBattle();
+      this.enemyRoundsFought++;
+      this.memoArray.push(new BattleReport(isWon));
+    }
     //switch to next Memo
     this.changeMemo(this.memoArray.pop());
     
@@ -113,6 +126,7 @@ class Game {
   implementMemo(memo){
     document.getElementById('fullMemo').style.display = 'flex';
     document.getElementById('fullHire').style.display = 'none';
+    memo.buildMemo();
     document.getElementById('fullMemo').children[0].innerHTML = memo.memoHTML;
     document.getElementById('fullMemo').children[0].children[0].children[1].children[0].onclick = function(){memo.option1()};
     document.getElementById('fullMemo').children[0].children[0].children[1].children[1].onclick = function(){memo.option2()};
@@ -146,8 +160,8 @@ class Game {
       newEmps[x] = createEmployee(this.company.hiringTracker);
       employeesToHire[x] = newEmps[x];
       document.getElementById('allNewHires').appendChild(createEmpHiringObject(x+1));
-      document.getElementById("employee" + (x+1)).children[0].style.display = "flex";
-      dep.showEmployee(document.getElementById("employee" + (x+1)).children[0].children[1],newEmps[x]);
+      document.getElementById("employee" + (x+1)).children[1].style.display = "flex";
+      dep.showEmployee(document.getElementById("employee" + (x+1)).children[1].children[1].children[0],newEmps[x]);
     }
   }
   calculateMarketing(checker){

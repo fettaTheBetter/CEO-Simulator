@@ -14,9 +14,11 @@ class Employee {
 
       this.trainingTracker = createTrainingTracker();
 
-      this.raiseTracker = new RaiseTracker(1,8);
+      this.raiseTracker = new RaiseTracker(0.05,8);
 
-      this.fightValue;
+      this.injuryTracker = new InjuryTracker();
+
+      this.fightValue =0;
 
       //name will eventually be randomly generated
       this.name;
@@ -35,6 +37,9 @@ class Employee {
       //will have a picture, a name and onclick functions
       
       this.htmlEmployee = this.createEmployeeHTML();
+
+      //will be an array of productivity objects, these will get a reduce length at the end of each week
+      this.productivityIncreases = [];
       
     }
     checkForRaise(){
@@ -63,9 +68,12 @@ class Employee {
         return tempEmp;
     }
     giveRaise(){
-          this.expense = this.expense + this.raiseTracker.raiseValue;
+          this.expense = this.expense + (this.expense*this.raiseTracker.raiseValue);
           this.raiseTracker.resetRaiseTracker();
     }
+    increaseProductivity(value){
+      this.productivityIncreases.push(new ProductivityTracker(value,8));
+    };
     reduceTraining(){
       this.trainingTracker.weeksCompleted = this.trainingTracker.weeksCompleted +1;
       if(this.trainingTracker.weeksCompleted >= this.trainingTracker.weeksToComplete){
@@ -86,7 +94,33 @@ class Employee {
       if(!(this.trainingTracker.isCompleted)){
         this.productivity = this.productivity - (this.trainingTracker.productivityImpact*this.productivity);
       }
+      for(let t=0;t<this.productivityIncreases.length;t++){
+        this.productivity = this.productivityIncreases[t].productivity + this.productivity;
+      }
+
+      //now I will check if the employee is injured
+      this.productivity = this.injuryTracker.changeProductivity(this.productivity);
       this.productivity = this.calculateProductivity(this.productivity);
+    }
+    //will compare productivity against a num and then return true(meaning productivity is greater than num) or false
+    checkProductivity(num){
+      this.setProductivity(this.specialization);
+      if(num > this.calculateProductivity(this.productivity)){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+    checkWeeklyProd(){
+      for(let n=0;n<this.productivityIncreases.length;n++){
+        this.productivityIncreases[n].reduceLength(1);
+        if(this.productivityIncreases[n].weeksLeft <=0){
+          this.productivityIncreases = removeFromArray(this.productivityIncreases[n],this.productivityIncreases);
+          //this ensures we check the object that was swapped
+          n--;
+        }
+      }
     }
 
 
@@ -99,18 +133,27 @@ class Employee {
     ////////////////////
     //am using a piecewise function, currently has 3 equations in this order
     //(31.62/40)x, (1/8)*x^3/2, 10*sqrt(x)
+    //USING NEW EQUATIONS, 4 equations
+    //  -(1/20)*(x-30)^2 +45 for 0<x<20
+    //  x^(1/2) + 35.5278 for 20<x<40
+    //  (x-40)^(11/10) +41.8522 for 40<x<60
+    //  x^(4/5) +42.382 for x<60
     calculateProductivity(productivity){
       let prod ;
-      if(productivity > 80){
-        prod = 10*Math.sqrt(productivity);
+      if(productivity > 60){
+        prod = Math.pow(productivity,4/5) + 42.382;
       }
-      else if(productivity <=80 && productivity >40){
-        prod = (1/8)*Math.pow(productivity,3/2);
+      else if(productivity <=60 && productivity >40){
+        prod = Math.pow(productivity-40,11/10) + 41.8522;
+      }
+      else if(productivity <=40 && productivity >20){
+        prod = Math.sqrt(productivity) + 35.5278;
       }
       else{
-        //this one is linear
-        prod =(31.62/40)*productivity;
+        
+        prod =45-((1/20)*Math.pow(productivity-30,2));
       }
+
         return prod;
     }
 }

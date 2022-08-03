@@ -56,9 +56,20 @@ function switchDepartmentsMenu(){
                                                                     document.getElementById('switchDepartmentsMenu').style.display = "none";
                                                                 }
                                                               };
+                                                            }
 
+function hiringMenu(index){
+        document.getElementById('switchHiringMenu'+index).style.display = "block";
+        document.getElementById('closeModalButton'+index).onclick = function() {
+                                                                document.getElementById('switchHiringMenu'+index).style.display = "none";
+                                                                };
+                                                                window.onclick = function(event) {
+                                                                    if (event.target == document.getElementById('switchHiringMenu'+index)) {
+                                                                        document.getElementById('switchHiringMenu'+index).style.display = "none";
+                                                                    }
+                                                                    };
+                                                                }
 
-}
 //will switch an employee into departmentTo
 //departmentToName is only the name of the department, NOT THE OBJECT
 function switchEmployee(departmentToName){
@@ -87,10 +98,11 @@ function fireEmployee(){
 }
 
 
-function hireEmployee(empIndex){
+function hireEmployee(empIndex,depName){
+    document.getElementById('allNewHires').children[empIndex].children[1].style.display = "none";
     document.getElementById('allNewHires').children[empIndex].children[0].style.display = "none";
     
-    realGame.company.hireEmployee("Sales",employeesToHire[empIndex]);
+    realGame.company.hireEmployee(depName,employeesToHire[empIndex]);
     updateDisplays();
 }
 function updateDisplays(){
@@ -105,7 +117,16 @@ function removeEmployeeInfo(){
 //the num is for making the document id
 
 function createEmpHiringObject(num){
-        let htmlEmployee =
+        let htmlEmployee =      "<div id='switchHiringMenu" + num +"' class = 'modal'>" +
+                                    "<span id='closeModalButton" + num +"' class='close'>&times;</span>" + 
+                                    "<div class = 'modal-content'>Which Department would you like to hire them at?</div>" +
+                                    "<div class ='buttonHolder'>" +
+                                    "<button onclick='hireEmployee(" + (num -1)+ ",\"Human Resources\")'>Human Resources</button>" +
+                                    "<button onclick='hireEmployee(" + (num-1) +",\"Sales\")'>Sales</button>" +
+                                    "<button onclick='hireEmployee("+ (num-1) +",\"IT\")'>IT</button>" +
+                                    "<button onclick='hireEmployee(" + (num-1) +",\"Marketing\")'>Marketing</button>"+
+                                    "</div>" +
+                                "</div>" +
                                 "<div  class = 'employeeInfo'>" +
                                     "<div class = 'imageHolder flexColumn'>" +
                                         "<img src ='https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png'>" +
@@ -128,7 +149,7 @@ function createEmpHiringObject(num){
         temp.id = "employee" + num;
         temp.appendChild(document.createElement('div'));
         temp.innerHTML = htmlEmployee;
-        temp.children[0].children[2].onclick = function() {hireEmployee(num-1);};
+        temp.children[1].children[2].onclick = function() {hiringMenu(num);};
         return temp;
 }
 function toggleMenu(){
@@ -168,7 +189,6 @@ function createMemoEmp(){
 function pickRandomEmployee(){
     //will need two random numbers, one for dep, and one for employee
     let randDepNum = Math.floor(Math.random()*(realGame.company.departmentsArray.length));
-    console.log("Here is the randDepNum");
     let randEmpNum = Math.floor(Math.random()*(realGame.company.departmentsArray[randDepNum].employees.length));
     return realGame.company.departmentsArray[randDepNum].employees[randEmpNum];
 }
@@ -186,6 +206,7 @@ function sortByExpense(){
     clickDepartment(currentDepShown);
 
 }
+
 
 
 ///////////////////
@@ -211,4 +232,56 @@ function swap(index1,index2,array){
     array[index1] = array[index2];
     array[index2] = a;
     return array;
+}
+
+
+
+
+///THIS IS FOR THE DYNAMIC MEMOS
+function prepreMemo(){
+    let config ={};
+    //will create the dynamicMemoEmp object
+    realGame.dynamicMemoEmp = pickRandomEmployee();
+    //will create the department value that it will choose from
+    realGame.dynamicMemoEmpDep = empSpecialization[Math.floor(Math.random()*(empSpecialization.length))];
+    let emp = realGame.dynamicMemoEmp;
+    //now I need to create the body from this employee
+    config.toLine = "<p><b>To:</b> The CEO</p>";
+    config.fromLine = "<p><b>From:</b> " + emp.name +  " from " +emp.currentDepartment + "</p>";
+    //currently will pick a random department to throw it in
+    config.body = "&emsp;Hey I have a few new ideas for what we could do to improve the " +realGame.dynamicMemoEmpDep +" department. Let me know if you'd like me to Implement them.";
+    config.signature = "<p>Regards,</p> <p>&emsp;" + emp.name +  " from " +emp.currentDepartment +" :)</p>";
+    config.option1Text = "Let's Try Them";
+    config.option2Text = "Sorry, Not Enough Experience";
+    config.option3Text = "Ignore It";
+    return config;
+}
+function option1Dynamic(){
+    //eventually this num will be more dynamic
+    let num = 45;
+    if(realGame.dynamicMemoEmp.checkProductivity(num)){
+        realGame.company.getDepartment(realGame.dynamicMemoEmpDep).increaseProductivity(4);
+        realGame.dynamicMemoEmp.increaseProductivity(2)
+    }
+    else{
+        realGame.company.getDepartment(realGame.dynamicMemoEmpDep).increaseProductivity(-4);
+        realGame.dynamicMemoEmp.increaseProductivity(2)
+    }
+    realGame.dynamicMemoEmp = undefined;
+    realGame.dynamicMemoEmpDep = undefined;
+    this.undisplayMemo();
+}
+function option2Dynamic(){
+    realGame.dynamicMemoEmp = undefined;
+    realGame.dynamicMemoEmpDep = undefined;
+    this.undisplayMemo();
+}
+function option3Dynamic(){
+    realGame.dynamicMemoEmp.increaseProductivity(2);
+    realGame.dynamicMemoEmp = undefined;
+    realGame.dynamicMemoEmpDep = undefined;
+    this.undisplayMemo();
+}
+function preMemo(){
+        return true;
 }

@@ -6,8 +6,8 @@ class Sales extends Department {
         super();
         this.name = "Sales";
         this.maxIncome = 100;
-        this.baseMaxIncome = 100;
-        this.increaseByEmp = 25;
+        this.baseMaxIncome = 5000;
+        this.increaseByEmp = 500;
     }  
 
     setMaxIncome(){

@@ -5,14 +5,17 @@ class HiringTracker {
       //these are the base values
       this.maxProductivity =50;
       this.minProductivity =30;
-      this.maxExpense =13;
-      this.minExpense =10;
+      this.maxExpense =900;
+      this.minExpense =300;
+      this.minFightValue = 1;
+      this.fightValueDifference = 3;
+      this.maxFightValue =3;
 
 
       //these are base values we will change eventually
       this.productivityDifference = 20;
-      this.highestExpense = 15;
-      this.expenseDifference = 3;
+      this.highestExpense = 900;
+      this.expenseDifference = 200;
 
     }
     //will send in productivity of HR as an argument
@@ -30,6 +33,13 @@ class HiringTracker {
       }
       else{
         this.minExpense =  this.highestExpense - Math.floor(productivity*0.01*10)-this.expenseDifference;
+      }
+      this.maxFightValue = Math.floor(productivity*0.01*15);
+      if(this.maxFightValue <= this.fightValueDifference  ){
+        this.minFightValue = 1;
+      }
+      else{
+        this.minFightValue = this.maxFightValue - this.fightValueDifference;
       }
     }
 }

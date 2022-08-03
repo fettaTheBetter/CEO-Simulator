@@ -5,7 +5,7 @@ class HumanResources extends Department {
     constructor(){
         super();
         this.name = "Human Resources";
-        this.breakpoints = [1,1,2,4,7,9,10,15];
+        this.breakpoints = [1,1,2,4,7,9,10,15,22];
     }
     //will return how far into the breakpoints we are, for showing what is necessary in employees
     checkBreakpoints(){
@@ -35,9 +35,16 @@ class HumanResources extends Department {
                   
         }
         if(tempbreakpoints <= 8){
+            //want to add something so they can see what's next
+            let tempHTML = document.createElement('div');
+            tempHTML.classList = "flexRow";
+            let finishedHTML = this.fillEmployeeInfo(tempHTML,tempbreakpoints,employee);
+            finishedHTML.children[1].innerText = "????";
+            canvas.appendChild(finishedHTML);
+
              let errorHTML = document.createElement('p');
-             errorHTML.innerHTML = "HR couldn't more information";
-             errorHTML.style = "color: red;"
+             errorHTML.innerHTML = "HR requires more resources";
+             errorHTML.style = "color: DarkRed;"
              canvas.appendChild(errorHTML);
         }
     }
@@ -56,15 +63,15 @@ class HumanResources extends Department {
                 break;
             case 1:
                 infoName.innerHTML = "<b>Expense: &nbsp;</b>";
-                infoStat.innerText = employee.expense;
+                infoStat.innerText = "$" +employee.expense;
                 break;
             case 2:
                 let tempWeeksComplete =0;
                 if(employee.trainingTracker.weeksToComplete-employee.trainingTracker.weeksCompleted >0){
                     tempWeeksComplete = employee.trainingTracker.weeksToComplete-employee.trainingTracker.weeksCompleted;
                 }
-                infoName.innerHTML = "<b>WeeksOfTrainingLeft: &nbsp;</b>";
-                infoStat.innerText = tempWeeksComplete;
+                infoName.innerHTML = "<b>Training: &nbsp;</b>";
+                infoStat.innerText = tempWeeksComplete + " weeks left.";
                 break;
             case 3:
                 infoName.innerHTML = "<b>Specialization: &nbsp;</b>";
@@ -75,14 +82,17 @@ class HumanResources extends Department {
                 infoStat.innerText = employee.fightValue;
                 break;
             case 5:
+                infoName.innerHTML = "<b>Injury Status: &nbsp;</b>";
+                infoStat.innerText = employee.injuryTracker.injuryStatus;
+            case 6:
                 infoName.innerHTML = "<b>Training Aptitude: &nbsp;</b>";
                 infoStat.innerText = employee.trainingTracker.baseProductivityImpact;
                 break;
-            case 6:
+            case 7:
                 infoName.innerHTML = "<b>Productivity Increase:  &nbsp;</b>";
                 infoStat.innerText = employee.productivityIncrease;
                 break;
-            case 7: 
+            case 8: 
             infoName.innerHTML = "<b>Personality: &nbsp;</b>";
                 infoStat.innerText = employee.personality;
                 break;

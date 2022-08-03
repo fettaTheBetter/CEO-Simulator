@@ -87,7 +87,7 @@ class Department {
         
         tempDiv.children[1].innerHTML = "<b>Productivity: </b>" + this.employees[i].productivity.toFixed(0) + '%';
         tempDiv.children[2].innerHTML = "<b>Expense: </b>" + this.employees[i].expense;
-        tempDiv.children[3].innerHTML = "<b>WeeksOfTraining: </b>" + (this.employees[i].trainingTracker.weeksToComplete-this.employees[i].trainingTracker.weeksCompleted);
+        tempDiv.children[3].innerHTML = "<b>Training: </b>" + (this.employees[i].trainingTracker.weeksToComplete-this.employees[i].trainingTracker.weeksCompleted) + " weeks left.";
         tempDiv.children[4].innerText = this.employees[i].name + " (" +this.employees[i].idNum + ")";
         //will need to add on onclick function
         canvas.appendChild(tempDiv);

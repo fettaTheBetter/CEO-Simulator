@@ -24,7 +24,7 @@ class Company {
     //will add MM the first time you get 5 people in one department
     addMM(){
         this.departmentsArray.push(new MiddleManagement());
-        this.departmentsArray[this.departmentsArray.length-1].canvas.style.display = "flex";
+        this.getDepartment('Middle Management').canvas.style.display = "flex";
     }
     //used as set up for the start of game
     attachDepartments(){
@@ -116,7 +116,8 @@ class Company {
                 //this.departmentsArray[i].employees[j].expense =this.departmentsArray[i].employees[j].expense +0.5;
                 this.departmentsArray[i].employees[j].baseProductivity = this.departmentsArray[i].employees[j].baseProductivity + this.departmentsArray[i].employees[j].productivityIncrease;
                 this.departmentsArray[i].employees[j].weeksEmployed = this.departmentsArray[i].employees[j].weeksEmployed +1;
-                //need to update productivity
+                //need to update productivity increases
+                this.departmentsArray[i].employees[j].checkWeeklyProd();
 
                 //checkForRaises
                 this.departmentsArray[i].employees[j].raiseTracker.reduceWeek();
@@ -133,7 +134,7 @@ class Company {
         let sumOfExpenses = 0;
         for(let i = 0;i<this.departmentsArray.length;i++){
             this.departmentsArray[i].expenses = this.departmentsArray[i].calculateExpenses();
-            this.departmentsArray[i].canvas.children[2].children[1].innerText = "$" + this.departmentsArray[i].expenses;
+            this.departmentsArray[i].canvas.children[2].children[1].innerText = "$" + this.departmentsArray[i].expenses.toFixed(2);
             sumOfExpenses = sumOfExpenses + this.departmentsArray[i].expenses;
         }
         this.moneyTracker.expenses = sumOfExpenses;
@@ -149,7 +150,7 @@ class Company {
             }
         }
         fightValue = this.fightValueCalculations(fightValue);
-        this.fightCanvas.children[2].children[1].innerText = fightValue;
+        this.fightCanvas.children[2].children[1].innerText = fightValue.toFixed(2);
         this.fightCanvas.children[1].children[1].innerText = numOfEmp;
     }    
     setHiringTracker(){
@@ -209,21 +210,23 @@ class Company {
             }  
         }
         return false;
-    }    
+    }  
+    //will check the employees in the each department to see change the MM numbers needed
+    checkForNumNeeded(department){
+        department.MMneeded = Math.floor(department.employees.length / this.numForMM);
+    }  
     //will check if the department needs another middle Management
-    checkForMM(depId){
-        //figure this out
-        if(this.departmentsArray[depId].MMneeded < Math.floor((this.departmentsArray[depId].employees.length))){
-
-        }
-    }
     checkWeeklyMM(){
-        for(let i=0;i<this.departmentsArray.length;i++){
-            if(this.departmentsArray[i].MMneeded > this.getDepartment("Middle Management").numOfMMForDep(this.departmentsArray[i].name)){
-                this.departmentsArray[i].hasEnoughMM = false;
-            }
-            else{
-                this.departmentsArray[i].hasEnoughMM = true;
+        //will only do anything if middle management is in
+        if(this.getDepartment("Middle Management") != null){
+            for(let i=0;i<this.departmentsArray.length;i++){
+                this.checkForNumNeeded(this.departmentsArray[i]);
+                if(this.departmentsArray[i].MMneeded > this.getDepartment("Middle Management").numOfMMForDep(this.departmentsArray[i].name)){
+                    this.departmentsArray[i].hasEnoughMM = false;
+                }
+                else{
+                    this.departmentsArray[i].hasEnoughMM = true;
+                }
             }
         }
     }  
@@ -242,6 +245,8 @@ class Company {
     //will calculate the fightValues
     fightValueCalculations(fightValue){
         //will edit this later
+        //will check productivity of MM if no MM default to 15% productivity
+
         return fightValue;
     }
 
@@ -253,6 +258,47 @@ class Company {
             }
         }
         return null;
+    }
+    getAllEmployees(){
+        let empArray = [];
+        for(let i=0;i<this.departmentsArray.length;i++){
+            for(let j=0;j<this.departmentsArray[i].employees.length;j++){
+                empArray.push(this.departmentsArray[i].employees[j]);
+            }
+        }
+
+        return empArray;
+
+
+    }
+    //will retrieve an employee by idNum
+    getEmployee(idNum){
+        for(let i=0;i<this.departmentsArray.length;i++){
+            for(let j=0;j<this.departmentsArray[i].employees.length;j++){
+                if(this.departmentsArray[i].employees[j].idNum == idNum){
+                    return this.departmentsArray[i].employees[j];
+                }
+            }
+        }
+        return null;
+    }
+    changeEmployeeInjuryTracker(idNum,injuryTracker){
+        for(let i=0;i<this.departmentsArray.length;i++){
+            for(let j=0;j<this.departmentsArray[i].employees.length;j++){
+                if(this.departmentsArray[i].employees[j].idNum == idNum){
+                    return this.departmentsArray[i].employees[j].injuryTracker = injuryTracker;
+                }
+            }
+        }
+    }
+    //will take in an array of employees
+    //then will modify the employees in your company to have the injury trackers fromt he employees being sent in as argument
+    assignInjuryTrackers(EmpArray){
+        for(let i=0;i<EmpArray.length;i++){
+            EmpArray[i].injuryTracker.changeInjury(EmpArray[i].injuryTracker.tempInjury);
+            EmpArray[i].injuryTracker.tempInjury =0;
+            this.changeEmployeeInjuryTracker(EmpArray[i].idNum,EmpArray[i].injuryTracker);
+        }
     }
     
     

@@ -12,6 +12,9 @@ function createEmployee(hiringTracker){
         let minProductivity = hiringTracker.minProductivity;
         let maxExpense = hiringTracker.maxExpense;
         let minExpense = hiringTracker.minExpense;
+        let maxFightValue =hiringTracker.maxFightValue;
+        let minFightValue = hiringTracker.minFightValue;
+        console.log("Here is max and min fight value: " + maxFightValue + "  " + minFightValue);
 
         let employee = new Employee();
         //should get us a random name/productivity/expense in employees
@@ -20,6 +23,7 @@ function createEmployee(hiringTracker){
         employee.expense = Math.floor(Math.random()*(maxExpense-minExpense+1) + minExpense);
         employee.specialization = empSpecialization[Math.floor(Math.random()*(empSpecialization.length))];
         employee.productivity = employee.baseProductivity;
+        employee.fightValue = Math.floor(Math.random()*(maxFightValue-minFightValue+1) + minFightValue);
         //will generate more later
         return employee;
 }

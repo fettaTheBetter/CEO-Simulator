@@ -16,9 +16,12 @@
                     <div id = "fullMemo">
                     </div>
                     <div id = "fullHire">
+                        <div style = "font-size: 300%;">Potential Hires</div>
+                        <div class ='blackLine'></div>
                         <div id="allNewHires" class = "flexColumn">
                         </div>
                     </div>
+                    <div id="fightingArea" class ="noDisplay"></div>
                 </div>
                 <div class = "leftleftDisplay">
                     <div id=moneyTracker class = "smallHud">
@@ -186,24 +189,24 @@
                 <p>Some events require a certain amount of productivity to work.</p>
                 <div class = "helpMenuTitles">Human Resources</div>
                 <div class ='blackLine'></div>
-                <p><b>Productivity:</b> Effects the quality of people you hire</p>
-                <p><b># Of People:</b> Effects how well you know your employees</p>
+                <p><b>Productivity:</b> Affects the quality of people you hire</p>
+                <p><b># Of People:</b> Affects how well you know your employees</p>
                 <div class = "helpMenuTitles">Sales</div>
                 <div class ='blackLine'></div>
-                <p><b>Productivity:</b> Effects the amount of money you can get</p>
-                <p><b># Of People:</b> Effects the maximun amount of money you can get</p>
+                <p><b>Productivity:</b> Affects the amount of money you can get</p>
+                <p><b># Of People:</b> Affects the maximun amount of money you can get</p>
                 <div class = "helpMenuTitles">IT</div>
                 <div class ='blackLine'></div>
-                <p><b>Productivity:</b> ?????</p>
-                <p><b># Of People:</b> Effects how quickly you can train people</p>
+                <p><b>Productivity:</b> Affects how well your employees do in combat</p>
+                <p><b># Of People:</b> Affects how quickly you can train people</p>
                 <div class = "helpMenuTitles">Marketing</div>
                 <div class ='blackLine'></div>
                 <p><b>Productivity:</b> ?????</p>
-                <p><b># Of People:</b> Effects the number you can hire</p>
+                <p><b># Of People:</b> Affects the number you can hire</p>
                 <div class = "helpMenuTitles">Middle Management</div>
                 <div class ='blackLine'></div>
-                <p><b>Productivity:</b> Effects your fight value</p>
-                <p><b># Of People:</b> Effects specific departments efficiency</p>
+                <p><b>Productivity:</b> Affects your fight value</p>
+                <p><b># Of People:</b> Affects specific departments efficiency</p>
             </div>
         </div>
     </div>
@@ -217,6 +220,7 @@
 <script src="./Objects/TrainingTracker.js"></script>
 <script src="./Objects/HiringTracker.js"></script>
 <script src="./Objects/RaiseTracker.js"></script>
+<script src ="./Objects/InjuryTracker.js"></script>
 <script src="./Objects/Employee.js"></script>
 <script src ="./Objects/ProductivityTracker.js"></script>
 <script src="./Departments/baseDepartment.js"></script>
@@ -226,10 +230,15 @@
 <script src="./Departments/MiddleManagement.js"></script>
 <script src="./Departments/Sales.js"></script>
 <script src="./Objects/MoneyTracker.js"></script>
+<script src="./Objects/EnemyCompany.js"></script>
 <script src="./Company.js"></script>
 <script src="./gameObject.js"></script>
+<script src="./Objects/Fight.js"></script>
+<script src="./Objects/Battle.js"></script>
 <script src = "./gameController.js"></script>
 <script src ="./Objects/Memo.js"></script>
+<script src = "./Objects/DynamicMemo.js"></script>
+<script src ="./Objects/BattleReport.js"></script>
 <script src = "./Random Generation/RandomArraysHolder.js"></script>
 <script src="./Random Generation/ChainMemos.js"></script>
 <script src="./Random Generation//GeneralMemos.js"></script>
