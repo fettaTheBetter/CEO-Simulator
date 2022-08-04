@@ -4,9 +4,14 @@ class Memo {
     constructor(config,option1,option2,option3,preMemo){
         this.memoHTML;
         this.config = config;
-        this.option1 = option1;
-        this.option2 = option2;
-        this.option3 = option3;
+        this.optionArray = [];
+        this.option1;
+        this.option2;
+        this.option3;
+        this.optionArray.push(option1);
+        this.optionArray.push(option2);
+        this.optionArray.push(option3);
+
         //will tell us if this memo has prep before the memo
         this.hasPrep = false;
         if(preMemo != undefined){
@@ -14,8 +19,13 @@ class Memo {
             this.preMemo = preMemo;
         }
     }
+    assignButtonFunctions(){
+        this.option1 = this.optionArray[0];
+        this.option2 = this.optionArray[1];
+        this.option3 = this.optionArray[2];
+    }
     buildMemo(){
-
+        this.assignButtonFunctions();
         //this.config.subject = "<p><b>Subject:</b> {SubjectLine}</p>";
         this.memoHTML = "<div>" +
                         "<div>" + "<div class= 'memoBody'>" + this.config.toLine + this.config.fromLine + this.config.subject + "</div>" + memoLine +
