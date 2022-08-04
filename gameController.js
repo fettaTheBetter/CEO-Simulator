@@ -32,6 +32,10 @@ function clickDepartment(name){
     //will display the name and employees on the canvas being sent in
     department.display(realGame.departmentDisplay.children[2]);
     document.getElementById('employeeInfo').style.display = "none";
+    if(currentDepShown != ""){
+        document.getElementById(currentDepShown + "Canvas").style.backgroundColor = "white";
+    }
+    document.getElementById(name+"Canvas").style.backgroundColor = "#6e5f5f";
     currentDepShown = name;
 }
 function clickEmployee(empNum,depName){

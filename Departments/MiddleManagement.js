@@ -5,7 +5,7 @@ class MiddleManagement extends Department {
     constructor(){
         super();
         this.name = "Middle Management";
-        this.canvas = document.getElementById('MiddleManagementCanvas');
+        this.canvas = document.getElementById('Middle ManagementCanvas');
     }
     //will be using specialization
     numOfMMForDep(depName){

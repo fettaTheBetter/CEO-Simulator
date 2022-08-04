@@ -28,7 +28,7 @@ class Company {
     }
     //used as set up for the start of game
     attachDepartments(){
-        this.departmentsArray[0].canvas = document.getElementById('HumanResourcesCanvas');
+        this.departmentsArray[0].canvas = document.getElementById('Human ResourcesCanvas');
         
         this.departmentsArray[1].canvas = document.getElementById('ITCanvas');
         this.departmentsArray[2].canvas = document.getElementById('MarketingCanvas');

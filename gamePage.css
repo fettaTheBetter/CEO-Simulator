@@ -89,6 +89,7 @@ button:hover{
     flex-wrap: wrap;
     max-height: 200px;
     column-gap: 10px;
+    font-size: 150%;
 }
 #fullHire{
     overflow: auto;

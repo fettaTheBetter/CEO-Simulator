@@ -14,7 +14,6 @@ function createEmployee(hiringTracker){
         let minExpense = hiringTracker.minExpense;
         let maxFightValue =hiringTracker.maxFightValue;
         let minFightValue = hiringTracker.minFightValue;
-        console.log("Here is max and min fight value: " + maxFightValue + "  " + minFightValue);
 
         let employee = new Employee();
         //should get us a random name/productivity/expense in employees
