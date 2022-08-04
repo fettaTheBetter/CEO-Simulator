@@ -24,7 +24,7 @@ class Game {
       this.company.hireEmployees();
       this.updateDisplays();
       //This will add the intro memo
-      this.changeMemo(timedMemos[0]);
+      this.changeMemo(timedMemos[2]);
   }
   updateDisplays(){
       this.company.setMaxIncome();
@@ -45,7 +45,9 @@ class Game {
     this.company.setMoney();
     //will interact with employees on the weekly basis
     this.company.getDepartment('IT').completeTrainingReduction(this.company);
-    
+    if(this.currentWeek % 5 == 4){
+      this.memoArray.push(timedMemos[3]);
+    }
     ///these are where the checkers for the timed week events go
     if(this.currentWeek == 4){
       this.memoArray.push(timedMemos[1]);
@@ -76,11 +78,12 @@ class Game {
     if(this.currentWeek > 6 ){
       this.memoArray.push(new DynamicMemo());
     }
+    
     if(this.currentWeek % 5 == 0){
       let battle = new Battle(realGame.company,new EnemyCompany(this.currentWeek,enemyDifficulty[this.enemyRoundsFought]));
       let isWon = battle.startBattle();
       this.enemyRoundsFought++;
-      this.memoArray.push(new BattleReport(isWon));
+      this.memoArray.push(new BattleReport(isWon,realGame));
     }
     //switch to next Memo
     this.changeMemo(this.memoArray.pop());

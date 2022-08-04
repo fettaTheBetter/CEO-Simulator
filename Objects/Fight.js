@@ -32,10 +32,10 @@ class Fight {
             team1 =this.enemyTeam;
             team2 = this.myTeam;
         }
-        sumOfsmallTeam = team2[0].fightValue;
+        sumOfsmallTeam = team2[0].fightValue +Math.floor(Math.random()*(team2[0].fightValue+1));
         let tempValue = Math.floor(sumOfsmallTeam / team1.length);
         for(let i=0;i<team1.length;i++){
-            sumOfbigTeam = sumOfbigTeam + team1[i].fightValue;
+            sumOfbigTeam = sumOfbigTeam + team1[i].fightValue +Math.floor(Math.random()*(team1[i].fightValue+1));
             team1[i].injuryTracker.tempInjury = team1[i].injuryTracker.tempInjury + tempValue;
         }
         team2[0].injuryTracker.tempInjury = team2[0].injuryTracker.tempInjury + sumOfbigTeam;

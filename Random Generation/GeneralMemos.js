@@ -5,7 +5,8 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                                     signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                                     option1Text: "$100",
                                     option2Text: "$150",
-                                    option3Text: "$200"},
+                                    option3Text: "$200",
+                                    subject: "<p><b>Subject:</b> Generic Memo</p>"},
                                 function (){
                                     console.log("we have hit option1");
                                     realGame.company.gainMoney(100);
@@ -28,7 +29,8 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Lavishly Decorate Office",
                              option2Text: "Decorate Office",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> Decor Issue</p>"},
                                 function (){
                                     realGame.company.gainMoney(-300);
                                     realGame.company.increaseAllProductivity(2)
@@ -50,7 +52,8 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Implement Blockchain",
                              option2Text: "Say Yes But Don't Do Anything",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> Technological Improvements</p>"},
                                 function (){
                                     realGame.company.gainMoney(-200);
                                     let tempBool = realGame.company.checkProductivity('IT',25);
@@ -77,7 +80,8 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Give Large Bonus",
                              option2Text: "Give Little Bonus",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> Holiday Bonus</p>"},
                                 function (){
                                     realGame.company.gainMoney(-(realGame.company.getNumOfEmployees()*25));
                                     this.undisplayMemo();
@@ -97,7 +101,8 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Human Resources</p>",
                              option1Text: "As Much As You Want",
                              option2Text: "We Can Afford One Cake",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> Office Party</p>"},
                             function (){
                                 realGame.company.gainMoney(-150);
                                 this.undisplayMemo();
@@ -118,7 +123,8 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              signature: "<p>Regards,</p> <p>&emsp;IT</p>",
                              option1Text: "Hell Yeah!",
                              option2Text: "Only Minor Upgrades",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> Technological Upgrade</p>"},
                                 function (){
                                     realGame.company.gainMoney(-500);
                                     this.undisplayMemo();
@@ -137,7 +143,8 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Make It Go Away",
                              option2Text: "Fire Them",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> Employee Moral Clauses</p>"},
                             function (){
                                 let tempBool = realGame.company.checkProductivity('Marketing',25);
                                 if(tempBool){
@@ -181,7 +188,8 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              signature: "<p>Best Wishes,</p> <p>&emsp;The Quizzes R US Team</p>",
                              option1Text: "Sure",
                              option2Text: "How Did This Get Past My Assistant?",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> TAKE FREE QUIZZES</p>"},
                             function (){
                                 this.undisplayMemo();
                             },
@@ -199,7 +207,8 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Mr. and Mrs. Moocher</p>",
                              option1Text: "Send Them A Gift",
                              option2Text: "Wish Them Well",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> wedding Notification</p>"},
                             function (){
                                 this.undisplayMemo();
                             },

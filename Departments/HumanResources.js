@@ -84,13 +84,16 @@ class HumanResources extends Department {
             case 5:
                 infoName.innerHTML = "<b>Injury Status: &nbsp;</b>";
                 infoStat.innerText = employee.injuryTracker.injuryStatus;
+                break;
             case 6:
-                infoName.innerHTML = "<b>Training Aptitude: &nbsp;</b>";
-                infoStat.innerText = employee.trainingTracker.baseProductivityImpact;
+                infoName.innerHTML = "<b>Productivity Increase:  &nbsp;</b>";
+                infoStat.innerText = employee.productivityIncrease;
                 break;
             case 7:
                 infoName.innerHTML = "<b>Productivity Increase:  &nbsp;</b>";
                 infoStat.innerText = employee.productivityIncrease;
+                infoName.innerHTML = "<b>Training Aptitude: &nbsp;</b>";
+                infoStat.innerText = employee.trainingTracker.baseProductivityImpact;
                 break;
             case 8: 
             infoName.innerHTML = "<b>Personality: &nbsp;</b>";

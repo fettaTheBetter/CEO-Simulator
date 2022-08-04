@@ -248,6 +248,7 @@ function prepreMemo(){
     //now I need to create the body from this employee
     config.toLine = "<p><b>To:</b> The CEO</p>";
     config.fromLine = "<p><b>From:</b> " + emp.name +  " from " +emp.currentDepartment + "</p>";
+    config.subject = "<p><b>Subject:</b> Staff Suggestions</p>";
     //currently will pick a random department to throw it in
     config.body = "&emsp;Hey I have a few new ideas for what we could do to improve the " +realGame.dynamicMemoEmpDep +" department. Let me know if you'd like me to Implement them.";
     config.signature = "<p>Regards,</p> <p>&emsp;" + emp.name +  " from " +emp.currentDepartment +" :)</p>";

@@ -6,6 +6,8 @@ class IT extends Department {
         super();
         this.name = "IT";
         this.increaseByEmp = 1;
+        //will be the base healing value
+        this.healingValue;
     }
     completeTrainingReduction(company){
         //will go through all the departments in the company

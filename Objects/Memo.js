@@ -15,8 +15,10 @@ class Memo {
         }
     }
     buildMemo(){
+
+        //this.config.subject = "<p><b>Subject:</b> {SubjectLine}</p>";
         this.memoHTML = "<div>" +
-                        "<div>" + "<div class= 'memoBody'>" + this.config.toLine + this.config.fromLine + "</div>" + memoLine +
+                        "<div>" + "<div class= 'memoBody'>" + this.config.toLine + this.config.fromLine + this.config.subject + "</div>" + memoLine +
                         "<div class = 'memoBody'>" + this.config.body + this.config.signature + 
                         "</div></div>"+
                         "<div class ='optionButtonsHolder'>" +

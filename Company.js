@@ -113,7 +113,6 @@ class Company {
                 if(!(this.departmentsArray[i].employees[j].trainingTracker.isCompleted)){
                     this.departmentsArray[i].employees[j].reduceTraining();
                 }
-                //this.departmentsArray[i].employees[j].expense =this.departmentsArray[i].employees[j].expense +0.5;
                 this.departmentsArray[i].employees[j].baseProductivity = this.departmentsArray[i].employees[j].baseProductivity + this.departmentsArray[i].employees[j].productivityIncrease;
                 this.departmentsArray[i].employees[j].weeksEmployed = this.departmentsArray[i].employees[j].weeksEmployed +1;
                 //need to update productivity increases
@@ -122,6 +121,9 @@ class Company {
                 //checkForRaises
                 this.departmentsArray[i].employees[j].raiseTracker.reduceWeek();
                 this.departmentsArray[i].employees[j].checkForRaise();
+
+                //changeInjuryTrackers
+                this.departmentsArray[i].employees[j].healByIT(this.getDepartment('IT').calculateProductivity());
             }
         }
     }

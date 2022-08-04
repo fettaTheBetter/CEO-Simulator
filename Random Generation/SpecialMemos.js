@@ -5,7 +5,8 @@ let specialMemos = [new Memo(
                              signature: "<p>Regards,</p> <p>&emsp;Your Exasparated Board Of Directors :)</p>",
                              option1Text: "Whoops, Sorry",
                              option2Text: "If You Say So",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> Please Don't Ignore Us</p>"},
                             function (){
                                 realGame.company.ignoreTracker = realGame.company.ignoreTracker -5;
                                 this.undisplayMemo();
@@ -27,7 +28,8 @@ let specialMemos = [new Memo(
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Sounds Great!",
                              option2Text: "Ok...",
-                             option3Text: "Refuse To Hire Them"},
+                             option3Text: "Refuse To Hire Them",
+                             subject: "<p><b>Subject:</b> Middle Management</p>"},
                             function (){
                                 realGame.company.ignoreTracker = realGame.company.ignoreTracker -1;
                                 let employee = createEmployee(new HiringTracker());
@@ -59,7 +61,8 @@ let specialMemos = [new Memo(
                              signature: "<p>Regards,</p> <p>&emsp;Your Very Exasperated Board Of Directors :)</p>",
                              option1Text: "Ok, I understand",
                              option2Text: "Please Stop Messaging Me",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> PLEASE DON'T IGNORE US</p>"},
                             function (){
                                 realGame.company.ignoreTracker = realGame.company.ignoreTracker -5;
                                 realGame.company.ignoreMemoTracker--;
@@ -88,7 +91,8 @@ let specialMemos = [new Memo(
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Sorry, I'll Pay More Attention",
                              option2Text: "Of Course My Bad",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> DON'T IGNORE US OR ELSE</p>"},
                             function (){
                                 realGame.company.ignoreTracker = realGame.company.ignoreTracker -12;
                                 realGame.company.ignoreMemoTracker--;

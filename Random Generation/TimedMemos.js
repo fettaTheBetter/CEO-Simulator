@@ -6,7 +6,8 @@ let timedMemos =[new Memo(  {toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "$5000",
                              option2Text: "$10000",
-                             option3Text: "$15000"},
+                             option3Text: "$15000",
+                             subject: "<p><b>Subject:</b> Welcome Again</p>"},
                             function (){
                                 realGame.company.gainMoney(5000);
                                 this.special1stMemo();
@@ -27,9 +28,10 @@ let timedMemos =[new Memo(  {toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Could Run That By Again?",
                              option2Text: "Sounds Good",
-                             option3Text: "Ignore It"},
+                             option3Text: "Ignore It",
+                             subject: "<p><b>Subject:</b> GCBA Reminder</p>"},
                             function (){
-                                realGame.memoArray.push(chainMemos[3])
+                                realGame.memoArray.push(chainMemos[3]);
                                 this.undisplayMemo();
                             },
                             function (){
@@ -45,5 +47,43 @@ let timedMemos =[new Memo(  {toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                                 realGame.company.getDepartment('IT').canvas.children[0].innerText = "IT/Hospital";
                                 realGame.updateDisplays();
                                 return true;
+                            }),
+                    new Memo(   {toLine: "<p><b>To:</b> The New CEO</p>",
+                             fromLine: "<p><b>From:</b> The Board Of Directors</p>",
+                             body: "<p>&emsp;Hello it's us; The Board Of Directors. We believe you're the only candidate who can turn this company around, so no pressure." +
+                             " Quick question, have you ever been a CEO before?</p>",
+                             signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
+                             option1Text: "Yes",
+                             option2Text: "Yes, but I would like a refresher",
+                             option3Text: "No; please help me",
+                            subject: "<p><b>Subject:</b> Welcome</p>"},
+                            function (){
+                                realGame.memoArray.push(timedMemos[0]);
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                realGame.memoArray.push(chainMemos[4]);
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                realGame.memoArray.push(chainMemos[4]);
+                                this.undisplayMemo();
+                            }),
+                    new Memo(   {toLine: "<p><b>To:</b> The CEO</p>",
+                             fromLine: "<p><b>From:</b> The Board Of Directors</p>",
+                             body: "<p>&emsp;Just wanted to remind you that you have a match next week. Please don't embarass us!</p>",
+                             signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
+                             option1Text: "Bring 'Em On",
+                             option2Text: "It Might Be Tough",
+                             option3Text: "Can We Reschedule Please?",
+                            subject: "<p><b>Subject:</b> GCBA Match</p>"},
+                            function (){
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                this.undisplayMemo();
                             }),
                         ];

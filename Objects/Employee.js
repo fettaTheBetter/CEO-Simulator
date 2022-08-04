@@ -122,6 +122,11 @@ class Employee {
         }
       }
     }
+    //the argument sent in is the IT department productivity
+    healByIT(productivity){
+      //currently takes a percentage of the damage already and uses that
+      this.injuryTracker.changeInjury(-Math.floor((this.injuryTracker.injuryValue*productivity)));
+    }
 
 
 
