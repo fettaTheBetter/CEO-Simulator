@@ -34,14 +34,12 @@ class BattleReport extends Memo {
         let string = "<p>";
         string = string +"Here is the battle report sir: <br>";
         string = string +"Battle Result: " + battleReport + "<br><br>";
-        if(game.company.getDepartment('Human Resources').employees.length > 8){
             for(let i=0;i<empArray.length;i++){
                 if(empArray[i].injuryTracker.previousStatus != empArray[i].injuryTracker.injuryStatus){
                     hasBeenReported = true;
                     string = string + empArray[i].name + " (" + empArray[i].idNum + "): " + empArray[i].injuryTracker.previousStatus + " --&gt; " + empArray[i].injuryTracker.injuryStatus + "<br>";
                 }
             }
-        }
         //if no injuries have been reported
         if(!(hasBeenReported)){
             string= string + "No injuries to report";

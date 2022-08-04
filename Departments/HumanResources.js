@@ -5,7 +5,7 @@ class HumanResources extends Department {
     constructor(){
         super();
         this.name = "Human Resources";
-        this.breakpoints = [1,1,2,4,7,9,10,15,22];
+        this.breakpoints = [1,1,2,4,7,9,10,15];
     }
     //will return how far into the breakpoints we are, for showing what is necessary in employees
     checkBreakpoints(){
@@ -24,6 +24,7 @@ class HumanResources extends Department {
         let tempbreakpoints = this.checkBreakpoints();
         //will add one to tempBreakpoints, I forgot why I have to do this but I do it to show the weeks to Complete
         if(tempbreakpoints != -1){
+            tempbreakpoints++;
             tempbreakpoints++;
             tempbreakpoints++;
         }
@@ -74,16 +75,16 @@ class HumanResources extends Department {
                 infoStat.innerText = tempWeeksComplete + " weeks left.";
                 break;
             case 3:
+                infoName.innerHTML = "<b>Injury Status: &nbsp;</b>";
+                infoStat.innerText = employee.injuryTracker.injuryStatus;
+                break;
+            case 4:
                 infoName.innerHTML = "<b>Specialization: &nbsp;</b>";
                 infoStat.innerText = employee.specialization;
                 break;
-            case 4:
+            case 5:
                 infoName.innerHTML = "<b>FightValue: &nbsp;</b>";
                 infoStat.innerText = employee.fightValue;
-                break;
-            case 5:
-                infoName.innerHTML = "<b>Injury Status: &nbsp;</b>";
-                infoStat.innerText = employee.injuryTracker.injuryStatus;
                 break;
             case 6:
                 infoName.innerHTML = "<b>Productivity Increase:  &nbsp;</b>";

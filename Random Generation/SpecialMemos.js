@@ -23,7 +23,8 @@ let specialMemos = [new Memo(
                             {toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              fromLine: "<p><b>From:</b> The Board Of Directors</p>",
                              body: "<p>&emsp;Looks like one of your departments has a few too many employees. That's ok! We've made a new department for you called middle management." 
-                             + "This will help you manage all those extra people, trust me you'll need it. <br>" + "&emsp;We've also taken the liberty to hire your first middle manager!" +
+                             + "This will help you manage all those extra people; our research has shown that for every five employees in a department you need a middle manager. Oh also the middle manager has to have a specialization in that department in order to manage it. <br>"
+                              + "&emsp;We've also taken the liberty to hire your first middle manager!" +
                              " They're family so please be nice to them.</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Sounds Great!",
@@ -49,7 +50,6 @@ let specialMemos = [new Memo(
                                 this.undisplayMemo();
                             },
                             function (){
-                                console.log("Prememo for middle management");
                                 realGame.company.addMM();
                                 realGame.updateDisplays();
                                 return true;

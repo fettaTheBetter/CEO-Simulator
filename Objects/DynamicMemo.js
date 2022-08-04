@@ -15,7 +15,7 @@ class DynamicMemo extends Memo {
         //will create the dynamicMemoEmp object
         realGame.dynamicMemoEmp = pickRandomEmployee();
         // it's 4 because thats the number of special dynamic employees
-        let randNum = Math.floor(Math.random()*4);
+        let randNum = Math.floor(Math.random()*3);
         //randNum =0;
         //will create the department value that it will choose from
         realGame.dynamicMemoEmpDep = empSpecialization[Math.floor(Math.random()*(empSpecialization.length))];
@@ -49,7 +49,7 @@ class DynamicMemo extends Memo {
         config.subject = "<p><b>Subject:</b> Staff Suggestions</p>";
         //currently will pick a random department to throw it in
         config.body = "&emsp;Hey I have a few new ideas for what we could do to improve the " +realGame.dynamicMemoEmpDep +" department. Let me know if you'd like me to Implement them.";
-        config.signature = "<p>Regards,</p> <p>&emsp;" + emp.name +  " from " +emp.currentDepartment +" :)</p>";
+        config.signature = "<p>Regards,</p> <p>&emsp;" + emp.name +  " from " +emp.currentDepartment +"</p>";
         config.option1Text = "Let's Try Them";
         config.option2Text = "Sorry, Not Enough Experience";
         config.option3Text = "Ignore It";
@@ -64,7 +64,7 @@ class DynamicMemo extends Memo {
         config.subject = "<p><b>Subject:</b> Raise Wanted</p>";
         //currently will pick a random department to throw it in
         config.body = "&emsp;Hey, I feel as though my performance has been exemplary these past few weeks. I'm searching for a " + (emp.raiseTracker.raiseValue*100) + "% raise.";
-        config.signature = "<p>Regards,</p> <p>&emsp;" + emp.name +  " from " +emp.currentDepartment +" :)</p>";
+        config.signature = "<p>Regards,</p> <p>&emsp;" + emp.name +  " from " +emp.currentDepartment +"</p>";
         config.option1Text = "You deserve a bigger one";
         config.option2Text = "I can give you your raise";
         config.option3Text = "Sorry, Not Enough Experience";

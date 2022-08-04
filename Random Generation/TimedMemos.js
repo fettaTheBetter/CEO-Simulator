@@ -1,8 +1,7 @@
 let timedMemos =[new Memo(  {toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              fromLine: "<p><b>From:</b> The Board Of Directors</p>",
-                             body: "<p>&emsp;Greetings {CEO}, we're very happy to be welcoming you into our business family." +
-                             " We're hoping you may be able to right the ship our previous CEO ran into an iceberg with. Unfortunately all our employees left and we grabbed some people off the stree to help. You're welcome!" +
-                             "Anyways, good luck and if it doesn't work out we'll just fire you. Haha just kidding...</p>",
+                             body: "<p>&emsp;For your first act as CEO you get to choose how much money we give you." +
+                             " Uhhhh, pick the biggest one for now I guess...</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "$5000",
                              option2Text: "$10000",
