@@ -7,8 +7,25 @@ class InjuryTracker {
         this.injuryValue = 0;
         this.injuryStatus = this.injuryBreakpoints[0];
         //this will check the injury in  battle to see if they can keep fighting
-        this.tempInjury = 0;
+        this.battleInjury = [];
         this.previousStatus = this.injuryBreakpoints[0];;
+    }
+    //will return an int
+    //this will be how we check how injured they are in battle
+    checkBattleInjuries(num){
+        let sum = 0;
+        let max =0;
+        //allows us to have an optional num if we want to grab it in middle of battle
+        if(num == undefined){
+            max = this.battleInjury.length;
+        }
+        else{
+            max = num;
+        }
+        for(let i=0;i<max;i++){
+            sum = sum + this.battleInjury[i];
+        }
+        return sum;
     }
     changeInjury(int){
         this.injuryValue = this.injuryValue + int;
@@ -34,6 +51,7 @@ class InjuryTracker {
             return false;
         }
     }
+    //this is how you heal the player, productivity is taken from IT department
     changeProductivity(productivity){
         let productivityBreakpoint = 0;
         if(this.injuryValue < this.injuryBreakpointsValues[0]){

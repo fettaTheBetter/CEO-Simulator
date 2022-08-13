@@ -3,19 +3,19 @@
 class HiringTracker {
     constructor() {
       //these are the base values
-      this.maxProductivity =50;
-      this.minProductivity =30;
-      this.maxExpense =900;
-      this.minExpense =300;
+      this.maxProductivity =60;
+      this.minProductivity =40;
+      this.maxExpense = 13;
+      this.minExpense = 3;
       this.minFightValue = 1;
       this.fightValueDifference = 3;
-      this.maxFightValue =3;
+      this.maxFightValue =5;
 
 
       //these are base values we will change eventually
       this.productivityDifference = 20;
-      this.highestExpense = 900;
-      this.expenseDifference = 200;
+      this.highestExpense = 13;
+      this.expenseDifference = 4;
 
     }
     //will send in productivity of HR as an argument

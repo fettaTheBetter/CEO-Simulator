@@ -6,9 +6,9 @@ class Employee {
       this.expense;
       //which department they gain specialization in
       this.specialization;
-      this.specializationNum = 1.05;
+      this.specializationNum = 1.1;
       //cann also be decrease
-      this.productivityIncrease = 1;
+      this.productivityIncrease = 0.5;
       //may interact negatively with other employees
       this.personality;
 
@@ -31,7 +31,6 @@ class Employee {
       //
       //will create a base employee, will be used for testing
       this.personality = 'Bland';
-      this.fightValue = 3;
 
       //need to make an html object for the employee
       //will have a picture, a name and onclick functions

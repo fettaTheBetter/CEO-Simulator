@@ -5,7 +5,7 @@ let empSpecialization = ["Sales","Human Resources","IT","Marketing"];
 
 //this will show the current enemy difficulty rating
 //{prod, num of emp}
-let enemyDifficulty = [40,45,55,65,75,85,90,95,100];
+let enemyDifficulty = [25,30,40,45,55,65,75,85,90,95,100];
 
 
 

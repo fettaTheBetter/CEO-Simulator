@@ -3,21 +3,21 @@ let timedMemos =[new Memo(  {toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                              body: "<p>&emsp;For your first act as CEO you get to choose how much money we give you." +
                              " Uhhhh, pick the biggest one for now I guess...</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
-                             option1Text: "$5000",
-                             option2Text: "$10000",
-                             option3Text: "$15000",
+                             option1Text: "$500",
+                             option2Text: "$1000",
+                             option3Text: "$1500",
                              subject: "<p><b>Subject:</b> Welcome Again</p>"},
                             function (){
-                                realGame.company.gainMoney(5000);
+                                realGame.company.gainMoney(500);
                                 this.special1stMemo();
                             },
                             function (){
-                                realGame.company.gainMoney(10000);
+                                realGame.company.gainMoney(1000);
                                 this.special1stMemo();
                             },
                             function (){
                                 console.log("we have hit option1");
-                                realGame.company.gainMoney(15000);
+                                realGame.company.gainMoney(1500);
                                 this.special1stMemo();
                             }),
                 new Memo(   {toLine: "<p><b>To:</b> Our Beloved CEO</p>",

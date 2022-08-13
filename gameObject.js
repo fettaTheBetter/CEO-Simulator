@@ -81,9 +81,11 @@ class Game {
     
     if(this.currentWeek % 5 == 0){
       let battle = new Battle(realGame.company,new EnemyCompany(this.currentWeek,enemyDifficulty[this.enemyRoundsFought]));
-      let isWon = battle.startBattle();
+      let battleObject = battle.startBattle();
+      let isWon = battleObject.isWon;
+      let rounds = battleObject.rounds;
       this.enemyRoundsFought++;
-      this.memoArray.push(new BattleReport(isWon,realGame));
+      this.memoArray.push(new BattleReport(isWon,rounds));
     }
     //switch to next Memo
     this.changeMemo(this.memoArray.pop());

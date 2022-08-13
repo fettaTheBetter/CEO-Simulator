@@ -6,10 +6,18 @@ class Battle {
         this.enemyCompany = enemyCompany;
         //will save a reference to the original company
         this.fightArray = [];
+        //will contain the fightArrays
+        this.roundArray = [];
         this.removedEmployees = [];
     }
     startBattle(){
-        return this.simulateBattle(this.yourCompany.getAllEmployees(),this.enemyCompany.employees);
+        //need to reset battleTrackers for your team
+        let empArray = this.yourCompany.getAllEmployees();
+        for(let i=0;i<empArray.length;i++){
+            empArray[i].injuryTracker.battleInjury = [];
+        }
+        let isWon = this.simulateBattle(empArray,this.enemyCompany.employees);
+        return {isWon: isWon, rounds: this.roundArray}; 
     }
     //simulates the battle with the two companies we have
     simulateBattle(yourTempEmp,badTempEmp){
@@ -17,6 +25,7 @@ class Battle {
          let urTempEmp = yourTempEmp;
          let enemyTempEmp = badTempEmp;
          this.fightArray = [];
+         this.roundArray.push(new Round(this.roundArray.length+1));
          //if ur ur company has more employees
          if(urTempEmp.length >= enemyTempEmp.length){
             for(let t=0; t<urTempEmp.length;t++){
@@ -26,7 +35,7 @@ class Battle {
                 }
                 else{
                 //they have to be sent in as arrays because that's the argument fight needs
-                this.fightArray.push(new Fight([urTempEmp[t]],[enemyTempEmp[t]]));
+                this.fightArray.push(new Fight([urTempEmp[t]],[enemyTempEmp[t]],this.roundArray.length));
                 }
 
             }
@@ -40,7 +49,7 @@ class Battle {
                 }
                 else{
                 //they have to be sent in as arrays because that's the argument fight needs
-                this.fightArray.push(new Fight([urTempEmp[t]],[enemyTempEmp[t]]));
+                this.fightArray.push(new Fight([urTempEmp[t]],[enemyTempEmp[t]],this.roundArray.length));
                 }
 
             }
@@ -59,8 +68,9 @@ class Battle {
             }
             //will assign players back to the enemies
             for(let j=0;j<temp.enemyTeam.length;j++){
-                urTempEmp.push(temp.enemyTeam[j]);
+                enemyTempEmp.push(temp.enemyTeam[j]);
             }
+            this.roundArray[this.roundArray.length-1].fights.push(this.fightArray[n]);
          }
          //need to clean out employees who are out of the battle
          urTempEmp = this.checkInjuries(urTempEmp);
@@ -81,7 +91,7 @@ class Battle {
     }
     checkInjuries(employees){
         for(let i=0;i<employees.length;i++){
-            if(employees[i].injuryTracker.tempInjury >= employees[i].fightValue){
+            if(employees[i].injuryTracker.checkBattleInjuries() >= employees[i].fightValue){
                 employees = this.removeFromArray(employees[i],employees);
                 //need this because we are changing the length of employees
                 this.removedEmployees.push(employees.pop());

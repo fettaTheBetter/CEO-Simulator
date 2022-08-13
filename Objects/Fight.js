@@ -1,13 +1,21 @@
 
 
 class Fight {
-    constructor(myTeam,enemyTeam){
+    constructor(myTeam,enemyTeam,roundNum){
         this.myTeam = myTeam;
         this.enemyTeam = enemyTeam;
+        this.roundNum = roundNum;
+        this.biggerTeam = "";
+        if(this.myTeam.length > this.enemyTeam.length){
+            this.biggerTeam = "myTeam";
+        }
+        else{
+            this.biggerTeam = "enemyTeam";
+        }
     }
     fight(){
         //will tell us which team to use as the bigger one
-        if(this.myTeam > this.enemyTeam){
+        if(this.biggerTeam == "myTeam"){
             this.simulateFight(true);
         }
         else{this.simulateFight(false);}
@@ -36,8 +44,8 @@ class Fight {
         let tempValue = Math.floor(sumOfsmallTeam / team1.length);
         for(let i=0;i<team1.length;i++){
             sumOfbigTeam = sumOfbigTeam + team1[i].fightValue +Math.floor(Math.random()*(team1[i].fightValue+1));
-            team1[i].injuryTracker.tempInjury = team1[i].injuryTracker.tempInjury + tempValue;
+            team1[i].injuryTracker.battleInjury.push(tempValue);
         }
-        team2[0].injuryTracker.tempInjury = team2[0].injuryTracker.tempInjury + sumOfbigTeam;
+        team2[0].injuryTracker.battleInjury.push(sumOfbigTeam);
     }
 }

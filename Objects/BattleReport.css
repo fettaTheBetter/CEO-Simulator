@@ -1,0 +1,34 @@
+.allRounds{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.round{
+    font-weight: bold;
+    font-size: 120%;
+}
+.allFights{
+    display: flex;
+    flex-direction: column;
+}
+.fight{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.fightTeams{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.allPlayers{
+    display: flex;
+    flex-direction: column;
+}
+.players{
+    font-size: 100%;
+    font-weight: normal;
+}
+.healthText{
+    font-size: 70%;
+}

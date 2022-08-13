@@ -34,8 +34,8 @@ class Memo {
                         "<div class ='optionButtonsHolder'>" +
                         "<button class = 'memoOptionButtons'>"+ this.config.option1Text + "</button>" +
                         "<button class = 'memoOptionButtons'>"+ this.config.option2Text +"</button>" +
-                        "<button class = 'memoOptionButtons'>"+ this.config.option3Text +"</button></div>"+
-                        "</div>";
+                        "<button class = 'memoOptionButtons'>"+ this.config.option3Text +"</button>"+
+                        "</div></div>";
     }
     option1(){
         console.log("Option1 is chosen");
