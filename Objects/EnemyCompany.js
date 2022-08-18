@@ -16,4 +16,14 @@ class EnemyCompany {
     hireEmployee(emp){
         this.employees.push(emp);
     }
+    getAllEmployees(){
+        let empArray = [];
+        for(let i=0;i<this.employees.length;i++){
+            empArray.push(this.employees[i]);
+        }
+
+        return empArray;
+
+
+    }
 }

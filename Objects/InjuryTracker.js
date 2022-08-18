@@ -8,7 +8,19 @@ class InjuryTracker {
         this.injuryStatus = this.injuryBreakpoints[0];
         //this will check the injury in  battle to see if they can keep fighting
         this.battleInjury = [];
-        this.previousStatus = this.injuryBreakpoints[0];;
+        this.previousStatus = this.injuryBreakpoints[0];
+        this.currentFightValue = 0;
+    }
+    //will change the fight value of the employee
+    changeFightValue(int){
+        this.currentFightValue = int;
+        //now I need to change breakpoints
+        for(let i=0;i<this.injuryBreakpointsValues.length;i++){
+            this.injuryBreakpointsValues[i] = this.currentFightValue*i;
+        }
+        //we do this changeInjury function to see if the breakpoints have moved
+        //then it will set the proper injury status
+        this.changeInjury(0);
     }
     //will return an int
     //this will be how we check how injured they are in battle
@@ -20,7 +32,7 @@ class InjuryTracker {
             max = this.battleInjury.length;
         }
         else{
-            max = num;
+            max = num+1;
         }
         for(let i=0;i<max;i++){
             sum = sum + this.battleInjury[i];

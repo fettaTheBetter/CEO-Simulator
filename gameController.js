@@ -5,13 +5,16 @@
 let realGame;
 let employeesToHire = [null,null,null];
 let currentDepShown ="";
+//this will help us assing the right helpMenu
+let depHelpSearch = ["Human Resources","Marketing","Sales","Middle Management","Onboarding","Aid Station","Custodian","Recruiting"];
 function StartGame(){
     //will create a newGame object?
     //make global game object
     realGame = new Game();
     realGame.canvas = document.getElementById('fullGame');
     realGame.createCompany();
-    clickDepartment("Human Resources");
+    clickDepartment("Sales");
+    //will set the startMenu
     document.getElementById('firstRoom').style.display = "none";
 }
 
@@ -20,17 +23,29 @@ function NextWeek(){
     //grab event
     realGame.nextWeek();
     document.getElementById('nextWeekButton').style.display = 'none';
-    clickDepartment("Human Resources");
+    clickDepartment("Sales");
     updateDisplays();
 }
 
 //the function that happens when you click 
 function clickDepartment(name){
+    resetErrorLog();
+    resetSwitchEmpMenu();
     let department =realGame.company.getDepartment(name);
     //find the department object
-    realGame.departmentDisplay.children[0].innerText = department.name;
+    realGame.departmentDisplay.children[0].children[1].innerText = department.name;
+    let tempIndex = 0;
+    //will search for the index of the helpInfoArray
+    for(let i=0;i<depHelpSearch.length;i++){
+        if(name == depHelpSearch[i]){
+            tempIndex = i;
+        }
+    }
+    realGame.departmentDisplay.children[0].children[2].children[1].innerHTML = helpInfoArrays[tempIndex];
+    //should set some things first, I believe I just have to set productivity
+    realGame.company.setProductivity();
     //will display the name and employees on the canvas being sent in
-    department.display(realGame.departmentDisplay.children[2]);
+    department.display(realGame.departmentDisplay.children[3]);
     document.getElementById('employeeInfo').style.display = "none";
     if(currentDepShown != ""){
         document.getElementById(currentDepShown + "Canvas").style.backgroundColor = "white";
@@ -39,6 +54,8 @@ function clickDepartment(name){
     currentDepShown = name;
 }
 function clickEmployee(empNum,depName){
+    resetErrorLog();
+    resetSwitchEmpMenu();
     //find the department object
     let department = realGame.company.getDepartment(depName);
     let employee = department.getEmployee(empNum);
@@ -90,7 +107,7 @@ function switchEmployee(departmentToName){
         clickDepartment(departmentFrom.name);
     }
     else{
-        console.log("This employee has already moved departments this week");
+        document.getElementById('errorLog').innerText = "This employee has already moved departments this week";
     }
     updateDisplays();
 }
@@ -117,18 +134,33 @@ function removeEmployeeInfo(){
         document.getElementById('empAttributes').children[1].removeChild(document.getElementById('empAttributes').children[1].lastChild);
     }
 }
+//will make the errorLog undisplay
+function resetErrorLog(){
+    document.getElementById('errorLog').innerText = "";
+}
+function resetSwitchEmpMenu(){
+    document.getElementById('switchDepartmentsMenu').style.display = "none";
+}
 //will return html for 1 employee for hiring,
 //the num is for making the document id
 
 function createEmpHiringObject(num){
+    let MMString = "";
+    if(realGame.company.getDepartment('Middle Management') != undefined){
+        MMString = "<button onclick='hireEmployee(" + (num-1) +",\"Middle Management\")'>Middle Management</button>"
+    }
         let htmlEmployee =      "<div id='switchHiringMenu" + num +"' class = 'modal'>" +
                                     "<span id='closeModalButton" + num +"' class='close'>&times;</span>" + 
                                     "<div class = 'modal-content'>Which Department would you like to hire them at?</div>" +
                                     "<div class ='buttonHolder'>" +
                                     "<button onclick='hireEmployee(" + (num -1)+ ",\"Human Resources\")'>Human Resources</button>" +
                                     "<button onclick='hireEmployee(" + (num-1) +",\"Sales\")'>Sales</button>" +
-                                    "<button onclick='hireEmployee("+ (num-1) +",\"IT\")'>IT</button>" +
+                                    "<button onclick='hireEmployee("+ (num-1) +",\"Onboarding\")'>Onboarding</button>" +
                                     "<button onclick='hireEmployee(" + (num-1) +",\"Marketing\")'>Marketing</button>"+
+                                    "<button onclick='hireEmployee(" + (num-1) +",\"Aid Station\")'>Aid Station</button>"+
+                                    "<button onclick='hireEmployee(" + (num-1) +",\"Recruiting\")'>Recruiting</button>"+
+                                    "<button onclick='hireEmployee(" + (num-1) +",\"Custodian\")'>Custodian</button>"+
+                                    MMString +
                                     "</div>" +
                                 "</div>" +
                                 "<div  class = 'employeeInfo'>" +

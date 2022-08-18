@@ -7,10 +7,10 @@ class Marketing extends Department {
         this.name = "Marketing";
         this.maxIncome = 100;
         this.baseMaxIncome = 100;
-        this.increaseByEmp = 25;
+        this.maxIncomeMultiplier = 1000
     }
     setMaxIncome(){
-        this.maxIncome = this.baseMaxIncome+this.employees.length*this.increaseByEmp;
+        this.maxIncome = this.baseMaxIncome+(this.productivity*this.maxIncomeMultiplier*0.01);
     }
     getMaxIncome(){
         return this.maxIncome*this.calculateProductivity()*0.01;

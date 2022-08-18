@@ -33,6 +33,7 @@ class Department {
       for(let j=0;j<this.employees.length;j++){
         sum = sum + this.employees[j].expense;
       }
+      this.expenses = sum;
       return sum;
     }
     calculateProductivity(){
@@ -61,6 +62,7 @@ class Department {
       }
       //will input the equation for productivity here
       returnedNum = this.calculateProductivityFormula(returnedNum);
+      this.productivity = returnedNum;
       return returnedNum;
     }
     //will check the weekly productivity objects
@@ -76,6 +78,11 @@ class Department {
     }
     //the canvas we will use to display this department
     display(canvas){
+      //need to set the productivity expense and num of employees
+      // canvas.children[1]
+      canvas.parentNode.children[1].children[0].children[1].innerText = this.productivity.toFixed(2);
+      canvas.parentNode.children[1].children[1].children[1].innerText = this.expenses.toFixed(2);
+      canvas.parentNode.children[1].children[2].children[1].innerText = this.employees.length;
       //need to remove all previous children
       while(canvas.firstChild){
         canvas.removeChild(canvas.firstChild);
@@ -86,7 +93,7 @@ class Department {
         tempDiv = this.employees[i].htmlEmployee;
         
         tempDiv.children[1].innerHTML = "<b>Productivity: </b>" + this.employees[i].productivity.toFixed(0) + '%';
-        tempDiv.children[2].innerHTML = "<b>Expense: </b>" + this.employees[i].expense;
+        tempDiv.children[2].innerHTML = "<b>Expense: </b>" + this.employees[i].expense.toFixed(2);
         tempDiv.children[3].innerHTML = "<b>Training: </b>" + (this.employees[i].trainingTracker.weeksToComplete-this.employees[i].trainingTracker.weeksCompleted) + " weeks left.";
         tempDiv.children[4].innerText = this.employees[i].name + " (" +this.employees[i].idNum + ")";
         //will need to add on onclick function

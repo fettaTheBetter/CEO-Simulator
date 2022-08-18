@@ -5,13 +5,13 @@ class HumanResources extends Department {
     constructor(){
         super();
         this.name = "Human Resources";
-        this.breakpoints = [1,1,2,4,7,9,10,15];
+        this.breakpoints = [0,0,25,45,55,65,70,85];
     }
     //will return how far into the breakpoints we are, for showing what is necessary in employees
     checkBreakpoints(){
         let breakpointsNum =-1;
         let i=0
-        while(this.employees.length>=this.breakpoints[i]){
+        while(this.productivity>=this.breakpoints[i]){
             breakpointsNum = i;
             i++
         }
@@ -64,7 +64,7 @@ class HumanResources extends Department {
                 break;
             case 1:
                 infoName.innerHTML = "<b>Expense: &nbsp;</b>";
-                infoStat.innerText = "$" +employee.expense;
+                infoStat.innerText = "$" +employee.expense.toFixed(2);;
                 break;
             case 2:
                 let tempWeeksComplete =0;

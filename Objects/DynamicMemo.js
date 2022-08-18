@@ -128,17 +128,17 @@ class DynamicMemo extends Memo {
     }
     empInjuryFunc1(){
         realGame.dynamicMemoEmp.increaseProductivity(2);
-        realGame.dynamicMemoEmp.injuryTracker.changeInjury(10);
+        realGame.dynamicMemoEmp.injuryTracker.changeInjury(realGame.dynamicMemoEmp.fightValue);
         this.finishDynamic();
         this.undisplayMemo();
     }
     empInjuryFunc2(){
-        realGame.dynamicMemoEmp.injuryTracker.changeInjury(10);
+        realGame.dynamicMemoEmp.injuryTracker.changeInjury(realGame.dynamicMemoEmp.fightValue);
         this.finishDynamic();
         this.undisplayMemo();
     }
     empInjuryFunc3(){
-        realGame.dynamicMemoEmp.injuryTracker.changeInjury(10);
+        realGame.dynamicMemoEmp.injuryTracker.changeInjury(realGame.dynamicMemoEmp.fightValue);
         realGame.dynamicMemoEmp.increaseProductivity(-2);
         this.finishDynamic();
         this.undisplayMemo();

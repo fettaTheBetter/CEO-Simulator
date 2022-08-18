@@ -1,13 +1,23 @@
-let empNames = ["Steve","Doug","Ansel","Catherine","Asif","Georgie","Savannah","Quinn","Oswald","Jacquelyn","David","Caleb","Joseph","Pranav","Brunhilda","Jerry","Olivia","Constance","Michael","Biff","Stephanie","Narayana","Sunita","Vantou"];
+let empNames = ["Steve","Doug","Ansel","Catherine","Asif","Georgie","Savannah","Quinn","Oswald","Jacquelyn","David","Caleb","Joseph","Pranav","Brunhilda","Jerry","Olivia","Constance","Michael","Biff","Stephanie","Narayana","Sunita","Vantou","Lewis","Cecelia","Benjamin","Franklin","Alexander","Louisa"];
 
-let empSpecialization = ["Sales","Human Resources","IT","Marketing"];
+let empSpecialization = ["Sales","Human Resources","Onboarding","Marketing","Recruiting","Aid Station","Custodian"];
 
 
 //this will show the current enemy difficulty rating
 //{prod, num of emp}
 let enemyDifficulty = [25,30,40,45,55,65,75,85,90,95,100];
 
+let ignoreBoardTitle = 'Ignore The Board';
 
+
+let helpInfoArrays = ["<div>Human Resources effects how well you know your employees.</div>",
+                      "<div>Marketing increases the maximum amount of money you can earn.</div>",
+                      "<div>Sales will effect the amount of money you earn.</div>",
+                      "<div>Middle Management will effects your fighting prowess. It will also helps manage big departments.</div>",
+                      "<div>Onboarding will reduce the training time for new hires.</div>",
+                      "<div>The Aid station will help your employees recover from injuries.</div>",
+                      "<div>Custodian help you scout out the competition.</div>",
+                      "<div>Recruiting increases the quality of your new hires.</div>"]
 
 
 

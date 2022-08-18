@@ -20,7 +20,7 @@ class Game {
       this.company.canvas = document.getElementById('companyCanvas');
       this.company.attachDepartments();
       //will fil up departments with data, may need to change ordwering
-      this.company.fillDepartments();
+      //this.company.fillDepartments();
       this.company.hireEmployees();
       this.updateDisplays();
       //This will add the intro memo
@@ -31,7 +31,7 @@ class Game {
       this.company.setMoney();
       this.company.checkWeeklyMM();
       this.company.setProductivity();
-      this.company.setNumEmployee();
+      //this.company.setNumEmployee();
       this.company.setFightValue();
   }
   //What happens to the company when we got to the next week
@@ -39,17 +39,21 @@ class Game {
     //just add income for now
     let tempMoney;
     this.currentWeek = this.currentWeek +1;
+    this.company.moneyTracker.canvas.children[5].children[1].innerText = this.currentWeek;
     tempMoney = this.company.moneyTracker.currentMoney + this.company.moneyTracker.grossIncome;
     this.company.moneyTracker.currentMoney  = tempMoney;
     this.company.setMaxIncome();
     this.company.setMoney();
     //will interact with employees on the weekly basis
-    this.company.getDepartment('IT').completeTrainingReduction(this.company);
+    this.company.getDepartment('Onboarding').completeTrainingReduction(this.company);
+
+    //this is the scouting report
     if(this.currentWeek % 5 == 4){
+      this.memoArray.push(new ScoutingReport(new EnemyCompany(this.currentWeek,enemyDifficulty[this.enemyRoundsFought]),this.company.getDepartment('Custodian').calculateProductivity()));
       this.memoArray.push(timedMemos[3]);
     }
     ///these are where the checkers for the timed week events go
-    if(this.currentWeek == 4){
+    if(this.currentWeek == 2){
       this.memoArray.push(timedMemos[1]);
     }
 
@@ -86,6 +90,12 @@ class Game {
       let rounds = battleObject.rounds;
       this.enemyRoundsFought++;
       this.memoArray.push(new BattleReport(isWon,rounds));
+    }
+
+
+    //check for endgame
+    if(this.currentWeek==52){
+      this.memoArray.push(timedMemos[4]);
     }
     //switch to next Memo
     this.changeMemo(this.memoArray.pop());

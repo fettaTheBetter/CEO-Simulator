@@ -1,7 +1,7 @@
 
 class Company {
     constructor() {
-      this.departmentsArray = [new HumanResources(),new IT(), new Marketing(), new Sales()];
+      this.departmentsArray = [new HumanResources(), new Marketing(), new Sales(), new AidStation(), new Custodian(), new Onboarding(), new Recruiting()];
       this.moneyTracker = new MoneyTracker();
       this.numForMM = 5;
       this.bigDisplay;
@@ -30,9 +30,12 @@ class Company {
     attachDepartments(){
         this.departmentsArray[0].canvas = document.getElementById('Human ResourcesCanvas');
         
-        this.departmentsArray[1].canvas = document.getElementById('ITCanvas');
         this.departmentsArray[2].canvas = document.getElementById('MarketingCanvas');
-        this.departmentsArray[3].canvas = document.getElementById('SalesCanvas');
+        this.departmentsArray[1].canvas = document.getElementById('SalesCanvas');
+        this.departmentsArray[3].canvas = document.getElementById('Aid StationCanvas');
+        this.departmentsArray[4].canvas = document.getElementById('CustodianCanvas');
+        this.departmentsArray[5].canvas = document.getElementById('OnboardingCanvas');
+        this.departmentsArray[6].canvas = document.getElementById('RecruitingCanvas');
         //also attaching moneyTracker
 
         //this is the display on left
@@ -123,7 +126,7 @@ class Company {
                 this.departmentsArray[i].employees[j].checkForRaise();
 
                 //changeInjuryTrackers
-                this.departmentsArray[i].employees[j].healByIT(this.getDepartment('IT').calculateProductivity());
+                this.departmentsArray[i].employees[j].healByIT(this.getDepartment('Aid Station').calculateProductivity());
             }
         }
     }
@@ -136,7 +139,7 @@ class Company {
         let sumOfExpenses = 0;
         for(let i = 0;i<this.departmentsArray.length;i++){
             this.departmentsArray[i].expenses = this.departmentsArray[i].calculateExpenses();
-            this.departmentsArray[i].canvas.children[2].children[1].innerText = "$" + this.departmentsArray[i].expenses.toFixed(2);
+            //this.departmentsArray[i].canvas.children[2].children[1].innerText = "$" + this.departmentsArray[i].expenses.toFixed(2);
             sumOfExpenses = sumOfExpenses + this.departmentsArray[i].expenses;
         }
         this.moneyTracker.expenses = sumOfExpenses;
@@ -156,12 +159,12 @@ class Company {
         this.fightCanvas.children[1].children[1].innerText = numOfEmp;
     }    
     setHiringTracker(){
-        let prod = this.getDepartment("Human Resources").calculateProductivity();
+        let prod = this.getDepartment("Recruiting").calculateProductivity();
         this.hiringTracker.changeHiringTracker(prod);
     }    
     setMaxIncome(){
         //marketing is hardcoded into this
-        let dep = this.getDepartment('Sales');
+        let dep = this.getDepartment('Marketing');
         dep.setMaxIncome();
         this.moneyTracker.maxIncome = dep.getMaxIncome();
     }    

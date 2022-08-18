@@ -11,9 +11,9 @@ class BattleReport extends Memo {
     editConfig(){
         let config ={};
         config.toLine = "<p><b>To:</b> Our Glorious CEO</p>";
-        config.fromLine = "<p><b>From:</b> Nursing Station</p>";
+        config.fromLine = "<p><b>From:</b> Aid Station</p>";
         config.body = this.createBody();
-        config.signature = "<p>Sincerely,</p> <p>&emsp;The Hospital Team</p>";
+        config.signature = "<p>Sincerely,</p> <p>&emsp;The Aid Station Team</p>";
         config.subject = "<p><b>Subject:</b> Battle Report</p>"
         config.option1Text =         "What Glorious Battle!";
         config.option2Text =          "Cry";
@@ -64,7 +64,7 @@ class BattleReport extends Memo {
                     string = string + "<div><b> Our Team </b></div>";
                     string = string + "<div class = 'players'>";
                     string = string + "<div>" +this.rounds[i].fights[j].myTeam[t].name + "</div>";
-                    string = string + "<div class = 'healthText'>Health Left: "+ (this.rounds[i].fights[j].myTeam[t].fightValue -this.rounds[i].fights[j].myTeam[t].injuryTracker.checkBattleInjuries()) + "</div>";
+                    string = string + "<div class = 'healthText'>Health Left: "+ (this.rounds[i].fights[j].myTeam[t].fightValue -this.rounds[i].fights[j].myTeam[t].injuryTracker.checkBattleInjuries(i)) + "</div>";
                     string = string + "</div>";
                 }
                 string = string + "</div>";
@@ -74,7 +74,7 @@ class BattleReport extends Memo {
                     string = string + "<div><b> Enemy Team </b></div>";
                     string = string + "<div class = 'players'>";
                     string = string + "<div>" +this.rounds[i].fights[j].enemyTeam[t].name + "</div>";
-                    string = string + "<div class = 'healthText'>Health Left: "+ (this.rounds[i].fights[j].enemyTeam[t].fightValue -this.rounds[i].fights[j].enemyTeam[t].injuryTracker.checkBattleInjuries()) + "</div>";
+                    string = string + "<div class = 'healthText'>Health Left: "+ (this.rounds[i].fights[j].enemyTeam[t].fightValue -this.rounds[i].fights[j].enemyTeam[t].injuryTracker.checkBattleInjuries(i)) + "</div>";
                     string = string + "</div>";
                 }
                 string = string + "</div>";
@@ -90,7 +90,6 @@ class BattleReport extends Memo {
 
 
         string = string + "</p>";
-        console.log(string);
         return string;
     }
 }

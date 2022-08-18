@@ -6,14 +6,14 @@ class Fight {
         this.enemyTeam = enemyTeam;
         this.roundNum = roundNum;
         this.biggerTeam = "";
+    }
+    fight(){
         if(this.myTeam.length > this.enemyTeam.length){
             this.biggerTeam = "myTeam";
         }
         else{
             this.biggerTeam = "enemyTeam";
         }
-    }
-    fight(){
         //will tell us which team to use as the bigger one
         if(this.biggerTeam == "myTeam"){
             this.simulateFight(true);

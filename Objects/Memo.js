@@ -28,13 +28,13 @@ class Memo {
         this.assignButtonFunctions();
         //this.config.subject = "<p><b>Subject:</b> {SubjectLine}</p>";
         this.memoHTML = "<div>" +
-                        "<div>" + "<div class= 'memoBody'>" + this.config.toLine + this.config.fromLine + this.config.subject + "</div>" + memoLine +
+                        "<div>" + "<div class= 'memoBody'><div>" + this.config.toLine+"</div><div>" + this.config.fromLine +"</div><div>" + this.config.subject + "</div></div>" + memoLine +
                         "<div class = 'memoBody'>" + this.config.body + this.config.signature + 
                         "</div></div>"+
                         "<div class ='optionButtonsHolder'>" +
-                        "<button class = 'memoOptionButtons'>"+ this.config.option1Text + "</button>" +
-                        "<button class = 'memoOptionButtons'>"+ this.config.option2Text +"</button>" +
-                        "<button class = 'memoOptionButtons'>"+ this.config.option3Text +"</button>"+
+                        "<button class = 'memoOptionButtons' title='" + this.config.option1Tag + "'>"+ this.config.option1Text + "</button>" +
+                        "<button class = 'memoOptionButtons' title='" + this.config.option2Tag + "'>"+ this.config.option2Text +"</button>" +
+                        "<button class = 'memoOptionButtons' title='" + this.config.option3Tag + "'>"+ this.config.option3Text +"</button>"+
                         "</div></div>";
     }
     option1(){

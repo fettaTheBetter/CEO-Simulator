@@ -1,36 +1,38 @@
 
-let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
-                                    fromLine: "<p><b>From:</b> The Board Of Directors</p>",
+let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
+                                    fromLine: "<b>From:</b> The Board Of Directors",
                                     body: "<p>&emsp;Hi if you're receiving this that means we don't care enough about you to send an actual memo. Just choose some amount of money you want.</p>",
                                     signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
-                                    option1Text: "$100",
-                                    option2Text: "$150",
-                                    option3Text: "$200",
-                                    subject: "<p><b>Subject:</b> Generic Memo</p>"},
+                                    option1Text: "Don't Ask For Money",
+                                    option2Text: "Ask For A Little",
+                                    option3Text: "Beg For A Lot",
+                                    subject: "<b>Subject:</b> Generic Memo",
+                                    option1Tag: "Gain $0",
+                                    option2Tag: "Gain $200",
+                                    option3Tag: "Gain $700"},
                                 function (){
-                                    console.log("we have hit option1");
-                                    realGame.company.gainMoney(100);
                                     this.undisplayMemo();
                                 },
                                 function (){
-                                    console.log("we have hit option2");
-                                    realGame.company.gainMoney(150);
-                                    this.undisplayMemo();
-                                },
-                                function (){
-                                    console.log("we have hit option3");
                                     realGame.company.gainMoney(200);
+                                    this.undisplayMemo();
+                                },
+                                function (){
+                                    realGame.company.gainMoney(700);
                                     this.undisplayMemo();
                                 }),
                     new Memo(
-                            {toLine: "<p><b>To:</b> Our Beloved CEO</p>",
-                             fromLine: "<p><b>From:</b> The Board Of Directors</p>",
+                            {toLine: "<b>To:</b> Our Beloved CEO",
+                             fromLine: "<b>From:</b> Human Resources",
                              body: "<p>&emsp;Hi, we've noticed some complaints about the decor of the office. Some people think it could use some plants and art and other random crap normal people like.</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Lavishly Decorate Office",
                              option2Text: "Decorate Office",
                              option3Text: "Ignore It",
-                             subject: "<p><b>Subject:</b> Decor Issue</p>"},
+                             subject: "<b>Subject:</b> Decor Issue",
+                             option1Tag: "Lose $300, Increase Productivity For Everyone",
+                             option2Tag: "Lose $100, Increase Productivity",
+                             option3Tag: "Ignore HR"},
                                 function (){
                                     realGame.company.gainMoney(-300);
                                     realGame.company.increaseAllProductivity(2)
@@ -42,21 +44,24 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                                     this.undisplayMemo();
                                 },
                                 function (){
-                                    realGame.company.ignoreTracker = realGame.company.ignoreTracker +1;
+                                    realGame.company.increaseDepartmentProductivity('Human Resources',-2);
                                     this.undisplayMemo();
                                 }),
                     new Memo(
-                            {toLine: "<p><b>To:</b> Our Beloved CEO</p>",
-                             fromLine: "<p><b>From:</b> The Board Of Directors</p>",
+                            {toLine: "<b>To:</b> Our Beloved CEO",
+                             fromLine: "<b>From:</b> The Board Of Directors",
                              body: "<p>&emsp;We've been hearing online about a new technology called blockchain. We think it should be implemented into our business. We're not sure how it works but you'll figure it out! Thanks buddy!</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Implement Blockchain",
                              option2Text: "Say Yes But Don't Do Anything",
                              option3Text: "Ignore It",
-                             subject: "<p><b>Subject:</b> Technological Improvements</p>"},
+                             subject: "<b>Subject:</b> Technological Improvements",
+                             option1Tag: "Lose $200, Chance To Gain Productivity",
+                             option2Tag: "Pretend To Listen To The Board",
+                             option3Tag: ignoreBoardTitle},
                                 function (){
                                     realGame.company.gainMoney(-200);
-                                    let tempBool = realGame.company.checkProductivity('IT',25);
+                                    let tempBool = realGame.company.checkProductivity('Onboarding',25);
                                     if(tempBool){
                                         realGame.company.increaseAllProductivity(2);
                                     }
@@ -73,15 +78,18 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                                     this.undisplayMemo();
                                 }),
                     new Memo(
-                            {toLine: "<p><b>To:</b> Our Beloved CEO</p>",
-                             fromLine: "<p><b>From:</b> The Board Of Directors</p>",
+                            {toLine: "<b>To:</b> Our Beloved CEO",
+                             fromLine: "<b>From:</b> The Board Of Directors",
                              body: "<p>&emsp;Happy Holidays! We've hope you've given some though to giving your employees a little holiday bonus." +
                              "We're not here to tell you what to do... but we think it's a good idea</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Give Large Bonus",
                              option2Text: "Give Little Bonus",
                              option3Text: "Ignore It",
-                             subject: "<p><b>Subject:</b> Holiday Bonus</p>"},
+                             subject: "<b>Subject:</b> Holiday Bonus",
+                             option1Tag: "Give $25 To Each Employee",
+                             option2Tag: "Give $10 To Each Employee",
+                             option3Tag: ignoreBoardTitle},
                                 function (){
                                     realGame.company.gainMoney(-(realGame.company.getNumOfEmployees()*25));
                                     this.undisplayMemo();
@@ -95,14 +103,17 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                                     this.undisplayMemo();
                                 }),
                     new Memo(
-                            {toLine: "<p><b>To:</b> Our Dear CEO</p>",
-                             fromLine: "<p><b>From:</b> Human Resources</p>",
+                            {toLine: "<b>To:</b> Our Dear CEO",
+                             fromLine: "<b>From:</b> Human Resources",
                              body: "<p>&emsp;Hey Boss, some employees thought it might be a good time to throw an office party. We're wondering what kind of budget we can get for the party.</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Human Resources</p>",
                              option1Text: "As Much As You Want",
                              option2Text: "We Can Afford One Cake",
                              option3Text: "Ignore It",
-                             subject: "<p><b>Subject:</b> Office Party</p>"},
+                             subject: "<b>Subject:</b> Office Party",
+                             option1Tag: "Lose $150",
+                             option2Tag: "Lose $50",
+                             option3Tag: "Ignore HR"},
                             function (){
                                 realGame.company.gainMoney(-150);
                                 this.undisplayMemo();
@@ -116,16 +127,20 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                                 this.undisplayMemo();
                             }),
                     new Memo(
-                            {toLine: "<p><b>To:</b> CEO</p>",
-                             fromLine: "<p><b>From:</b> IT</p>",
+                            {toLine: "<b>To:</b> CEO",
+                             fromLine: "<b>From:</b> Onboarding",
                              body: "<p>&emsp;Some employees have complained about their computers being a little slower than usual and we think an upgrade is needed. " +
                              "You think we could get some funds for a full server and PC upgrade for everyone?</p>",
-                             signature: "<p>Regards,</p> <p>&emsp;IT</p>",
+                             signature: "<p>Regards,</p> <p>&emsp;Onboarding</p>",
                              option1Text: "Hell Yeah!",
                              option2Text: "Only Minor Upgrades",
                              option3Text: "Ignore It",
-                             subject: "<p><b>Subject:</b> Technological Upgrade</p>"},
+                             subject: "<b>Subject:</b> Technological Upgrade",
+                             option1Tag: "Lose $500, Increase Productivity",
+                             option2Tag: "Lose $100",
+                             option3Tag: "Ignore Onboarding"},
                                 function (){
+                                    realGame.company.increaseAllProductivity(2);
                                     realGame.company.gainMoney(-500);
                                     this.undisplayMemo();
                                 },
@@ -134,19 +149,22 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                                     this.undisplayMemo();
                                 },
                                 function (){
-                                    realGame.company.increaseDepartmentProductivity('IT',-2);
+                                    realGame.company.increaseDepartmentProductivity('Onboarding',-2);
                                     this.undisplayMemo();
                                 }),
-                    new Memo({toLine: "<p><b>To:</b> Our Beloved CEO</p>",
-                             fromLine: "<p><b>From:</b> The Board Of Directors</p>",
+                    new Memo({toLine: "<b>To:</b> Our Beloved CEO",
+                             fromLine: "<b>From:</b> The Board Of Directors",
                              body: "<p>&emsp;One of your employees has been in the news recently for drug related crimes. What are you planning on doing about that?",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Make It Go Away",
                              option2Text: "Fire Them",
                              option3Text: "Ignore It",
-                             subject: "<p><b>Subject:</b> Employee Moral Clauses</p>"},
+                             subject: "<b>Subject:</b> Employee Moral Clauses",
+                             option1Tag: "Lose $500, Chance To Make It Disappear",
+                             option2Tag: "Fire The Employee",
+                             option3Tag: ignoreBoardTitle},
                             function (){
-                                let tempBool = realGame.company.checkProductivity('Marketing',25);
+                                let tempBool = realGame.company.checkProductivity('Marketing',50);
                                 if(tempBool){
 
                                 }
@@ -181,15 +199,18 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                                 }
                             }),
                     new Memo(
-                            {toLine: "<p><b>To:</b> A CEO</p>",
-                             fromLine: "<p><b>From:</b> Quizzes R US</p>",
+                            {toLine: "<b>To:</b> A CEO",
+                             fromLine: "<b>From:</b> Quizzes R US",
                              body: "<p>&emsp;Hi! We're part of Online Quizzes R US and we're wondering if you had some time to answer a few questions!"+ 
                              "You'll find out how the type of desk you work on effects your spirit animal!</p>",
                              signature: "<p>Best Wishes,</p> <p>&emsp;The Quizzes R US Team</p>",
                              option1Text: "Sure",
                              option2Text: "How Did This Get Past My Assistant?",
                              option3Text: "Ignore It",
-                             subject: "<p><b>Subject:</b> TAKE FREE QUIZZES</p>"},
+                             subject: "<b>Subject:</b> TAKE FREE QUIZZES",
+                             option1Tag: "",
+                             option2Tag: "",
+                             option3Tag: ""},
                             function (){
                                 this.undisplayMemo();
                             },
@@ -200,15 +221,18 @@ let generalMemos = [new Memo( {   toLine: "<p><b>To:</b> Our Beloved CEO</p>",
                                 this.undisplayMemo();
                             }),
                     new Memo(
-                            {toLine: "<p><b>To:</b> Our CEO Friend </p>",
-                             fromLine: "<p><b>From:</b> Mr. and Mrs. Moocher</p>",
+                            {toLine: "<b>To:</b> Our CEO Friend ",
+                             fromLine: "<b>From:</b> Mr. and Mrs. Moocher",
                              body: "<p>&emsp;Hey, do you remember us? We sat next to you at a Twins game? Anyway our duaghter is getting married and we were wondering if you would attend the wedding."+ 
                              "Also we wedding gifts aren't necessary but they are appreciated!</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Mr. and Mrs. Moocher</p>",
                              option1Text: "Send Them A Gift",
                              option2Text: "Wish Them Well",
                              option3Text: "Ignore It",
-                             subject: "<p><b>Subject:</b> wedding Notification</p>"},
+                             subject: "<b>Subject:</b> wedding Notification",
+                             option1Tag: "",
+                             option2Tag: "",
+                             option3Tag: ""},
                             function (){
                                 this.undisplayMemo();
                             },
