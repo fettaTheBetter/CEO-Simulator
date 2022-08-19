@@ -30,8 +30,8 @@ class Company {
     attachDepartments(){
         this.departmentsArray[0].canvas = document.getElementById('Human ResourcesCanvas');
         
-        this.departmentsArray[2].canvas = document.getElementById('MarketingCanvas');
-        this.departmentsArray[1].canvas = document.getElementById('SalesCanvas');
+        this.departmentsArray[1].canvas = document.getElementById('MarketingCanvas');
+        this.departmentsArray[2].canvas = document.getElementById('SalesCanvas');
         this.departmentsArray[3].canvas = document.getElementById('Aid StationCanvas');
         this.departmentsArray[4].canvas = document.getElementById('CustodianCanvas');
         this.departmentsArray[5].canvas = document.getElementById('OnboardingCanvas');
@@ -191,7 +191,7 @@ class Company {
         //what will be my algorithm?
         //currently just set it with a base value or employee productivity
         for(let i = 0;i<this.departmentsArray.length;i++){
-            this.departmentsArray[i].productivity = this.departmentsArray[i].calculateProductivity() ;
+            this.departmentsArray[i].productivity = this.departmentsArray[i].calculateProductivity();
             this.departmentsArray[i].canvas.children[1].children[1].innerText = this.departmentsArray[i].productivity.toFixed(2) + "%";
         }
     }

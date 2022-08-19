@@ -208,9 +208,9 @@ let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
                              option2Text: "How Did This Get Past My Assistant?",
                              option3Text: "Ignore It",
                              subject: "<b>Subject:</b> TAKE FREE QUIZZES",
-                             option1Tag: "",
-                             option2Tag: "",
-                             option3Tag: ""},
+                             option1Tag: "Your Animal Is A Panda",
+                             option2Tag: "Think About Firing Assistant",
+                             option3Tag: "Ignore"},
                             function (){
                                 this.undisplayMemo();
                             },
@@ -223,20 +223,22 @@ let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
                     new Memo(
                             {toLine: "<b>To:</b> Our CEO Friend ",
                              fromLine: "<b>From:</b> Mr. and Mrs. Moocher",
-                             body: "<p>&emsp;Hey, do you remember us? We sat next to you at a Twins game? Anyway our duaghter is getting married and we were wondering if you would attend the wedding."+ 
+                             body: "<p>&emsp;Hey, do you remember us? We sat next to you at a Twins game? Anyway our daughter is getting married and we were wondering if you would attend the wedding."+ 
                              "Also we wedding gifts aren't necessary but they are appreciated!</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Mr. and Mrs. Moocher</p>",
                              option1Text: "Send Them A Gift",
                              option2Text: "Wish Them Well",
                              option3Text: "Ignore It",
                              subject: "<b>Subject:</b> wedding Notification",
-                             option1Tag: "",
-                             option2Tag: "",
-                             option3Tag: ""},
+                             option1Tag: "Lose $50",
+                             option2Tag: "Send A Letter, Lose $5",
+                             option3Tag: "You Hate Love"},
                             function (){
+                                realGame.company.gainMoney(-50);
                                 this.undisplayMemo();
                             },
                             function (){
+                                realGame.company.gainMoney(-5);
                                 this.undisplayMemo();
                             },
                             function (){

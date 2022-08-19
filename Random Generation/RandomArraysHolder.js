@@ -10,7 +10,7 @@ let enemyDifficulty = [25,30,40,45,55,65,75,85,90,95,100];
 let ignoreBoardTitle = 'Ignore The Board';
 
 
-let helpInfoArrays = ["<div>Human Resources effects how well you know your employees.</div>",
+let helpInfoArrays = ["<div>Human Resources effects how well you know employees.</div>",
                       "<div>Marketing increases the maximum amount of money you can earn.</div>",
                       "<div>Sales will effect the amount of money you earn.</div>",
                       "<div>Middle Management will effects your fighting prowess. It will also helps manage big departments.</div>",

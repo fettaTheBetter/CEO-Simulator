@@ -18,6 +18,10 @@ class BattleReport extends Memo {
         config.option1Text =         "What Glorious Battle!";
         config.option2Text =          "Cry";
         config.option3Text =          "Too Many Lost";
+        config.option1Tag ="";
+        config.option2Tag ="";
+        config.option3Tag ="";
+        config.buttonClass = " combatButtons";
         return config;
 
     }
@@ -35,7 +39,7 @@ class BattleReport extends Memo {
         let string = "<p>";
         string = string +"Here is the battle report sir: <br>";
         string = string +"Battle Result: " + battleReport + "<br><br>";
-        string = string +"Injury Report: ";
+        string = string +"Injury Report: <br>";
             for(let i=0;i<empArray.length;i++){
                 if(empArray[i].injuryTracker.previousStatus != empArray[i].injuryTracker.injuryStatus){
                     hasBeenReported = true;
@@ -50,8 +54,8 @@ class BattleReport extends Memo {
 
         //this is where the round report will be
         //will be hard to make but I will try my best LOL
-
-        string = string + "<div class = 'allRounds'>";
+        string = string + "<button onclick = 'hideBattleDetails()'>Toggle Details</button>"
+        string = string + "<div id='allRounds' class = 'allRounds' style = 'display: none'>";
         for(let i=0;i<this.rounds.length;i++){
             string = string + "<div class= 'round'> Round " +(i+1);
             string = string+ "<div class = 'allFights'>";

@@ -1,7 +1,12 @@
 .allRounds{
     justify-content: center;
-    display: flex;
+    /*is supposed to be flex */
+    /*display: none;*/
     flex-direction: column;
+}
+.combatButtons{
+    position: sticky;
+    bottom: 0px;
 }
 .round{
     font-weight: bold;

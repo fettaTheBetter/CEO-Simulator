@@ -50,7 +50,7 @@ class Game {
     //this is the scouting report
     if(this.currentWeek % 5 == 4){
       this.memoArray.push(new ScoutingReport(new EnemyCompany(this.currentWeek,enemyDifficulty[this.enemyRoundsFought]),this.company.getDepartment('Custodian').calculateProductivity()));
-      this.memoArray.push(timedMemos[3]);
+      //this.memoArray.push(timedMemos[3]);
     }
     ///these are where the checkers for the timed week events go
     if(this.currentWeek == 2){
@@ -84,7 +84,7 @@ class Game {
     }
     
     if(this.currentWeek % 5 == 0){
-      let battle = new Battle(realGame.company,new EnemyCompany(this.currentWeek,enemyDifficulty[this.enemyRoundsFought]));
+      let battle = new Battle(realGame.company,new EnemyCompany((this.currentWeek+2),enemyDifficulty[this.enemyRoundsFought]));
       let battleObject = battle.startBattle();
       let isWon = battleObject.isWon;
       let rounds = battleObject.rounds;
@@ -169,7 +169,7 @@ class Game {
     //then I need to show them, I can use the showEmployee in Human resources function
     let dep = this.company.getDepartment('Human Resources');
     //this will check tell us how many employees are in marketing, will be used to ascertain number of hires to put out
-    let checker = this.company.getDepartment('Marketing').employees.length;
+    let checker = this.company.getDepartment('Recruiting').calculateProductivity();
     checker = this.calculateMarketing(checker);
     for(let x=0;x<checker;x++){
       newEmps[x] = createEmployee(this.company.hiringTracker);
@@ -180,9 +180,9 @@ class Game {
     }
   }
   calculateMarketing(checker){
-    let num =2;
+    let recruitingBreakpoints = [0,35,55,70,85,100,120,200]
     let tracker =0;
-    while(checker >= Math.pow(num,tracker)){
+    while(checker >= recruitingBreakpoints[tracker]){
       tracker++;
     }
     return tracker;

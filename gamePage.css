@@ -56,7 +56,6 @@ button:hover{
 }
 .departmentTitle {
     font-size: 300%;
-    color: yellow;
     text-shadow: 0 0 3px black;
     justify-content: space-between;
 }
@@ -122,12 +121,19 @@ button:hover{
 .helpContent{
     display: none;
     position: absolute;
-    font-size: 50%;
+    font-size: 100%;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    width: 11%;
 }
 .helpIcon{
     font-size: 50%;
 }
 .helpIcon:hover .helpContent{display: block;}
+.helpIconTemp{
+    color: black;
+}
 .helpMenuTitles{
     font-size: 200%;
 }
@@ -142,6 +148,8 @@ button:hover{
     display: flex;
     flex-direction: row;
     font-weight: bold;
+    font-size: 150%;
+    justify-content: center;
 }
 .imageHolder{
     text-align: center;

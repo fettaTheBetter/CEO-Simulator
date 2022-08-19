@@ -43,8 +43,8 @@ class HumanResources extends Department {
             finishedHTML.children[1].innerText = "????";
             canvas.appendChild(finishedHTML);
 
-             let errorHTML = document.createElement('p');
-             errorHTML.innerHTML = "HR requires more resources";
+             let errorHTML = document.createElement('div');
+             errorHTML.innerHTML = "HR requires better productivity";
              errorHTML.style = "color: DarkRed;"
              canvas.appendChild(errorHTML);
         }

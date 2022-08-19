@@ -21,6 +21,9 @@ class ScoutingReport extends Memo {
         config.option1Text =         "Looks Spooky";
         config.option2Text =          "Cry";
         config.option3Text =          "We Can Handle It";
+        config.option1Tag = "It's A Toss Up";
+        config.option2Tag ="Cry Tears Of Pain";
+        config.option3Tag ="Rally The Troops";
         return config;
 
     }
@@ -35,7 +38,12 @@ class ScoutingReport extends Memo {
         }
         this.calculateScoutingRange();
         string = string + "<br> Estimated Fight Value: ";
-        string = string +  (tempNum-this.numEffectedByProd) + " - " + (tempNum + this.numEffectedByProd);
+        if(tempNum-this.numEffectedByProd <0){
+            string = string +  0 + " - " + (tempNum + this.numEffectedByProd);
+        }
+        else{
+            string = string +  (tempNum-this.numEffectedByProd) + " - " + (tempNum + this.numEffectedByProd);
+        }
         string = string + "</div>";
         return string;
     }

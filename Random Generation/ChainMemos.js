@@ -30,14 +30,14 @@ let chainMemos = [new Memo(
                 new Memo(
                             {toLine: "<b>To:</b> Our CEO ",
                              fromLine: "<b>From:</b> The Board Of Directors",
-                             body: "<p>&emsp&emsp;The news cycle has still latched on to your employee. Can you please do SOMETHING about it?</p>",
+                             body: "<p>&emsp;The news cycle has still latched on to your employee. Can you please do SOMETHING about it?</p>",
                              signature: "<p>Regards,</p> <p>&emsp; Your Friendly Board Of Directors</p>",
-                             option1Text: "Try Again To Make IT Go Away",
+                             option1Text: "Try Again To Make It Go Away",
                              option2Text: "Don't Fire Them",
                              option3Text: "Fire Them",
                              subject: "<b>Subject:</b> Employee Issues",
                              option1Tag: "Lose $1000, Chance To Make It Go Away",
-                             option2Tag: "Don't Fire Them",
+                             option2Tag: "Don&#39;t Fire Them",
                              option3Tag: "FIRE THEM"},
                             function (){
                                 let tempBool = realGame.company.checkProductivity('Marketing',50);
@@ -59,6 +59,13 @@ let chainMemos = [new Memo(
                                 realGame.company.fireEmployee(realGame.company.scandalEmp);
                                 realGame.company.scandalEmp = undefined;
                                 this.undisplayMemo();
+                            },
+                            function (){
+                                let empDisplay = createMemoEmp();
+                                document.getElementById('fullMemo').appendChild(empDisplay);
+                                realGame.company.getDepartment('Human Resources').showEmployee(document.getElementById('fullMemo').children[1].children[0].children[1].children[0],realGame.company.scandalEmp);
+                                document.getElementById('fullMemo').children[1].children[0].style.display = "flex";
+                                return true;
                             }),
                 new Memo(
                             {toLine: "<b>To:</b> Our CEO ",
@@ -78,6 +85,7 @@ let chainMemos = [new Memo(
                                 this.undisplayMemo();
                             },
                             function (){
+                                
                                 realGame.company.fireEmployee(realGame.company.scandalEmp);
                                 realGame.company.scandalEmp = undefined;
                                 this.undisplayMemo();
@@ -86,6 +94,13 @@ let chainMemos = [new Memo(
                                 realGame.company.ignoreTracker = realGame.company.ignoreTracker +1;
                                 realGame.company.scandalEmp = undefined;
                                 this.undisplayMemo();
+                            },
+                            function (){realGame.company.scandalEmp = pickRandomEmployee();
+                                let empDisplay = createMemoEmp();
+                                document.getElementById('fullMemo').appendChild(empDisplay);
+                                realGame.company.getDepartment('Human Resources').showEmployee(document.getElementById('fullMemo').children[1].children[0].children[1].children[0],realGame.company.scandalEmp);
+                                document.getElementById('fullMemo').children[1].children[0].style.display = "flex";
+                                return true;
                             }),
                     new Memo(
                             {toLine: "<b>To:</b> Our CEO  ",
@@ -114,7 +129,7 @@ let chainMemos = [new Memo(
                             {toLine: "<b>To:</b> Our CEO  ",
                                 fromLine: "<b>From:</b> The Board Of Directors",
                                 body: "<p>&emsp; Individual productivity is affected by a large amount of variables. Productivity is decreased if they are currently going through training, injured in any way, or some other things. Those are the main ones." +
-                                 " In contrast to employee productivity, department producitivy is an average of all the employees.</p>",
+                                 "Employee productivity can also be increased by putting them in their specialized department or by pretending to care about them. In contrast to employee productivity, department producitivy is an average of all the employees.</p>",
                                 signature: "<p>Regards,</p> <p>&emsp;The Board Of Directors</p>",
                                 option1Text: "How Do I Make Money?",
                                 option2Text: "What are departments?",
@@ -138,7 +153,7 @@ let chainMemos = [new Memo(
                     new Memo(
                             {toLine: "<b>To:</b> Our CEO  ",
                                 fromLine: "<b>From:</b> The Board Of Directors",
-                                body: "<p>&emsp;Each department has different ways they will impact the company. There are two different things that effect the company in a departmnet." +
+                                body: "<p>&emsp;Each department will effect the company in different ways. How much it effects the company depends on how productive that department is." +
                                 " The number of employees in said department and the overall productivity of the department. </p>",
                                 signature: "<p>Regards,</p> <p>&emsp;The Board Of Directors</p>",
                                 option1Text: "What is productivity?",
@@ -163,7 +178,7 @@ let chainMemos = [new Memo(
                     new Memo(
                             {toLine: "<b>To:</b> Our CEO  ",
                                 fromLine: "<b>From:</b> The Board Of Directors",
-                                body: "<p>&emsp;You make money through the sales and marketing departments. If your money goes negative you won't be fired right away don't worry, we'll give you a little leeway." +
+                                body: "<p>&emsp;You make money through the sales and marketing departments. If your money goes negative you will be fired; so just don't let that happen :)" +
                                 " </p>",
                                 signature: "<p>Regards,</p> <p>&emsp;The Board Of Directors</p>",
                                 option1Text: "What is productivity?",

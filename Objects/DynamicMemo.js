@@ -45,7 +45,7 @@ class DynamicMemo extends Memo {
         let config ={};
         //now I need to create the body from this employee
         config.toLine = "<p><b>To:</b> The CEO</p>";
-        config.fromLine = "<p><b>From:</b> " + emp.name +  " from " +emp.currentDepartment + "</p>";
+        config.fromLine = "<p><b>From:</b> " + emp.name +  " from " +emp.currentDepartment + " Department</p>";
         config.subject = "<p><b>Subject:</b> Staff Suggestions</p>";
         //currently will pick a random department to throw it in
         config.body = "&emsp;Hey I have a few new ideas for what we could do to improve the " +realGame.dynamicMemoEmpDep +" department. Let me know if you'd like me to Implement them.";
@@ -53,7 +53,10 @@ class DynamicMemo extends Memo {
         config.option1Text = "Let's Try Them";
         config.option2Text = "Sorry, Not Enough Experience";
         config.option3Text = "Ignore It";
-        //need to change optionArrays
+        //need to change optionTags
+        config.option1Tag = "Let's See What Happens";
+        config.option2Tag = "Eventually They Will Get Experience";
+        config.option3Tag = "They Know Nothing";
         return config;
     }
     createEmpRaise(emp){
@@ -68,20 +71,26 @@ class DynamicMemo extends Memo {
         config.option1Text = "You deserve a bigger one";
         config.option2Text = "I can give you your raise";
         config.option3Text = "Sorry, Not Enough Experience";
+        config.option1Tag = "Give A " + 2*(emp.raiseTracker.raiseValue*100) + "raise";
+        config.option2Tag = "Give The " + (emp.raiseTracker.raiseValue*100)+" raise";
+        config.option3Tag = "They don't deserve it yet";
         return config;
     }
     createEmpInjury(emp){
         let config ={};
         //now I need to create the body from this employee
         config.toLine = "<p><b>To:</b> The CEO</p>";
-        config.fromLine = "<p><b>From:</b> IT/Nursing </p>";
+        config.fromLine = "<p><b>From:</b> Aid Station </p>";
         config.subject = "<p><b>Subject:</b> Staff Injury</p>";
         //currently will pick a random department to throw it in
         config.body = "&emsp; Sorry, but " +emp.name +  " from " +emp.currentDepartment +" has been injured. You're welcome to check to see how bad the injury is.";
-        config.signature = "<p>Regards,</p> <p>&emsp; IT/Nursing </p>";
-        config.option1Text = "Ok, I'll check";
+        config.signature = "<p>Regards,</p> <p>&emsp; Aid Station </p>";
+        config.option1Text = "Ok, I'll check on them";
         config.option2Text = "Sorry, I'm squeemish";
         config.option3Text = "Who Cares??";
+        config.option1Tag = "Show Humanity";
+        config.option2Tag = "Understandable";
+        config.option3Tag = "Not Your Problem";
         return config;
     }
     empSuggestionFunc1(){

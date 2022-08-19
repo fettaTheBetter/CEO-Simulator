@@ -36,7 +36,7 @@ let specialMemos = [new Memo(
                              subject: "<b>Subject:</b> Middle Management",
                              option1Tag: "Hire Them",
                              option2Tag: "I Hate It Here",
-                             option3Tag: "Don't Engage In Nepotism"},
+                             option3Tag: "Don&#39;t Engage In Nepotism"},
                             function (){
                                 realGame.company.ignoreTracker = realGame.company.ignoreTracker -1;
                                 let employee = createEmployee(new HiringTracker());

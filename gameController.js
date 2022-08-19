@@ -153,13 +153,13 @@ function createEmpHiringObject(num){
                                     "<span id='closeModalButton" + num +"' class='close'>&times;</span>" + 
                                     "<div class = 'modal-content'>Which Department would you like to hire them at?</div>" +
                                     "<div class ='buttonHolder'>" +
-                                    "<button onclick='hireEmployee(" + (num -1)+ ",\"Human Resources\")'>Human Resources</button>" +
-                                    "<button onclick='hireEmployee(" + (num-1) +",\"Sales\")'>Sales</button>" +
-                                    "<button onclick='hireEmployee("+ (num-1) +",\"Onboarding\")'>Onboarding</button>" +
-                                    "<button onclick='hireEmployee(" + (num-1) +",\"Marketing\")'>Marketing</button>"+
                                     "<button onclick='hireEmployee(" + (num-1) +",\"Aid Station\")'>Aid Station</button>"+
-                                    "<button onclick='hireEmployee(" + (num-1) +",\"Recruiting\")'>Recruiting</button>"+
                                     "<button onclick='hireEmployee(" + (num-1) +",\"Custodian\")'>Custodian</button>"+
+                                    "<button onclick='hireEmployee(" + (num -1)+ ",\"Human Resources\")'>Human Resources</button>" +
+                                    "<button onclick='hireEmployee(" + (num-1) +",\"Marketing\")'>Marketing</button>" +
+                                    "<button onclick='hireEmployee("+ (num-1) +",\"Onboarding\")'>Onboarding</button>" +
+                                    "<button onclick='hireEmployee(" + (num-1) +",\"Recruiting\")'>Recruiting</button>"+
+                                    "<button onclick='hireEmployee(" + (num-1) +",\"Sales\")'>Sales</button>" +
                                     MMString +
                                     "</div>" +
                                 "</div>" +
@@ -241,6 +241,15 @@ function sortByExpense(){
     dep.sortByExpense();
     clickDepartment(currentDepShown);
 
+}
+function hideBattleDetails(){
+    let tempDoc = document.getElementById('allRounds');
+    if(tempDoc.style.display == "none"){
+        tempDoc.style.display = "flex";
+    }
+    else{
+        tempDoc.style.display = "none";
+    }
 }
 
 

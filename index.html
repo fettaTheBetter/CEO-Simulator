@@ -28,15 +28,15 @@
                     <div id=moneyTracker class = "smallHud">
                         <div class = "smallHudTitle moneyTitle">Money</div>
                             <div class = "hudTextHolder">
-                                <div>Income:&nbsp;</div>
+                                <div>Weekly Income:&nbsp;</div>
                                 <div class = hudData></div>
                             </div>
                             <div class = "hudTextHolder">
-                                <div>Expenses:&nbsp;</div>
+                                <div>Weekly Expenses:&nbsp;</div>
                                 <div class = hudData></div>
                             </div>
                             <div class = "hudTextHolder">
-                                <div>Gross Income:&nbsp;</div>
+                                <div>Weekly Gross Income:&nbsp;</div>
                                 <div class = hudData></div>
                             </div>
                             <div class = "hudTextHolder">
@@ -48,15 +48,8 @@
                                 <div class = hudData>1</div>
                             </div>
                     </div>
-                    <div id="SalesCanvas" class = "smallHud pointer" onclick = "clickDepartment('Sales')">
-                        <div class = "smallHudTitle">Sales</div>
-                        <div class = "hudTextHolder">
-                            <div>Productivity:&nbsp;</div>
-                            <div class = hudData></div>
-                        </div>
-                    </div>
-                    <div id="OnboardingCanvas" class = "smallHud pointer" onclick = "clickDepartment('Onboarding')">
-                        <div class = "smallHudTitle">Onboarding</div>
+                    <div id="Aid StationCanvas" class = "smallHud pointer" onclick = "clickDepartment('Aid Station')">
+                        <div class = "smallHudTitle">Aid Station</div>
                         <div class = "hudTextHolder">
                             <div>Productivity:&nbsp;</div>
                             <div class = hudData></div>
@@ -69,6 +62,13 @@
                             <div class = hudData></div>
                         </div>
                     </div>
+                    <div id="Human ResourcesCanvas" class = "smallHud pointer"  onclick = "clickDepartment('Human Resources')">
+                        <div class = "smallHudTitle">Human Resources</div>
+                        <div class = "hudTextHolder">
+                            <div>Productivity:&nbsp;</div>
+                            <div class = hudData></div>
+                        </div>
+                    </div>
                     <div id="MarketingCanvas" class = "smallHud pointer" onclick = "clickDepartment('Marketing')">
                         <div class = "smallHudTitle">Marketing</div>
                         <div class = "hudTextHolder">
@@ -76,19 +76,15 @@
                             <div class = hudData></div>
                         </div>
                     </div>
-                    <div id="fightCanvas" class = "smallHud" style = "display: none;">
-                        <div class = "smallHudTitle">Fight Value</div>
-                                <div class = "hudTextHolder">
-                                    <div># of People:&nbsp;</div>
-                                    <div class = hudData></div>
-                                </div>
-                                <div class = "hudTextHolder">
-                                    <div>Total Fight Value:&nbsp;</div>
-                                    <div class = hudData></div>
-                            </div>
-                    </div>
                     <div id="Middle ManagementCanvas" class = "smallHud pointer" style = "display: none;" onclick = "clickDepartment('Middle Management')">
                         <div class = "smallHudTitle">Middle Management</div>
+                        <div class = "hudTextHolder">
+                            <div>Productivity:&nbsp;</div>
+                            <div class = hudData></div>
+                        </div>
+                    </div>
+                    <div id="OnboardingCanvas" class = "smallHud pointer" onclick = "clickDepartment('Onboarding')">
+                        <div class = "smallHudTitle">Onboarding</div>
                         <div class = "hudTextHolder">
                             <div>Productivity:&nbsp;</div>
                             <div class = hudData></div>
@@ -101,19 +97,23 @@
                             <div class = hudData></div>
                         </div>
                     </div>
-                    <div id="Aid StationCanvas" class = "smallHud pointer" onclick = "clickDepartment('Aid Station')">
-                        <div class = "smallHudTitle">Aid Station</div>
+                    <div id="SalesCanvas" class = "smallHud pointer" onclick = "clickDepartment('Sales')">
+                        <div class = "smallHudTitle">Sales</div>
                         <div class = "hudTextHolder">
                             <div>Productivity:&nbsp;</div>
                             <div class = hudData></div>
                         </div>
-                    </div>
-                    <div id="Human ResourcesCanvas" class = "smallHud pointer"  onclick = "clickDepartment('Human Resources')">
-                        <div class = "smallHudTitle">Human Resources</div>
-                        <div class = "hudTextHolder">
-                            <div>Productivity:&nbsp;</div>
-                            <div class = hudData></div>
-                        </div>
+                    </div>                  
+                    <div id="fightCanvas" class = "smallHud" style = "display: none;">
+                        <div class = "smallHudTitle">Fight Value</div>
+                                <div class = "hudTextHolder">
+                                    <div># of People:&nbsp;</div>
+                                    <div class = hudData></div>
+                                </div>
+                                <div class = "hudTextHolder">
+                                    <div>Total Fight Value:&nbsp;</div>
+                                    <div class = hudData></div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -162,14 +162,13 @@
                             <span id="closeModalButton" class="close">&times;</span>
                             <div class = "modal-content">Where would you like to transfer this employee to?</div>
                             <div class ="buttonHolder">
-                                <button onclick="switchEmployee('Human Resources')">Human Resources</button>
-                                <button onclick="switchEmployee('Sales')">Sales</button>
-                                <button onclick="switchEmployee('Onboarding')">Onboarding</button>
-                                <button onclick="switchEmployee('Marketing')">Marketing</button>
                                 <button onclick="switchEmployee('Aid Station')">Aid Station</button>
-                                <button onclick="switchEmployee('Recruiting')">Recruiting</button>
                                 <button onclick="switchEmployee('Custodian')">Custodian</button>
-
+                                <button onclick="switchEmployee('Human Resources')">Human Resources</button>
+                                <button onclick="switchEmployee('Marketing')">Marketing</button>
+                                <button onclick="switchEmployee('Onboarding')">Onboarding</button>
+                                <button onclick="switchEmployee('Recruiting')">Recruiting</button>
+                                <button onclick="switchEmployee('Sales')">Sales</button>
                             </div>
                         </div>
                         <div id="employeeInfo" class = "employeeInfo">
