@@ -40,20 +40,26 @@ class InjuryTracker {
         return sum;
     }
     changeInjury(int){
+        let injuryIndex = 0;
         this.injuryValue = this.injuryValue + int;
         this.previousStatus = this.injuryStatus;
         if(this.injuryValue < this.injuryBreakpointsValues[0]){
             this.injuryStatus = this.injuryBreakpoints[0];
+            injuryIndex = 0;
         }
         else if(this.injuryValue <this.injuryBreakpointsValues[1] && this.injuryValue >this.injuryBreakpointsValues[0]){
             this.injuryStatus = this.injuryBreakpoints[1];
+            injuryIndex = 1;
         }
         else if(this.injuryValue < this.injuryBreakpointsValues[2] && this.injuryValue >this.injuryBreakpointsValues[1]){
             this.injuryStatus = this.injuryBreakpoints[2];
+            injuryIndex = 2;
         }
         else if(this.injuryValue <this.injuryBreakpointsValues[3] && this.injuryValue > this.injuryBreakpointsValues[2]){
             this.injuryStatus = this.injuryBreakpoints[3];
+            injuryIndex = 3;
         }
+        return injuryIndex;
     }
     checkForDeath(){
         if(this.injuryValue >= 100){
@@ -76,7 +82,7 @@ class InjuryTracker {
             productivityBreakpoint = 2;
         }
         else if(this.injuryValue <this.injuryBreakpointsValues[3] && this.injuryValue > this.injuryBreakpointsValues[2]){
-            productivityBreakpoints = 3;
+            productivityBreakpoint = 3;
         }
         return productivity * (1-(productivityBreakpoint*0.10));
     }

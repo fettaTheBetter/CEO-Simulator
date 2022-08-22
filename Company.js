@@ -320,7 +320,7 @@ class Company {
     //then will modify the employees in your company to have the injury trackers fromt he employees being sent in as argument
     assignInjuryTrackers(EmpArray){
         for(let i=0;i<EmpArray.length;i++){
-            EmpArray[i].injuryTracker.changeInjury(EmpArray[i].injuryTracker.checkBattleInjuries());
+            EmpArray[i].changeInjury(EmpArray[i].injuryTracker.checkBattleInjuries());
             this.changeEmployeeInjuryTracker(EmpArray[i].idNum,EmpArray[i].injuryTracker);
         }
     }

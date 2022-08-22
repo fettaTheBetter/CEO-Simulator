@@ -27,7 +27,12 @@ class Employee {
       this.weeksEmployed =0;
       //
       this.hasSwitchDept = false;
-      //
+
+      //will contain the images for injury
+      this.imgArray = ['https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace1stInjuryTrans.png',
+                      'https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace2ndInjuryTrans.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace3rdInjury.png'];
+      //this.htmlEmployee.children[0].src =
+      //this is how to change the empPicture
       //
       //will create a base employee, will be used for testing
       this.personality = new Personality();
@@ -101,6 +106,10 @@ class Employee {
       this.productivity = this.injuryTracker.changeProductivity(this.productivity);
       this.productivity = this.calculateProductivity(this.productivity);
     }
+    changeInjury(int){
+      let imgIndex = this.injuryTracker.changeInjury(int);
+      this.htmlEmployee.children[0].src = this.imgArray[imgIndex];
+    }
     //will compare productivity against a num and then return true(meaning productivity is greater than num) or false
     checkProductivity(num){
       this.setProductivity(this.specialization);
@@ -125,7 +134,8 @@ class Employee {
     healByIT(productivity){
       //currently takes a percentage of the damage already and uses that
       let recoverDamage = -Math.floor(((this.injuryTracker.injuryValue / this.fightValue)*productivity));
-      this.injuryTracker.changeInjury(recoverDamage);
+      let imgChangeNum = this.injuryTracker.changeInjury(recoverDamage);
+      this.htmlEmployee.children[0].src = this.imgArray[imgChangeNum];
     }
 
 

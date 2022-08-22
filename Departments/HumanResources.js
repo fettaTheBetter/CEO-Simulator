@@ -22,6 +22,8 @@ class HumanResources extends Department {
         removeEmployeeInfo();
         canvas.parentElement.parentElement.children[0].children[1].innerText = employee.name;// + " (" + employee.idNum + ")";
         let tempbreakpoints = this.checkBreakpoints();
+        //need to set the picture
+        canvas.parentElement.parentElement.children[0].children[0].src = employee.imgArray[employee.injuryTracker.changeInjury(0)];
         //will add one to tempBreakpoints, I forgot why I have to do this but I do it to show the weeks to Complete
         if(tempbreakpoints != -1){
             tempbreakpoints++;
