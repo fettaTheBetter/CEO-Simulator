@@ -9,6 +9,8 @@ let enemyDifficulty = [25,30,40,45,55,65,75,85,90,95,100];
 
 let ignoreBoardTitle = 'Ignore The Board';
 
+let empPersonalities = ["Bland","Energetic","Ambitious","Meticulous","Efficient","Relaxed","Social"];
+
 
 let helpInfoArrays = ["<div>Human Resources effects how well you know employees.</div>",
                       "<div>Marketing increases the maximum amount of money you can earn.</div>",

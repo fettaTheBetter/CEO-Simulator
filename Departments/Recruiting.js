@@ -3,4 +3,5 @@ class Recruiting extends Department {
         super();
         this.name = "Recruiting";
     }
+    
 }

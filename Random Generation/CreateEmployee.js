@@ -16,6 +16,8 @@ function createEmployee(hiringTracker){
         let minFightValue = hiringTracker.minFightValue;
 
         let employee = new Employee();
+        let empPersonality = empPersonalities[Math.floor(Math.random()*(empPersonalities.length))];
+        employee.personality = createEmpPersonality(empPersonality);
         //should get us a random name/productivity/expense in employees
         employee.name = empNames[Math.floor(Math.random()*(empNames.length))];
         employee.baseProductivity = Math.floor(Math.random()*(maxProductivity-minProductivity+1) + minProductivity);
@@ -26,4 +28,32 @@ function createEmployee(hiringTracker){
         employee.injuryTracker.changeFightValue(employee.fightValue);
         //will generate more later
         return employee;
+}
+
+function createEmpPersonality(personality){
+        switch (personality) {
+                case "Bland":
+                        return new Bland();
+                        break;
+                case "Energetic":
+                        return new Energetic();
+                        break;
+                case "Ambitious":
+                        return new Ambitious();
+                        break;
+                case "Meticulous":
+                        return new Meticulous();
+                        break;
+                case "Energetic":
+                        return new Energetic();
+                        break;
+                case "Social":
+                        return new Social();
+                        break;
+                case "Relaxed":
+                        return new Relaxed();
+                        break;
+                default:
+                        return new Personality();                       
+        }
 }

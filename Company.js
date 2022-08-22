@@ -17,6 +17,7 @@ class Company {
       //will be the employee currently implicated in a scandal
       this.scandalEmp;
       this.fightCanvas =document.getElementById('fightCanvas');
+      this.isRemote = false;
     }
     addFight(){
         this.fightCanvas.style.display = "flex";
@@ -198,7 +199,13 @@ class Company {
 
     //////////////////////
     /// CHECK FUNCTIONS //
-    //////////////////////    
+    //////////////////////
+    checkDecor(){
+        let allEmp = this.getAllEmployees();
+        for(let i=0;i<allEmp.length;i++){
+            allEmp[i].increaseProductivity(allEmp[i].personality.officeDecorations());
+        }
+    }    
     //will check if we need to do the action for the first middle manager
     checkForFirstMM(){
         //if we have a middle management already
@@ -220,6 +227,19 @@ class Company {
     checkForNumNeeded(department){
         department.MMneeded = Math.floor(department.employees.length / this.numForMM);
     }  
+    //will grab all the employees and simulate a party, will change
+    checkParty(){
+        let allEmp = this.getAllEmployees();
+        for(let i=0;i<allEmp.length;i++){
+            allEmp[i].increaseProductivity(allEmp[i].personality.teamBuilding());
+        }
+    }
+    checkRemote(isRemote){
+        let allEmp = this.getAllEmployees();
+        for(let i=0;i<allEmp.length;i++){
+            allEmp[i].increaseProductivity(allEmp[i].personality.remoteWork(isRemote));
+        }
+    }
     //will check if the department needs another middle Management
     checkWeeklyMM(){
         //will only do anything if middle management is in

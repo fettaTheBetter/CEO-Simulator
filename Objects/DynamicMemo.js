@@ -97,12 +97,12 @@ class DynamicMemo extends Memo {
         let num = 45;
         if(realGame.dynamicMemoEmp.checkProductivity(num)){
             realGame.company.getDepartment(realGame.dynamicMemoEmpDep).increaseProductivity(4);
-            realGame.dynamicMemoEmp.increaseProductivity(2)
         }
         else{
             realGame.company.getDepartment(realGame.dynamicMemoEmpDep).increaseProductivity(-4);
-            realGame.dynamicMemoEmp.increaseProductivity(2)
         }
+        //will check if the employee likes to be praised
+        realGame.dynamicMemoEmp.increaseProductivity(realGame.dynamicMemoEmp.productivity.beingPraised());
         this.finishDynamic();
         this.undisplayMemo();
 

@@ -30,7 +30,7 @@ class Employee {
       //
       //
       //will create a base employee, will be used for testing
-      this.personality = 'Bland';
+      this.personality = new Personality();
 
       //need to make an html object for the employee
       //will have a picture, a name and onclick functions

@@ -35,7 +35,8 @@ let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
                              option3Tag: "Ignore HR"},
                                 function (){
                                     realGame.company.gainMoney(-300);
-                                    realGame.company.increaseAllProductivity(2)
+                                    realGame.company.increaseAllProductivity(2);
+                                    realGame.company.checkDecor();
                                     this.undisplayMemo();
                                 },
                                 function (){
@@ -61,7 +62,7 @@ let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
                              option3Tag: ignoreBoardTitle},
                                 function (){
                                     realGame.company.gainMoney(-200);
-                                    let tempBool = realGame.company.checkProductivity('Onboarding',25);
+                                    let tempBool = realGame.company.checkProductivity('Onboarding',50);
                                     if(tempBool){
                                         realGame.company.increaseAllProductivity(2);
                                     }
@@ -115,10 +116,12 @@ let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
                              option2Tag: "Lose $50",
                              option3Tag: "Ignore HR"},
                             function (){
+                                realGame.company.checkParty();
                                 realGame.company.gainMoney(-150);
                                 this.undisplayMemo();
                             },
                             function (){
+                                realGame.company.checkParty();
                                 realGame.company.gainMoney(-50);
                                 this.undisplayMemo();
                             },
@@ -243,5 +246,104 @@ let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
                             },
                             function (){
                                 this.undisplayMemo();
+                            }),
+                    new Memo(
+                            {toLine: "<b>To:</b> Our Beloved CEO  ",
+                                fromLine: "<b>From:</b> The Board Of Directors",
+                                body: "<p>&emsp;Hello, we've noticed other companies have started to encourage remote work. We're not sure how we feel about it."+ 
+                                "What do you think the company should do</p>",
+                                signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors</p>",
+                                option1Text: "Let's Encourage Remote",
+                                option2Text: "We Can Try Hybrid",
+                                option3Text: "Can't They Just Come To The Office?",
+                                subject: "<b>Subject:</b> Remote Work",
+                                option1Tag: "Workers Become Remote",
+                                option2Tag: "Go Hybrid",
+                                option3Tag: "Workers Must Come Into Office"},
+                            function (){
+                                //change it to remote
+                                realGame.company.isRemote = true;
+                                realGame.company.checkRemote(realGame.company.isRemote);
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                //increase some productivity?
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                //change to inOffice
+                                realGame.company.isRemote = false;
+                                realGame.company.checkRemote(realGame.company.isRemote);
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                //only run it if we are only remote
+                                if(realGame.company.isRemote){
+                                    console.log("Unable to use this memo");
+                                    realGame.memoArray.push(createMemo());
+                                    return false;
+                                }
+                            }),
+                    new Memo(
+                            {toLine: "<b>To:</b> Our CEO Friend ",
+                                fromLine: "<b>From:</b> The Board Of Directors",
+                                body: "<p>&emsp;Hey, some companies have started to head back to the office? Do you think we should start bringing back our employees to the office?</p>" ,
+                                signature: "<p>Regards,</p> <p>&emsp;The Board Of Directors</p>",
+                                option1Text: "Let's Stay Remote",
+                                option2Text: "We Can Try Hybrid",
+                                option3Text: "Yeah! Bring Them In",
+                                subject: "<b>Subject:</b> Remote Work",
+                                option1Tag: "Workers Stay Remote",
+                                option2Tag: "Go Hybrid",
+                                option3Tag: "Bring Them In"},
+                            function (){
+                                realGame.company.isRemote = true;
+                                realGame.company.checkRemote(realGame.company.isRemote);
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                realGame.company.isRemote = false;
+                                realGame.company.checkRemote(realGame.company.isRemote);
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                //only run it if we are only remote
+                                if(!(realGame.company.isRemote)){
+                                    console.log("Unable to use this memo");
+                                    realGame.memoArray.push(createMemo());
+                                    return false;
+                                }
+                            }),
+                    new Memo(
+                            {toLine: "<b>To:</b> Our CEO ",
+                                fromLine: "<b>From:</b> Human Resources",
+                                body: "<p>&emsp;We would like to remind all employees about breakroom ettiquette. Stealing a co-workers lunch, microwaving fish, and also playing music loudly while telling everyone it's karaoke time and forcing your co-workers to uncomfortably sing along are all STRICTLY PROHIBITED. Thank you.</p>" ,
+                                signature: "<p>Regards,</p> <p>&emsp;HR Department</p>",
+                                option1Text: "Why Would Someone Do That???",
+                                option2Text: "Don't Send Me These Memos",
+                                option3Text: "Ignore It",
+                                subject: "<b>Subject:</b> Remote Work",
+                                option1Tag: "Thank God I Don't Use The Break Room",
+                                option2Tag: "Gross",
+                                option3Tag: "I Don&#39;t Care"},
+                            function (){
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                //only run it if we are only remote
+                                if(!(realGame.company.isRemote)){
+                                    console.log("Unable to use this memo");
+                                    realGame.memoArray.push(createMemo());
+                                    return false;
+                                }
                             }),
                             ];
