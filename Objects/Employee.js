@@ -14,10 +14,11 @@ class Employee {
 
       this.trainingTracker = createTrainingTracker();
 
-      this.raiseTracker = new RaiseTracker(0.05,8);
+      this.raiseTracker = new RaiseTracker(0.05,6);
 
       this.injuryTracker = new InjuryTracker();
-
+      //these fight values will allow us to let middle management affect the fight value
+      this.baseFightValue =0;
       this.fightValue =0;
 
       //name will eventually be randomly generated
@@ -30,7 +31,7 @@ class Employee {
 
       //will contain the images for injury
       this.imgArray = ['https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace1stInjuryTrans.png',
-                      'https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace2ndInjuryTrans.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace3rdInjury.png'];
+                      'https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace2ndInjuryTrans.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace3rdInjury.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace3rdInjury.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace3rdInjury.png'];
       //this.htmlEmployee.children[0].src =
       //this is how to change the empPicture
       //
@@ -45,6 +46,12 @@ class Employee {
       //will be an array of productivity objects, these will get a reduce length at the end of each week
       this.productivityIncreases = [];
       
+    }
+    changeBaseFightValue(int){
+      let previousBaseFightValue = this.baseFightValue;
+      this.baseFightValue = this.baseFightValue +int;
+      this.fightValue = this.baseFightValue + (this.baseFightValue*((this.fightValue-this.previousBaseFightValue).previousBaseFightValue));
+      this.injuryTracker.changeFightValue(this.fightValue);
     }
     checkForRaise(){
         if(0== this.raiseTracker.weeksForRaise){
@@ -136,6 +143,11 @@ class Employee {
       let recoverDamage = -Math.floor(((this.injuryTracker.injuryValue / this.fightValue)*productivity));
       let imgChangeNum = this.injuryTracker.changeInjury(recoverDamage);
       this.htmlEmployee.children[0].src = this.imgArray[imgChangeNum];
+    }
+    //will take in the MM productivity as an argument
+    changeFightValue(productivity){
+      this.fightValue = this.baseFightValue + (this.baseFightValue*productivity*0.01);
+      this.injuryTracker.changeFightValue(this.fightValue);
     }
 
 

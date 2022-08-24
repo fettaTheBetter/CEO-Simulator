@@ -24,7 +24,8 @@ function createEmployee(hiringTracker){
         employee.expense = Math.floor(Math.random()*(maxExpense-minExpense+1) + minExpense);
         employee.specialization = empSpecialization[Math.floor(Math.random()*(empSpecialization.length))];
         employee.productivity = employee.baseProductivity;
-        employee.fightValue = Math.floor(Math.random()*(maxFightValue-minFightValue+1) + minFightValue);
+        employee.changeBaseFightValue( Math.floor(Math.random()*(maxFightValue-minFightValue+1) + minFightValue));
+        employee.fightValue = employee.baseFightValue;
         employee.injuryTracker.changeFightValue(employee.fightValue);
         //will generate more later
         return employee;

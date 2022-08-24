@@ -232,7 +232,7 @@ let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
                              option1Text: "Send Them A Gift",
                              option2Text: "Wish Them Well",
                              option3Text: "Ignore It",
-                             subject: "<b>Subject:</b> wedding Notification",
+                             subject: "<b>Subject:</b> Wedding Notification",
                              option1Tag: "Lose $50",
                              option2Tag: "Send A Letter, Lose $5",
                              option3Tag: "You Hate Love"},
@@ -326,7 +326,7 @@ let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
                                 option2Text: "Don't Send Me These Memos",
                                 option3Text: "Ignore It",
                                 subject: "<b>Subject:</b> Remote Work",
-                                option1Tag: "Thank God I Don't Use The Break Room",
+                                option1Tag: "Thank God I Don&#39;t Use The Break Room",
                                 option2Tag: "Gross",
                                 option3Tag: "I Don&#39;t Care"},
                             function (){
@@ -337,13 +337,5 @@ let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
                             },
                             function (){
                                 this.undisplayMemo();
-                            },
-                            function (){
-                                //only run it if we are only remote
-                                if(!(realGame.company.isRemote)){
-                                    console.log("Unable to use this memo");
-                                    realGame.memoArray.push(createMemo());
-                                    return false;
-                                }
                             }),
                             ];

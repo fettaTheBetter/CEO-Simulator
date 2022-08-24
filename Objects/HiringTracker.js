@@ -10,7 +10,7 @@ class HiringTracker {
       this.minFightValue = 1;
       this.fightValueDifference = 3;
       this.maxFightValue =5;
-
+      this.baseMaxFightValue = 15
 
       //these are base values we will change eventually
       this.productivityDifference = 20;
@@ -34,7 +34,7 @@ class HiringTracker {
       else{
         this.minExpense =  this.highestExpense - Math.floor(productivity*0.01*10)-this.expenseDifference;
       }
-      this.maxFightValue = Math.floor(productivity*0.01*15);
+      this.maxFightValue = Math.floor(productivity*0.01*this.baseMaxFightValue);
       if(this.maxFightValue <= this.fightValueDifference  ){
         this.minFightValue = 1;
       }

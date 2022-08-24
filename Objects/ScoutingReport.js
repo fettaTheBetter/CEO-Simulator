@@ -21,7 +21,7 @@ class ScoutingReport extends Memo {
         config.option1Text =         "Looks Spooky";
         config.option2Text =          "Cry";
         config.option3Text =          "We Can Handle It";
-        config.option1Tag = "It's A Toss Up";
+        config.option1Tag = "It&#39;s A Toss Up";
         config.option2Tag ="Cry Tears Of Pain";
         config.option3Tag ="Rally The Troops";
         return config;
@@ -30,7 +30,7 @@ class ScoutingReport extends Memo {
     createBody(){
         //need to show the relative fight strength?
         let string = "";
-        string = string + "<div>Here is the estimated strength of our opponent next week. Sorry that we don't know it exactly but if you give us more resources we can get a better estimate. ";
+        string = string + "<div>Here is the estimated strength of our opponent next week. Sorry that we don't know it exactly but if we are able to get our productivity higher, you can get a better estimate. ";
         let tempNum =0;
         let tempEmp = this.enemyCompany.getAllEmployees();
         for(let i=0;i<tempEmp.length;i++){

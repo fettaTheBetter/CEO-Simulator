@@ -73,28 +73,36 @@ class Battle {
             this.roundArray[this.roundArray.length-1].fights.push(this.fightArray[n]);
          }
          //need to clean out employees who are out of the battle
-         urTempEmp = this.checkInjuries(urTempEmp);
-         enemyTempEmp = this.checkInjuries(enemyTempEmp);
-         if(urTempEmp.length <=0){
-            this.finishBattle(false);
+         urTempEmp = this.checkInjuries(urTempEmp,true);
+         enemyTempEmp = this.checkInjuries(enemyTempEmp,false);
+         if(urTempEmp.length <=0 && enemyTempEmp.length <=0){
+            return this.finishBattle("Draw");
          }
          else if(enemyTempEmp.length <=0){
             while(urTempEmp.length >0){
                 this.removedEmployees.push(urTempEmp.pop());
             }
-            return this.finishBattle(true);
+            return this.finishBattle("Win");
+         }
+         else if(urTempEmp.length <=0){
+            return this.finishBattle("Loss");
          }
          //if there are still people who can fight, continue battle
          else{
             this.simulateBattle(urTempEmp,enemyTempEmp);
          }
     }
-    checkInjuries(employees){
+    checkInjuries(employees,isOurTeam){
         for(let i=0;i<employees.length;i++){
             if(employees[i].injuryTracker.checkBattleInjuries() >= employees[i].fightValue){
                 employees = this.removeFromArray(employees[i],employees);
                 //need this because we are changing the length of employees
+                if(isOurTeam){
                 this.removedEmployees.push(employees.pop());
+                }
+                else{
+                    employees.pop()
+                }
                 i--;
             }
         }

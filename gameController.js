@@ -242,6 +242,12 @@ function sortByExpense(){
     clickDepartment(currentDepShown);
 
 }
+function sortByIdNumber(){
+    let dep = realGame.company.getDepartment(currentDepShown);
+    dep.sortByIdNum();
+    clickDepartment(currentDepShown);
+
+}
 function hideBattleDetails(){
     let tempDoc = document.getElementById('allRounds');
     if(tempDoc.style.display == "none"){

@@ -3,7 +3,7 @@ class Company {
     constructor() {
       this.departmentsArray = [new HumanResources(), new Marketing(), new Sales(), new AidStation(), new Custodian(), new Onboarding(), new Recruiting()];
       this.moneyTracker = new MoneyTracker();
-      this.numForMM = 5;
+      this.numForMM = 3;
       this.bigDisplay;
       //will keep track of how far we are in employee ids
       this.currentEmpNum =1;
@@ -18,6 +18,9 @@ class Company {
       this.scandalEmp;
       this.fightCanvas =document.getElementById('fightCanvas');
       this.isRemote = false;
+      this.deadEmployees = [];
+      //is used to get a temporary department name
+      this.tempDepartment = "";
     }
     addFight(){
         this.fightCanvas.style.display = "flex";
@@ -110,6 +113,16 @@ class Company {
             this.increaseDepartmentProductivity(this.departmentsArray[i].name,value);
         }
     }
+    //will increase the fight value of all current and future employees
+    //will use the hiring tracker for future employees
+    increaseFightValue(int){
+        let allEmps = this.getAllEmployees();
+        for(i=0;i<allEmps.length;i++){
+            allEmps[i].changeBaseFightValue(int);
+        }
+        //now need to change it for all future employees
+        this.hiringTracker.baseMaxFightValue = this.hiringTracker.baseMaxFightValue + int;
+    }
     nextWeekEmp(){
         for(let i=0;i<this.departmentsArray.length;i++){
             for(let j=0;j<this.departmentsArray[i].employees.length;j++){
@@ -128,6 +141,10 @@ class Company {
 
                 //changeInjuryTrackers
                 this.departmentsArray[i].employees[j].healByIT(this.getDepartment('Aid Station').calculateProductivity());
+
+                //change Fight Values
+                if(this.getDepartment('Middle Management') != undefined)
+                this.departmentsArray[i].employees[j].changeFightValue(this.getDepartment('Middle Management').calculateProductivity());
             }
         }
     }
@@ -216,7 +233,8 @@ class Company {
         else {
             //check if we need it 
             for(let i=0;i<this.departmentsArray.length;i++){
-                if(this.departmentsArray[i].employees.length >= 5){
+                if(this.departmentsArray[i].employees.length >= this.numForMM){
+                    this.tempDepartment = this.departmentsArray[i].name;
                     return true;
                 }
             }  
@@ -319,9 +337,14 @@ class Company {
     //will take in an array of employees
     //then will modify the employees in your company to have the injury trackers fromt he employees being sent in as argument
     assignInjuryTrackers(EmpArray){
+        this.deadEmployees = [];
         for(let i=0;i<EmpArray.length;i++){
             EmpArray[i].changeInjury(EmpArray[i].injuryTracker.checkBattleInjuries());
             this.changeEmployeeInjuryTracker(EmpArray[i].idNum,EmpArray[i].injuryTracker);
+            //if the employee has died
+            if(EmpArray[i].injuryTracker.checkForDeath()){
+                this.deadEmployees.push(EmpArray[i]);
+            };
         }
     }
     

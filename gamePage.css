@@ -148,7 +148,7 @@ button:hover{
     display: flex;
     flex-direction: row;
     font-weight: bold;
-    font-size: 150%;
+    font-size: 100%;
     justify-content: center;
 }
 .imageHolder{
@@ -214,7 +214,7 @@ button:hover{
     align-content: center;
     display: flex;
     justify-content: center;
-    border: 5px solid black;
+    border: 10px solid black;
     flex-direction: column;
     text-align: center;
 }
@@ -222,12 +222,8 @@ button:hover{
     cursor: pointer;
 }
 .smallHudTitle{
-    border-style: none none solid none;
-    background-color: grey;
     padding: none;
-    margin-top: -7%;
-    padding-top: 5px;
-    font-size: 200%;
+    font-size: 150%;
 }
 .switchDepartmentsMenu{
     position: fixed;

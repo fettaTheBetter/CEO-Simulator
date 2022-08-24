@@ -2,8 +2,8 @@
 //
 class InjuryTracker {
     constructor(){
-        this.injuryBreakpoints = ["Fine","Probable","Questionable","Injured","Almost Dead"];
-        this.injuryBreakpointsValues = [10,40,50,85]
+        this.injuryBreakpoints = ["Fine","Probable","Questionable","Injured","Almost Dead","Dead"];
+        this.injuryBreakpointsValues = [10,40,50,85,100,50]
         this.injuryValue = 0;
         this.injuryStatus = this.injuryBreakpoints[0];
         //this will check the injury in  battle to see if they can keep fighting
@@ -16,7 +16,7 @@ class InjuryTracker {
         this.currentFightValue = int;
         //now I need to change breakpoints
         for(let i=0;i<this.injuryBreakpointsValues.length;i++){
-            this.injuryBreakpointsValues[i] = this.currentFightValue*i;
+            this.injuryBreakpointsValues[i] = this.currentFightValue*(i+1);
         }
         //we do this changeInjury function to see if the breakpoints have moved
         //then it will set the proper injury status
@@ -42,27 +42,37 @@ class InjuryTracker {
     changeInjury(int){
         let injuryIndex = 0;
         this.injuryValue = this.injuryValue + int;
+        if(this.injuryValue <0 ){
+            this.injuryValue = 0;
+        }
         this.previousStatus = this.injuryStatus;
         if(this.injuryValue < this.injuryBreakpointsValues[0]){
             this.injuryStatus = this.injuryBreakpoints[0];
             injuryIndex = 0;
         }
-        else if(this.injuryValue <this.injuryBreakpointsValues[1] && this.injuryValue >this.injuryBreakpointsValues[0]){
+        else if(this.injuryValue <this.injuryBreakpointsValues[1] && this.injuryValue >=this.injuryBreakpointsValues[0]){
             this.injuryStatus = this.injuryBreakpoints[1];
             injuryIndex = 1;
         }
-        else if(this.injuryValue < this.injuryBreakpointsValues[2] && this.injuryValue >this.injuryBreakpointsValues[1]){
+        else if(this.injuryValue < this.injuryBreakpointsValues[2] && this.injuryValue >=this.injuryBreakpointsValues[1]){
             this.injuryStatus = this.injuryBreakpoints[2];
             injuryIndex = 2;
         }
-        else if(this.injuryValue <this.injuryBreakpointsValues[3] && this.injuryValue > this.injuryBreakpointsValues[2]){
+        else if(this.injuryValue <this.injuryBreakpointsValues[3] && this.injuryValue >= this.injuryBreakpointsValues[2]){
             this.injuryStatus = this.injuryBreakpoints[3];
             injuryIndex = 3;
+        }else if(this.injuryValue <this.injuryBreakpointsValues[4] && this.injuryValue >= this.injuryBreakpointsValues[3]){
+            this.injuryStatus = this.injuryBreakpoints[4];
+            injuryIndex = 4;
+        }
+        else if(this.injuryValue >=this.injuryBreakpointsValues[4]){
+            this.injuryStatus = this.injuryBreakpoints[5];
+            injuryIndex =5;
         }
         return injuryIndex;
     }
     checkForDeath(){
-        if(this.injuryValue >= 100){
+        if(this.injuryValue >= this.injuryBreakpointsValues[this.injuryBreakpointsValues.length-1]){
             return true;
         }
         else{

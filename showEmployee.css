@@ -1,0 +1,40 @@
+.productivityDisplay:hover .productivityHelp{display: block;}
+
+.productivityHelp{
+    display: none;
+}
+.expenseDisplay:hover .expenseHelp{display: block;}
+
+.expenseHelp{
+    display: none;
+}
+.trainingDisplay:hover .trainingHelp{display: block;}
+
+.trainingHelp{
+    display: none;
+}
+.injuryDisplay:hover .injuryHelp{display: block;}
+
+.injuryHelp{
+    display: none;
+}
+.specializationDisplay:hover .specializationHelp{display: block;}
+
+.specializationHelp{
+    display: none;
+}
+.fightDisplay:hover .fightHelp{display: block;}
+
+.fightHelp{
+    display: none;
+}
+
+.baseHelp{
+    background-color: black;
+    border-radius: 5px;
+    font-size: 80%;
+    font-weight: bolder;
+    color: white;
+    padding: 2px;
+}
+

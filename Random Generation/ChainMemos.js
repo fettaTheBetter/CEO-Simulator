@@ -12,13 +12,13 @@ let chainMemos = [new Memo(
                              option3Tag: "I Guess"},
                             function (){
                                 let employee = createEmployee(new HiringTracker());
-                                employee.specialization = "Sales";
+                                employee.specialization = realGame.company.tempDepartment;
                                 realGame.company.hireEmployee('Middle Management',employee);
                                 this.undisplayMemo();
                             },
                             function (){
                                 let employee = createEmployee(new HiringTracker());
-                                employee.specialization = "Sales";
+                                employee.specialization = realGame.company.tempDepartment;
                                 realGame.company.hireEmployee('Middle Management',employee);
                                 this.undisplayMemo();
                             },
@@ -106,7 +106,8 @@ let chainMemos = [new Memo(
                             {toLine: "<b>To:</b> Our CEO  ",
                              fromLine: "<p><b>From:</b> The Board Of Directors</p>",
                              body: "<p>&emsp;Oh, you must not have gotten the memo about that. How fights work is our employees will fight a random companies employees. It'll mostly be a brawl with some weapons," +
-                             " It's not a fight to the death so don't worry but sometimes people get hurt. It's ok, it's just employees getting hurt.</p>",
+                             " It's not a fight to the death so don't worry but sometimes people get hurt. It's ok, it's just employees getting hurt. <br>" +
+                             "&emsp; Our employees will pair off 1-on-1 against our competitors employees. Then any extra employees on either side will join the other fights to create an unfair advantage. The fight will continue until there is nobody left to field on at least one side. So generally the more employees you have the better chance you have. </p>",
                              signature: "<p>Regards,</p> <p>&emsp;The Board Of Directors</p>",
                              option1Text: "Makes Sense",
                              option2Text: "We'll Try Our Best",
@@ -128,8 +129,8 @@ let chainMemos = [new Memo(
                     new Memo(
                             {toLine: "<b>To:</b> Our CEO  ",
                                 fromLine: "<b>From:</b> The Board Of Directors",
-                                body: "<p>&emsp; Individual productivity is affected by a large amount of variables. Productivity is decreased if they are currently going through training, injured in any way, or some other things. Those are the main ones." +
-                                 "Employee productivity can also be increased by putting them in their specialized department or by pretending to care about them. In contrast to employee productivity, department producitivy is an average of all the employees.</p>",
+                                body: "<p>&emsp; Individual productivity is affected by a large amount of variables. Productivity is decreased if they are currently going through training, injured in any way, or some other things." +
+                                 " Employee productivity can also be increased by putting them in their specialized department or by pretending to care about them. In contrast to employee productivity, department producitivy is an average of all the employees.</p>",
                                 signature: "<p>Regards,</p> <p>&emsp;The Board Of Directors</p>",
                                 option1Text: "How Do I Make Money?",
                                 option2Text: "What are departments?",

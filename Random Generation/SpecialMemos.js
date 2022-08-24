@@ -26,7 +26,7 @@ let specialMemos = [new Memo(
                             {toLine: "<b>To:</b> Our Beloved CEO",
                              fromLine: "<b>From:</b> The Board Of Directors",
                              body: "<p>&emsp;Looks like one of your departments has a few too many employees. That's ok! We've made a new department for you called middle management." 
-                             + "This will help you manage all those extra people; our research has shown that for every five employees in a department you need a middle manager. Oh also the middle manager has to have a specialization in that department in order to manage it. <br>"
+                             + "This will help you manage all those extra people; our research has shown that for every three employees in a department you need a middle manager. Oh also the middle manager has to have a specialization in that department in order to manage it. <br>"
                               + "&emsp;We've also taken the liberty to hire your first middle manager!" +
                              " They're family so please be nice to them.</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
@@ -40,13 +40,13 @@ let specialMemos = [new Memo(
                             function (){
                                 realGame.company.ignoreTracker = realGame.company.ignoreTracker -1;
                                 let employee = createEmployee(new HiringTracker());
-                                employee.specialization = "Sales";
+                                employee.specialization = realGame.company.tempDepartment;
                                 realGame.company.hireEmployee('Middle Management',employee);
                                 this.undisplayMemo();
                             },
                             function (){
                                 let employee = createEmployee(new HiringTracker());
-                                employee.specialization = "Sales";
+                                employee.specialization = realGame.company.tempDepartment;
                                 realGame.company.hireEmployee('Middle Management',employee);
                                 this.undisplayMemo();
                             },
@@ -110,5 +110,40 @@ let specialMemos = [new Memo(
                             function (){
                                 realGame.company.ignoreTracker = realGame.company.ignoreTracker +2;
                                 this.undisplayMemo();
+                            }),
+                    new Memo(
+                            {toLine: "<b>To:</b> Our Beloved CEO",
+                                fromLine: "<b>From:</b> The Aid Station",
+                                body: "<p>&emsp;One Of Your employees has died. :(</p>",
+                                signature: "<p>Regards,</p> <p>&emsp;The Aid Station</p>",
+                                option1Text: "We Must Arrange A Funeral",
+                                option2Text: "My Condolences",
+                                option3Text: "Ignore It",
+                                subject: "<b>Subject:</b> Death In The Company",
+                                option1Tag: "Lose $100",
+                                option2Tag: "The Least You Can Do",
+                                option3Tag: "Heartless..."},
+                            function (){
+                                realGame.company.gainMoney(-100);
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                this.undisplayMemo();
+                            },
+                            function (){
+                                this.undisplayMemo();
+                            },
+                            function(){
+                                //grab the dead employees array and grab the top
+                                //then change the body of the memo,
+                                let firstDeadEmp = realGame.company.deadEmployees.pop();
+                                //if there are more, put another eugoogly on it
+                                if(realGame.company.deadEmployees.length >0){
+                                    realGame.memoArray.push(specialMemos[4]);
+                                }
+                                //now we need to change body
+                                this.config.body = "<p>&emsp; Your employee, " + firstDeadEmp.name + " (" + firstDeadEmp.idNum + ") has died. That is so sad. :(</p>";
+                                realGame.company.fireEmployee(firstDeadEmp);
+                                return true;
                             }),]
                             ;

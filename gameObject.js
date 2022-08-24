@@ -89,7 +89,13 @@ class Game {
       let isWon = battleObject.isWon;
       let rounds = battleObject.rounds;
       this.enemyRoundsFought++;
+      //need to do something about dead employees
+      //needs to be before battle Report so that you see battlereport first
+      if(this.company.deadEmployees.length >0){
+        this.removeDeadEmployees();
+      }
       this.memoArray.push(new BattleReport(isWon,rounds));
+      
     }
 
 
@@ -157,6 +163,9 @@ class Game {
     else{
       this.changeMemo(this.memoArray.pop());
     }
+  }
+  removeDeadEmployees(){
+    this.memoArray.push( specialMemos[4]);
   }
   addNewHires(){
     document.getElementById('fullHire').style.display = 'block';

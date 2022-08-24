@@ -152,6 +152,13 @@ class Department {
       }
       this.employees = tempArray;
     }
+    sortByIdNum(){
+      let tempArray = this.employees;
+      for(let i=0;i<this.employees.length;i++){
+        tempArray = this.utilSortIdNum(tempArray,i);
+      }
+      this.employees = tempArray;
+    }
     
 
 
@@ -183,6 +190,18 @@ class Department {
         if(maxProd < array[j].productivity){
           maxIndex = j;
           maxProd = array[j].productivity;
+        }
+      }
+      array = swap(maxIndex,num,array);
+      return array;
+    }
+    utilSortIdNum(array,num){
+      let maxIdNum =0;
+      let maxIndex =0;
+      for(let j=num;j<array.length;j++){
+        if(maxIdNum > array[j].idNum){
+          maxIndex = j;
+          maxIdNum = array[j].idNum;
         }
       }
       array = swap(maxIndex,num,array);

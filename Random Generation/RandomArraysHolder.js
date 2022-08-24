@@ -12,7 +12,7 @@ let ignoreBoardTitle = 'Ignore The Board';
 let empPersonalities = ["Bland","Energetic","Ambitious","Meticulous","Efficient","Relaxed","Social"];
 
 
-let helpInfoArrays = ["<div>Human Resources effects how well you know employees.</div>",
+let helpInfoArrays = ["<div>Human Resources affects how well you know employees.</div>",
                       "<div>Marketing increases the maximum amount of money you can earn.</div>",
                       "<div>Sales will effect the amount of money you earn.</div>",
                       "<div>Middle Management will effects your fighting prowess. It will also helps manage big departments.</div>",

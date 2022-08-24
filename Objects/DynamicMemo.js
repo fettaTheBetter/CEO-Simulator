@@ -7,6 +7,8 @@ class DynamicMemo extends Memo {
     constructor(){
         let config ={};
         super(config);
+        //will eventually have different excuses for injury
+        this.injuryExcusesArray = ["They were trampled at a tennis riot.","Had an alien pop out of their chest.","Sang too loudly in a subway.","At more than one Lays&trade; potato chip.","Ignored the signs at the zoo."];
         //will tell us if this memo has prep before the memo
         this.config = this.prepreMemo();
     }
@@ -15,7 +17,7 @@ class DynamicMemo extends Memo {
         //will create the dynamicMemoEmp object
         realGame.dynamicMemoEmp = pickRandomEmployee();
         // it's 4 because thats the number of special dynamic employees
-        let randNum = Math.floor(Math.random()*3);
+        let randNum = Math.floor(Math.random()*4);
         //randNum =0;
         //will create the department value that it will choose from
         realGame.dynamicMemoEmpDep = empSpecialization[Math.floor(Math.random()*(empSpecialization.length))];
@@ -38,6 +40,12 @@ class DynamicMemo extends Memo {
             this.optionArray[1] = this.empInjuryFunc2;
             this.optionArray[2] = this.empInjuryFunc3;
         }
+        else if(randNum == 3){
+            config = this.createEmpFighting(emp);
+            this.optionArray[0] = this.empFightingFunc1;
+            this.optionArray[1] = this.empFightingFunc2;
+            this.optionArray[2] = this.empFightingFunc3;
+        }
         //now I need to create the body from this employee
         return config;
     }
@@ -54,7 +62,7 @@ class DynamicMemo extends Memo {
         config.option2Text = "Sorry, Not Enough Experience";
         config.option3Text = "Ignore It";
         //need to change optionTags
-        config.option1Tag = "Let's See What Happens";
+        config.option1Tag = "Let&#39;s See What Happens";
         config.option2Tag = "Eventually They Will Get Experience";
         config.option3Tag = "They Know Nothing";
         return config;
@@ -71,19 +79,20 @@ class DynamicMemo extends Memo {
         config.option1Text = "You deserve a bigger one";
         config.option2Text = "I can give you your raise";
         config.option3Text = "Sorry, Not Enough Experience";
-        config.option1Tag = "Give A " + 2*(emp.raiseTracker.raiseValue*100) + "raise";
-        config.option2Tag = "Give The " + (emp.raiseTracker.raiseValue*100)+" raise";
-        config.option3Tag = "They don't deserve it yet";
+        config.option1Tag = "Give A " + 2*(emp.raiseTracker.raiseValue*100) + "% raise";
+        config.option2Tag = "Give The " + (emp.raiseTracker.raiseValue*100)+"% raise";
+        config.option3Tag = "They don&#39;t deserve it yet";
         return config;
     }
     createEmpInjury(emp){
         let config ={};
+        let randNum = Math.floor(Math.random()*this.injuryExcusesArray.length);
         //now I need to create the body from this employee
         config.toLine = "<p><b>To:</b> The CEO</p>";
         config.fromLine = "<p><b>From:</b> Aid Station </p>";
         config.subject = "<p><b>Subject:</b> Staff Injury</p>";
         //currently will pick a random department to throw it in
-        config.body = "&emsp; Sorry, but " +emp.name +  " from " +emp.currentDepartment +" has been injured. You're welcome to check to see how bad the injury is.";
+        config.body = "&emsp; Sorry, but " +emp.name +  " from " +emp.currentDepartment +" has been injured. " + this.injuryExcusesArray[randNum] +" You're welcome to check to see how bad the injury is.";
         config.signature = "<p>Regards,</p> <p>&emsp; Aid Station </p>";
         config.option1Text = "Ok, I'll check on them";
         config.option2Text = "Sorry, I'm squeemish";
@@ -91,6 +100,24 @@ class DynamicMemo extends Memo {
         config.option1Tag = "Show Humanity";
         config.option2Tag = "Understandable";
         config.option3Tag = "Not Your Problem";
+        return config;
+    }
+    createEmpFighting(emp){
+        let config ={};
+        //now I need to create the body from this employee
+        config.toLine = "<p><b>To:</b> The CEO</p>";
+        config.fromLine = "<p><b>From:</b> " + emp.name +  " from " +emp.currentDepartment + " Department</p>";
+        config.subject = "<p><b>Subject:</b> Staff Suggestions</p>";
+        //currently will pick a random department to throw it in
+        config.body = "&emsp;Hey I've been training at the local gym and I think I've picked up a few tips on fighting. I'm offering you guys a training course for your employees. I think I can improve you guys.";
+        config.signature = "<p>Regards,</p> <p>&emsp;" + emp.name +  " from " +emp.currentDepartment +"</p>";
+        config.option1Text = "Train Away";
+        config.option2Text = "No Thanks";
+        config.option3Text = "Ignore It";
+        //need to change optionTags
+        config.option1Tag = "Lose 200$, Chance To Increase Fight Value";
+        config.option2Tag = "I'm Not Sure I Trust That...";
+        config.option3Tag = "They Know Nothing";
         return config;
     }
     empSuggestionFunc1(){
@@ -102,7 +129,7 @@ class DynamicMemo extends Memo {
             realGame.company.getDepartment(realGame.dynamicMemoEmpDep).increaseProductivity(-4);
         }
         //will check if the employee likes to be praised
-        realGame.dynamicMemoEmp.increaseProductivity(realGame.dynamicMemoEmp.productivity.beingPraised());
+        realGame.dynamicMemoEmp.increaseProductivity(realGame.dynamicMemoEmp.personality.beingPraised());
         this.finishDynamic();
         this.undisplayMemo();
 
@@ -149,6 +176,24 @@ class DynamicMemo extends Memo {
     empInjuryFunc3(){
         realGame.dynamicMemoEmp.injuryTracker.changeInjury(realGame.dynamicMemoEmp.fightValue);
         realGame.dynamicMemoEmp.increaseProductivity(-2);
+        this.finishDynamic();
+        this.undisplayMemo();
+    }
+    empFightingFunc1(){
+        realGame.company.gainMoney(-200);
+        if(realGame.dynamicMemoEmp.productivity >=50){
+            realGame.company.increaseFightValue(0.5);
+        }
+        this.finishDynamic();
+        this.undisplayMemo();
+    }
+    empFightingFunc2(){
+        this.finishDynamic();
+        this.undisplayMemo();
+    }
+    empFightingFunc3(){
+        //making it negative because they are not being praised
+        realGame.dynamicMemoEmp.increaseProductivity(-(realGame.dynamicMemoEmp.personality.beingPraised()));
         this.finishDynamic();
         this.undisplayMemo();
     }
