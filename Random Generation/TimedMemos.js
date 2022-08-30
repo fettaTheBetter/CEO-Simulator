@@ -32,8 +32,8 @@ let timedMemos =[new Memo(  {toLine: "<b>To:</b> Our Beloved CEO",
                              option2Text: "Sounds Good",
                              option3Text: "Ignore It",
                              subject: "<b>Subject:</b> GCBA Reminder",
-                             option1Tag: "",
-                             option2Tag: "",
+                             option1Tag: "Hear About Battles",
+                             option2Tag: "Pretend To Care",
                              option3Tag: ignoreBoardTitle},
                             function (){
                                 realGame.memoArray.push(chainMemos[3]);

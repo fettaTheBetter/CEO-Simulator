@@ -117,7 +117,7 @@ class Company {
     //will use the hiring tracker for future employees
     increaseFightValue(int){
         let allEmps = this.getAllEmployees();
-        for(i=0;i<allEmps.length;i++){
+        for(let i=0;i<allEmps.length;i++){
             allEmps[i].changeBaseFightValue(int);
         }
         //now need to change it for all future employees
@@ -202,7 +202,7 @@ class Company {
     //will give each hud the num of employees
     setNumEmployee(){
         for(let i = 0;i<this.departmentsArray.length;i++){
-            this.departmentsArray[i].canvas.children[3].children[1].innerText = this.departmentsArray[i].employees.length;
+            this.departmentsArray[i].canvas.children[2].children[1].innerText = this.departmentsArray[i].employees.length;
         }
     }    
     setProductivity(){
@@ -243,7 +243,8 @@ class Company {
     }  
     //will check the employees in the each department to see change the MM numbers needed
     checkForNumNeeded(department){
-        department.MMneeded = Math.floor(department.employees.length / this.numForMM);
+        department.MMNeeded = Math.floor(department.employees.length / this.numForMM);
+
     }  
     //will grab all the employees and simulate a party, will change
     checkParty(){
@@ -264,11 +265,14 @@ class Company {
         if(this.getDepartment("Middle Management") != null){
             for(let i=0;i<this.departmentsArray.length;i++){
                 this.checkForNumNeeded(this.departmentsArray[i]);
-                if(this.departmentsArray[i].MMneeded > this.getDepartment("Middle Management").numOfMMForDep(this.departmentsArray[i].name)){
+                let currentMM = this.getDepartment("Middle Management").numOfMMForDep(this.departmentsArray[i].name)
+                if(this.departmentsArray[i].MMNeeded > currentMM){
                     this.departmentsArray[i].hasEnoughMM = false;
+                    this.departmentsArray[i].currentMM = currentMM;
                 }
                 else{
                     this.departmentsArray[i].hasEnoughMM = true;
+                    this.departmentsArray[i].MMNeeded = 0;
                 }
             }
         }

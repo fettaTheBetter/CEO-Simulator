@@ -3,7 +3,7 @@
 class InjuryTracker {
     constructor(){
         this.injuryBreakpoints = ["Fine","Probable","Questionable","Injured","Almost Dead","Dead"];
-        this.injuryBreakpointsValues = [10,40,50,85,100,50]
+        this.injuryBreakpointsValues = [10,40,50,85,100,150]
         this.injuryValue = 0;
         this.injuryStatus = this.injuryBreakpoints[0];
         //this will check the injury in  battle to see if they can keep fighting
@@ -93,6 +93,12 @@ class InjuryTracker {
         }
         else if(this.injuryValue <this.injuryBreakpointsValues[3] && this.injuryValue > this.injuryBreakpointsValues[2]){
             productivityBreakpoint = 3;
+        }
+        else if(this.injuryValue <this.injuryBreakpointsValues[4] && this.injuryValue >= this.injuryBreakpointsValues[3]){
+            productivityBreakpoint = 4;
+        }
+        else if(this.injuryValue >= this.injuryBreakpointsValues[4]){
+            productivityBreakpoint = 5;
         }
         return productivity * (1-(productivityBreakpoint*0.10));
     }

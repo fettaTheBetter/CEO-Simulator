@@ -3,6 +3,7 @@ class Employee {
     constructor() {
       this.baseProductivity;
       this.productivity = 0;
+      this.baseExpense = 0;
       this.expense;
       //which department they gain specialization in
       this.specialization;
@@ -31,7 +32,7 @@ class Employee {
 
       //will contain the images for injury
       this.imgArray = ['https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace1stInjuryTrans.png',
-                      'https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace2ndInjuryTrans.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace3rdInjury.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace3rdInjury.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace3rdInjury.png'];
+                      'https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace2ndInjuryTrans.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace3rdInjuryTrans.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace3rdInjuryTrans.png','https://office-mayhem.s3.us-east-2.amazonaws.com/tempFace3rdInjuryTrans.png'];
       //this.htmlEmployee.children[0].src =
       //this is how to change the empPicture
       //
@@ -50,8 +51,12 @@ class Employee {
     changeBaseFightValue(int){
       let previousBaseFightValue = this.baseFightValue;
       this.baseFightValue = this.baseFightValue +int;
-      this.fightValue = this.baseFightValue + (this.baseFightValue*((this.fightValue-this.previousBaseFightValue).previousBaseFightValue));
+      this.fightValue = this.baseFightValue + (this.baseFightValue*((this.fightValue-previousBaseFightValue)*0.01));
       this.injuryTracker.changeFightValue(this.fightValue);
+    }
+    changeExpense(int){
+      this.expense = this.baseExpense + int;
+      return this.expense;
     }
     checkForRaise(){
         if(0== this.raiseTracker.weeksForRaise){

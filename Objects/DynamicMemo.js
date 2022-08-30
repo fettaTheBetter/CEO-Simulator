@@ -8,7 +8,7 @@ class DynamicMemo extends Memo {
         let config ={};
         super(config);
         //will eventually have different excuses for injury
-        this.injuryExcusesArray = ["They were trampled at a tennis riot.","Had an alien pop out of their chest.","Sang too loudly in a subway.","At more than one Lays&trade; potato chip.","Ignored the signs at the zoo."];
+        this.injuryExcusesArray = ["They were trampled at a tennis riot.","Had an alien pop out of their chest.","Sang too loudly in a subway.","Ate more than one Lays&trade; potato chip.","Ignored the signs at the zoo."];
         //will tell us if this memo has prep before the memo
         this.config = this.prepreMemo();
     }
@@ -16,6 +16,11 @@ class DynamicMemo extends Memo {
         let config ={};
         //will create the dynamicMemoEmp object
         realGame.dynamicMemoEmp = pickRandomEmployee();
+        //if there are no employees will not use the dynamic memo
+        if(realGame.dynamicMemoEmp == undefined){
+            this.preMemo = function() {return false};
+            return {};
+        }
         // it's 4 because thats the number of special dynamic employees
         let randNum = Math.floor(Math.random()*4);
         //randNum =0;
@@ -116,7 +121,7 @@ class DynamicMemo extends Memo {
         config.option3Text = "Ignore It";
         //need to change optionTags
         config.option1Tag = "Lose 200$, Chance To Increase Fight Value";
-        config.option2Tag = "I'm Not Sure I Trust That...";
+        config.option2Tag = "I&#39;m Not Sure I Trust That...";
         config.option3Tag = "They Know Nothing";
         return config;
     }
@@ -164,17 +169,20 @@ class DynamicMemo extends Memo {
     }
     empInjuryFunc1(){
         realGame.dynamicMemoEmp.increaseProductivity(2);
-        realGame.dynamicMemoEmp.injuryTracker.changeInjury(realGame.dynamicMemoEmp.fightValue);
+        let tempNum = realGame.dynamicMemoEmp.injuryTracker.changeInjury(realGame.dynamicMemoEmp.fightValue);
+        realGame.dynamicMemoEmp.htmlEmployee.children[0].src = realGame.dynamicMemoEmp.imgArray[tempNum];
         this.finishDynamic();
         this.undisplayMemo();
     }
     empInjuryFunc2(){
-        realGame.dynamicMemoEmp.injuryTracker.changeInjury(realGame.dynamicMemoEmp.fightValue);
+        let tempNum = realGame.dynamicMemoEmp.injuryTracker.changeInjury(realGame.dynamicMemoEmp.fightValue);
+        realGame.dynamicMemoEmp.htmlEmployee.children[0].src = realGame.dynamicMemoEmp.imgArray[tempNum];
         this.finishDynamic();
         this.undisplayMemo();
     }
     empInjuryFunc3(){
-        realGame.dynamicMemoEmp.injuryTracker.changeInjury(realGame.dynamicMemoEmp.fightValue);
+        let tempNum = realGame.dynamicMemoEmp.injuryTracker.changeInjury(realGame.dynamicMemoEmp.fightValue);
+        realGame.dynamicMemoEmp.htmlEmployee.children[0].src = realGame.dynamicMemoEmp.imgArray[tempNum];
         realGame.dynamicMemoEmp.increaseProductivity(-2);
         this.finishDynamic();
         this.undisplayMemo();

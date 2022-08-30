@@ -26,7 +26,7 @@ let specialMemos = [new Memo(
                             {toLine: "<b>To:</b> Our Beloved CEO",
                              fromLine: "<b>From:</b> The Board Of Directors",
                              body: "<p>&emsp;Looks like one of your departments has a few too many employees. That's ok! We've made a new department for you called middle management." 
-                             + "This will help you manage all those extra people; our research has shown that for every three employees in a department you need a middle manager. Oh also the middle manager has to have a specialization in that department in order to manage it. <br>"
+                             + "This will help you manage all those extra people; our research has shown that for every three employees in a department you need a middle manager. This middle manager will make sure expense don't skyrocket and productivity stays consisten. Oh also the middle manager has to have a specialization in that department in order to manage it. <br>"
                               + "&emsp;We've also taken the liberty to hire your first middle manager!" +
                              " They're family so please be nice to them.</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",

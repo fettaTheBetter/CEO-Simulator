@@ -17,7 +17,7 @@ class ScoutingReport extends Memo {
         config.fromLine = "<p><b>From:</b> Custodians</p>";
         config.body = this.createBody();
         config.signature = "<p>Sincerely,</p> <p>&emsp;The Custodian Team</p>";
-        config.subject = "<p><b>Subject:</b> Battle Report</p>"
+        config.subject = "<p><b>Subject:</b> Scouting Report</p>"
         config.option1Text =         "Looks Spooky";
         config.option2Text =          "Cry";
         config.option3Text =          "We Can Handle It";

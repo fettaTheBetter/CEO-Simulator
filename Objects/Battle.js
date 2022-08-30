@@ -98,7 +98,7 @@ class Battle {
                 employees = this.removeFromArray(employees[i],employees);
                 //need this because we are changing the length of employees
                 if(isOurTeam){
-                this.removedEmployees.push(employees.pop());
+                    this.removedEmployees.push(employees.pop());
                 }
                 else{
                     employees.pop()

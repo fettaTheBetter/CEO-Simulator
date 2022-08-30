@@ -31,7 +31,7 @@ class Game {
       this.company.setMoney();
       this.company.checkWeeklyMM();
       this.company.setProductivity();
-      //this.company.setNumEmployee();
+      this.company.setNumEmployee();
       this.company.setFightValue();
   }
   //What happens to the company when we got to the next week
@@ -66,8 +66,8 @@ class Game {
       //index 6 contains the special Middle management memo
       this.memoArray.push(specialMemos[1]);
       document.getElementById('switchDepartmentsMenu').children[2].appendChild(document.createElement('button'));
-      document.getElementById('switchDepartmentsMenu').children[2].children[4].onclick = function(){switchEmployee('Middle Management');};
-      document.getElementById('switchDepartmentsMenu').children[2].children[4].innerText = "Middle Management";
+      document.getElementById('switchDepartmentsMenu').children[2].children[7].onclick = function(){switchEmployee('Middle Management');};
+      document.getElementById('switchDepartmentsMenu').children[2].children[7].innerText = "Middle Management";
     }
     this.checkForIgnoredMemos();
     this.company.checkWeeklyMM();
@@ -124,6 +124,7 @@ class Game {
     }
   }
   changeMemo(memo){
+    console.log("Here is the memo we are changing: " + memo.config.subject );
     //has been implemented
     let hasBeenImp = false;
     let temp = document.getElementById('fullMemo');

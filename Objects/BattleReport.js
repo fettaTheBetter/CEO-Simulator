@@ -113,7 +113,10 @@ class BattleReport extends Memo {
         realGame.company.gainMoney(-(25*this.numInjured));
         let allEmps = realGame.company.getAllEmployees();
         for(let i=0;i<allEmps.length;i++){
-            allEmps[i].changeInjury(allEmps[i].fightValue);
+            if(allEmps[i].injuryTracker.injuryStatus != "Fine"){
+                let tempNum = allEmps[i].injuryTracker.changeInjury(-allEmps[i].fightValue);
+                allEmps[i].htmlEmployee.children[0].src = allEmps[i].imgArray[tempNum];
+            }
         }
         this.undisplayMemo();
     }

@@ -5,7 +5,7 @@ class HumanResources extends Department {
     constructor(){
         super();
         this.name = "Human Resources";
-        this.breakpoints = [0,0,25,45,55,65,70,85];
+        this.breakpoints = [0,0,25,45,65,70,85];
     }
     //will return how far into the breakpoints we are, for showing what is necessary in employees
     checkBreakpoints(){
@@ -35,6 +35,7 @@ class HumanResources extends Department {
             tempbreakpoints++;
             tempbreakpoints++;
             tempbreakpoints++;
+            
         }
         for(let i=0;i<tempbreakpoints;i++){
             let tempHTML = document.createElement('div');

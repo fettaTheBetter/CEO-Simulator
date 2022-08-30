@@ -7,6 +7,8 @@ class Department {
       this.breakpoints;
       //middlemanagers needed
       this.hasEnoughMM = true;
+      this.MMNeeded = 0;
+      this.currentMM = 0;
       //contains all employees in department
       this.employees = [];
       this.name;
@@ -31,7 +33,12 @@ class Department {
       let sum = 0;
       //this will take the average productivity of the employees?
       for(let j=0;j<this.employees.length;j++){
-        sum = sum + this.employees[j].expense;
+        if(this.hasEnoughMM){
+          sum = sum + this.employees[j].changeExpense(0);
+        }
+        else{
+          sum = sum + this.employees[j].changeExpense(this.employees[j].baseExpense*(this.MMNeeded - this.currentMM));
+        }
       }
       this.expenses = sum;
       return sum;
@@ -57,8 +64,8 @@ class Department {
         returnedNum =0;
       }
       //if you don't have enough middle managers
-      if(!(this.hasEnoughMM)){
-        returnedNum = returnedNum*0.5;
+      if(!(this.hasEnoughMM) && this.name != "Middle Management"){
+        returnedNum = returnedNum / (this.MMNeeded+1);
       }
       //will input the equation for productivity here
       returnedNum = this.calculateProductivityFormula(returnedNum);
