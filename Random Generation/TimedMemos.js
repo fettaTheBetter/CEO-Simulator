@@ -1,6 +1,6 @@
 let timedMemos =[new Memo(  {toLine: "<b>To:</b> Our Beloved CEO",
                              fromLine: "<b>From:</b> The Board Of Directors",
-                             body: "<p>&emsp;For your first act as CEO you get to choose how much money we give you." +
+                             body: "&emsp; Just a heads up all of our previous employees quit so we conducted some quick and intense interviews and we think you'll be happy with the new team we've chosen. <br>" + "<p>&emsp;For your first act as CEO you get to choose how much money we give you." +
                              " Uhhhh, pick the biggest one for now I guess...</p>",
                              signature: "<p>Regards,</p> <p>&emsp;Your Friendly Board Of Directors :)</p>",
                              option1Text: "Give Me A Challenge",

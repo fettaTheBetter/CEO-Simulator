@@ -1,5 +1,5 @@
 let empNames = ["Steve","Doug","Ansel","Catherine","Asif","Georgie","Savannah","Quinn","Oswald","Jacquelyn","David","Caleb","Joseph","Pranav","Brunhilda","Jerry","Olivia","Constance","Michael","Biff","Stephanie","Narayana","Sunita","Vantou","Lewis","Cecelia","Benjamin","Franklin","Alexander","Louisa"];
-
+let empLastNames = ["A.","B.","C.","D.","E.","F.","G.","H.","I.","J.","K.","L.","M.","N.","O.","P.","Q.","R.","S.","T.","U","V.","W.","X.","Y.","Z."];
 let empSpecialization = ["Sales","Human Resources","Onboarding","Marketing","Recruiting","Aid Station","Custodian"];
 
 
@@ -13,9 +13,9 @@ let empPersonalities = ["Bland","Energetic","Ambitious","Meticulous","Efficient"
 
 
 let helpInfoArrays = ["<div>Human Resources affects how well you know employees.</div>",
-                      "<div>Marketing increases the maximum amount of money you can earn.</div>",
-                      "<div>Sales will effect the amount of money you earn.</div>",
-                      "<div>Middle Management will effects your fighting prowess. It will also helps manage big departments.</div>",
+                      "<div>Marketing increases the maximum amount of money you can earn. Sales will then earn a percentage of that money.</div>",
+                      "<div>Sales will gain money for your company. The amount is dependent on Marketing and your productivity.</div>",
+                      "<div>Middle Management will affects your employees fighting values. You are also required to have 1 Middle Manager per 3 employees in a department. Otherwise you the department will take a hit to productivity and increase expenses.</div>",
                       "<div>Onboarding will reduce the training time for new hires.</div>",
                       "<div>The Aid station will help your employees recover from injuries.</div>",
                       "<div>Custodian help you scout out the competition.</div>",

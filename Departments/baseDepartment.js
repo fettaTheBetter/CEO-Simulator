@@ -103,6 +103,12 @@ class Department {
         tempDiv.children[2].innerHTML = "<b>Expense: </b>" + this.employees[i].expense.toFixed(2);
         tempDiv.children[3].innerHTML = "<b>Training: </b>" + (this.employees[i].trainingTracker.weeksToComplete-this.employees[i].trainingTracker.weeksCompleted) + " weeks left.";
         tempDiv.children[4].innerText = this.employees[i].name + " (" +this.employees[i].idNum + ")";
+        if(this.name == "Middle Management"){
+          tempDiv.children[5].innerHTML = "<b>Managed Department: </b>" + this.employees[i].specialization;
+        }
+        else{
+          tempDiv.children[5].innerHTML = "";
+        }
         //will need to add on onclick function
         canvas.appendChild(tempDiv);
       }
@@ -163,6 +169,7 @@ class Department {
       let tempArray = this.employees;
       for(let i=0;i<this.employees.length;i++){
         tempArray = this.utilSortIdNum(tempArray,i);
+        console.log("Here is array after we sort by IdNum: " + JSON.stringify(tempArray));
       }
       this.employees = tempArray;
     }
@@ -203,7 +210,8 @@ class Department {
       return array;
     }
     utilSortIdNum(array,num){
-      let maxIdNum =0;
+      //hope that they never get over 10000 employees LOL
+      let maxIdNum = Infinity;
       let maxIndex =0;
       for(let j=num;j<array.length;j++){
         if(maxIdNum > array[j].idNum){

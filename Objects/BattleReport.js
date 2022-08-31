@@ -8,6 +8,14 @@ class BattleReport extends Memo {
         this.isWon = isWon;
         this.rounds = rounds;
         this.numInjured = 0;
+
+        //rewards and penalties for battle
+        this.rewardsArray = [500];
+        this.penaltiesArray = [-100];
+
+
+
+
         this.config = this.editConfig();
         this.optionArray[0] = this.option1Func;
         this.optionArray[1] = this.option2Func;
@@ -31,15 +39,13 @@ class BattleReport extends Memo {
 
     }
     createBody() {
+        console.log("Here is the battleResult: " + this.isWon);
         let empArray = realGame.company.getAllEmployees();
         let hasBeenReported = false;
-        //currently battleReport is hardcoded as win
-        let battleReport;
-        battleReport = this.isWon;
         let string = "<p>";
-        string = string +"Here is the battle report sir: <br>";
-        string = string +"Battle Result: " + battleReport + "<br><br>";
-        string = string +"Injury Report: <br>";
+        string = string +"Here is the battle report sir, <br>";
+        string = this.createResult(string,this.isWon);
+        string = string +"<br> <b>Injury Report:</b> <br>";
             for(let i=0;i<empArray.length;i++){
                 if(empArray[i].injuryTracker.previousStatus != empArray[i].injuryTracker.injuryStatus){
                     hasBeenReported = true;
@@ -95,6 +101,20 @@ class BattleReport extends Memo {
 
 
         string = string + "</p>";
+        return string;
+    }
+    createResult(string,battleResult){
+        if(battleResult == "Win"){
+            string = string + "<div> Battle Result: Win</div><div>Reward: $" + this.rewardsArray[0] + "</div>";
+            realGame.company.gainMoney(this.rewardsArray[0]);
+        }
+        else if(battleResult == "Draw"){
+            string = string + "<div> Battle Result: Win</div> <br> <div>Reward: None</div>";
+        }
+        else if(battleResult == "Loss"){
+            string = string + "<div> Battle Result: Win</div> <br> <div>Penalty: $-" + this.penaltiesArray[0] + "$</div>";
+            realGame.company.gainMoney(this.penaltiesArray[0]);
+        }
         return string;
     }
     option1Func(){

@@ -25,6 +25,7 @@ class Battle {
          let urTempEmp = yourTempEmp;
          let enemyTempEmp = badTempEmp;
          this.fightArray = [];
+         let fightResult = "none";
          this.roundArray.push(new Round(this.roundArray.length+1));
          //if ur ur company has more employees
          if(urTempEmp.length >= enemyTempEmp.length){
@@ -76,21 +77,22 @@ class Battle {
          urTempEmp = this.checkInjuries(urTempEmp,true);
          enemyTempEmp = this.checkInjuries(enemyTempEmp,false);
          if(urTempEmp.length <=0 && enemyTempEmp.length <=0){
-            return this.finishBattle("Draw");
+            fightResult = this.finishBattle("Draw");
          }
          else if(enemyTempEmp.length <=0){
             while(urTempEmp.length >0){
                 this.removedEmployees.push(urTempEmp.pop());
             }
-            return this.finishBattle("Win");
+            fightResult = this.finishBattle("Win");
          }
          else if(urTempEmp.length <=0){
-            return this.finishBattle("Loss");
+            fightResult = this.finishBattle("Loss");
          }
          //if there are still people who can fight, continue battle
          else{
-            this.simulateBattle(urTempEmp,enemyTempEmp);
+            fightResult = this.simulateBattle(urTempEmp,enemyTempEmp);
          }
+         return fightResult;
     }
     checkInjuries(employees,isOurTeam){
         for(let i=0;i<employees.length;i++){

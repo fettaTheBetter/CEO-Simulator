@@ -7,6 +7,7 @@
     <link rel="stylesheet" type = "text/css" href="firstPage.css">
     <link rel="stylesheet" type = "text/css" href="./Objects/BattleReport.css">
     <link rel="stylesheet" type = "text/css" href="showEmployee.css">
+    <audio id="musicSettings" src="Cough.mp3" loop></audio>
     
 </head>
 
@@ -209,6 +210,7 @@
                             <div class = "imageHolder">
                                 <img style = "height: 200px" src ="https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png">
                                 <div><b></b></div>
+                                <div><b></b></div>
                             </div>
                             <div id="empAttributes" class = "empAttributes">
                                 <div>
@@ -233,32 +235,6 @@
 
 
         </div>
-        <div class ="flexColumn" style = "display: none;">
-            <button class="infoMenu" onclick="toggleMenu()">Toggle Help Menu</button>
-            <div id="hiddenMenu" style = "display: none;">
-                <p>Some events require a certain amount of productivity to work.</p>
-                <div class = "helpMenuTitles">Human Resources</div>
-                <div class ='blackLine'></div>
-                <p><b>Productivity:</b> Affects the quality of people you hire</p>
-                <p><b># Of People:</b> Affects how well you know your employees</p>
-                <div class = "helpMenuTitles">Sales</div>
-                <div class ='blackLine'></div>
-                <p><b>Productivity:</b> Affects the amount of money you can get</p>
-                <p><b># Of People:</b> Affects the maximun amount of money you can get</p>
-                <div class = "helpMenuTitles">IT</div>
-                <div class ='blackLine'></div>
-                <p><b>Productivity:</b> Affects how well your employees heal outside of combat</p>
-                <p><b># Of People:</b> Affects how quickly you can train people</p>
-                <div class = "helpMenuTitles">Marketing</div>
-                <div class ='blackLine'></div>
-                <p><b>Productivity:</b> ?????</p>
-                <p><b># Of People:</b> Affects the number you can hire</p>
-                <div class = "helpMenuTitles">Middle Management</div>
-                <div class ='blackLine'></div>
-                <p><b>Productivity:</b> Affects your fight value</p>
-                <p><b># Of People:</b> Affects specific departments efficiency</p>
-            </div>
-        </div>
     </div>
     <div id="firstRoom" class ="firstRoom">
         <div class = "title">CEO Simulator</div>
@@ -266,9 +242,11 @@
         <div>
             <p>This is a tycoon/roguelite game. It is very far from finished.</p>
             <p>I will add more info later.</p>
+            <p>Just a warning, if you play music it is just the sound of me coughing on repeat.</p>
         </div>
         <button onClick = "StartGame()" class="startGameButton">Start Game</button>
     </div>
+    <img id="musicImage" src = "https://office-mayhem.s3.us-east-2.amazonaws.com/MusicNoteCrossedTrans.png" class = "musicImage pointer" onclick="changeMusic()">
     
 </body>
 <!--Personalities-->
@@ -321,4 +299,6 @@
 <script src = "./Random Generation/CreateEmployee.js"></script>
 <script src ="./Random Generation/CreateTrainingTracker.js"></script>
 <script src="./Random Generation/CreateMemo.js"></script>
+
+<script src="./settingsController.js"></script>
 </html>

@@ -256,7 +256,7 @@ class Company {
     checkRemote(isRemote){
         let allEmp = this.getAllEmployees();
         for(let i=0;i<allEmp.length;i++){
-            allEmp[i].increaseProductivity(allEmp[i].personality.remoteWork(isRemote));
+            allEmp[i].increaseProductivity(allEmp[i].personality.remoteWorkFunc(isRemote));
         }
     }
     //will check if the department needs another middle Management

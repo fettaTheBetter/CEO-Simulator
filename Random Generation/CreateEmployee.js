@@ -19,7 +19,7 @@ function createEmployee(hiringTracker){
         let empPersonality = empPersonalities[Math.floor(Math.random()*(empPersonalities.length))];
         employee.personality = createEmpPersonality(empPersonality);
         //should get us a random name/productivity/expense in employees
-        employee.name = empNames[Math.floor(Math.random()*(empNames.length))];
+        employee.name = empNames[Math.floor(Math.random()*(empNames.length))] +" " + empLastNames[Math.floor(Math.random()*(empLastNames.length))];
         employee.baseProductivity = Math.floor(Math.random()*(maxProductivity-minProductivity+1) + minProductivity);
         employee.baseExpense = Math.floor(Math.random()*(maxExpense-minExpense+1) + minExpense);
         employee.changeExpense(0);

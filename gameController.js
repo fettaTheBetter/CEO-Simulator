@@ -167,6 +167,7 @@ function createEmpHiringObject(num){
                                     "<div class = 'imageHolder flexColumn'>" +
                                         "<img src ='https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png'>" +
                                         "<div><b></b></div>" +
+                                        "<div><b></b></div>" +
                                     "</div>" + 
                                     "<div>" +
                                         "<div class = 'empAttributes'>" +
@@ -203,6 +204,7 @@ function createMemoEmp(){
                                 "<div  class = 'employeeInfo'>" +
                                     "<div class = 'imageHolder flexColumn'>" +
                                         "<img src ='https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png'>" +
+                                        "<div><b></b></div>" +
                                         "<div><b></b></div>" +
                                     "</div>" + 
                                     "<div>" +

@@ -14,7 +14,7 @@ class Personality{
         this.likesFellowEmp = false;
         this.likesTeambuilding = false;
     }
-    remoteWork(isRemote){
+    remoteWorkFunc(isRemote){
         //if this person likes remote work
         if(isRemote){
             if(this.remoteWork){

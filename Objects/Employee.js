@@ -74,12 +74,14 @@ class Employee {
         let tempProd = document.createElement('div');
         let tempExpense = document.createElement('div');
         let tempTraining = document.createElement('div');
+        let tempManaging = document.createElement('div');
         tempImg.src = 'https://office-mayhem.s3.us-east-2.amazonaws.com/tempFaceTrans.png';
         tempEmp.appendChild(tempImg);
         tempEmp.appendChild(tempProd);
         tempEmp.appendChild(tempExpense);
         tempEmp.appendChild(tempTraining);
         tempEmp.appendChild(tempName);
+        tempEmp.appendChild(tempManaging);
         tempEmp.classList.add('empPicture');
         return tempEmp;
     }

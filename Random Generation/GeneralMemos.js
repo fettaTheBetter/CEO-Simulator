@@ -283,6 +283,7 @@ let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
                                     realGame.memoArray.push(createMemo());
                                     return false;
                                 }
+                                return true;
                             }),
                     new Memo(
                             {toLine: "<b>To:</b> Our CEO Friend ",
@@ -316,6 +317,7 @@ let generalMemos = [new Memo( {   toLine: "<b>To:</b> Our Beloved CEO",
                                     realGame.memoArray.push(createMemo());
                                     return false;
                                 }
+                                return true;
                             }),
                     new Memo(
                             {toLine: "<b>To:</b> Our CEO ",

@@ -130,7 +130,7 @@ let chainMemos = [new Memo(
                             {toLine: "<b>To:</b> Our CEO  ",
                                 fromLine: "<b>From:</b> The Board Of Directors",
                                 body: "<p>&emsp; Individual productivity is affected by a large amount of variables. Productivity is decreased if they are currently going through training, injured in any way, or some other things." +
-                                 " Employee productivity can also be increased by putting them in their specialized department or by pretending to care about them. In contrast to employee productivity, department producitivy is an average of all the employees.</p>",
+                                 " Employee productivity can also be increased by putting them in their specialized department or by pretending to care about them. In contrast to employee productivity, department productivity is an average of all the employees.</p>",
                                 signature: "<p>Regards,</p> <p>&emsp;The Board Of Directors</p>",
                                 option1Text: "How Do I Make Money?",
                                 option2Text: "What are departments?",
@@ -155,7 +155,7 @@ let chainMemos = [new Memo(
                             {toLine: "<b>To:</b> Our CEO  ",
                                 fromLine: "<b>From:</b> The Board Of Directors",
                                 body: "<p>&emsp;Each department will effect the company in different ways. How much it effects the company depends on how productive that department is." +
-                                " The number of employees in said department and the overall productivity of the department. </p>",
+                                " The higher the productivity the more positive affect the department will have on the company. </p>",
                                 signature: "<p>Regards,</p> <p>&emsp;The Board Of Directors</p>",
                                 option1Text: "What is productivity?",
                                 option2Text: "How do I make money?",

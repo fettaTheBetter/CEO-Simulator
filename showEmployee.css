@@ -28,6 +28,16 @@
 .fightHelp{
     display: none;
 }
+.trainingADisplay:hover .trainingAHelp{display: block;}
+
+.trainingAHelp{
+    display: none;
+}
+.personalityDisplay:hover .personalityHelp{display: block;}
+
+.personalityHelp{
+    display: none;
+}
 
 .baseHelp{
     background-color: black;

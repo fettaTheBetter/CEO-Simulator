@@ -23,9 +23,11 @@ class HumanResources extends Department {
         let idNum = "N/A";
         if(employee.idNum == undefined){
             canvas.parentElement.parentElement.children[0].children[1].innerText = employee.name + " (" + idNum + ")"; 
+            canvas.parentElement.parentElement.children[0].children[2].innerText = "Current Department: " + idNum;
         }
         else{
             canvas.parentElement.parentElement.children[0].children[1].innerText = employee.name + " (" + employee.idNum + ")";
+            canvas.parentElement.parentElement.children[0].children[2].innerText = "Current Department: " + employee.currentDepartment;
         }
         let tempbreakpoints = this.checkBreakpoints();
         //need to set the picture
@@ -128,16 +130,16 @@ class HumanResources extends Department {
             case 7:
                 infoName.innerHTML = "<b>Training Aptitude: &nbsp;</b>";
                 infoStat.innerText = employee.trainingTracker.baseProductivityImpact;
-                canvas.classList.add('productivityDisplay');
-                help.classList.add('productivityHelp');
-                help.innerText = "Shows how efficient your employee is";
+                canvas.classList.add('trainingADisplay');
+                help.classList.add('trainingAHelp');
+                help.innerText = "How productive they are during training";
                 break;
             case 8: 
             infoName.innerHTML = "<b>Personality: &nbsp;</b>";
                 infoStat.innerText = employee.personality.personality;
-                canvas.classList.add('productivityDisplay');
-                help.classList.add('productivityHelp');
-                help.innerText = "Shows how efficient your employee is";
+                canvas.classList.add('personalityDisplay');
+                help.classList.add('personalityHelp');
+                help.innerText = "Their personality LOL";
                 break;
 
         }
