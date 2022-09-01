@@ -34,9 +34,11 @@ button:hover{
 .buttonNextWeek{
     width: 95%;
     font-size: 400%;
-    height: 30%;
-    background-color: #888;
+    background-color: bisque;
     border-radius: 5px;
+    margin-top: 25px;
+    position: sticky;
+    bottom: 0;
 }
 .cursorPointer:hover{
     cursor: pointer;
