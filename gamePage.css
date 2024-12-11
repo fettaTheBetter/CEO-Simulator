@@ -251,7 +251,7 @@ button:hover{
 }
 .wholeGame{
     width: 100vw;
-    height: 100vh;
+    height: 98vh;
     background-color: #615f5f;
     display: flex;
     align-self: center;
